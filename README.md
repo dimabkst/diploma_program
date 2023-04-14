@@ -1,4 +1,2 @@
-# math_modelling_lab03
-Third and final laboratory work in subject "Mathematical modelling" with Sergiy Voloshchuk as practise teacher and Stoyan Volodymyr as lector. Date: 1 semester of 2022.
-
-Worked together with Diana Vyshnivska and Mark Ostashevskiy
+# diploma_program
+Program realization for diploma work on topic "Control problem of the shares prices dynamics" with Sergiy Voloshchuk as supervisor.
