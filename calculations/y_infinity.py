@@ -8,7 +8,7 @@ def y_infinity(G: Callable, u: Callable, S0: np.array, T: float) -> Callable:
 
     :param G: function of two variables x, t - Green's function
     :param u: function of two variables x, t - Disturbance
-    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]) - Space-time domain
+    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]) - Space domain
     :param T: float greater that zero - Max time value
     :return: function of two variables x, t
     """
@@ -19,8 +19,10 @@ def y_infinity(G: Callable, u: Callable, S0: np.array, T: float) -> Callable:
             return G(x - x_, t - t_) * u(x_, t_)
 
         integral = 0.0
-        for i in range(len(S0)):
-            integral += dblquad(integrand, 0, T, lambda t_: S0[i][0], lambda t_: S0[i][1])[0]  # Sec value is precision
+        for k in range(len(S0)):
+            # Sec value is precision
+            integral += dblquad(integrand, 0, T,
+                                lambda t_: S0[k][0], lambda t_: S0[k][1])[0]
 
         return integral
 
