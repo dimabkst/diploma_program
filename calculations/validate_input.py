@@ -1,6 +1,7 @@
 from typing import Callable
 import numpy as np
 
+
 def dim2PointInSet(point: np.array, firstCoordSet: np.array, secondCoordSet: np.array) -> bool:
     """
 
@@ -9,23 +10,25 @@ def dim2PointInSet(point: np.array, firstCoordSet: np.array, secondCoordSet: np.
     :param secondCoordSet: set that second coord should be in with next form: np.array([[c0, d0],...,[c_last, d_last]])
     """
 
-    if len(point)!=2:
+    if len(point) != 2:
         raise Exception('Point should have 2 dimensions')
     if not (len(firstCoordSet) and len(secondCoordSet)):
-        raise Exception('Sets should have form of one array whit at least one 2 dims array')
-    
+        raise Exception(
+            'Sets should have form of one array whit at least one 2 dims array')
+
     coordsInSet = [False, False]
     coordsSet = [firstCoordSet, secondCoordSet]
     for coordNumber in range(len(coordsSet)):
         coordSet = coordsSet[coordNumber]
         for i in range(len(coordSet)):
-            if(len(coordSet[i]) != 2):
-                raise Exception('Each coordSet should be array of 2 dims arrays')
-            
-            coordsInSet[coordNumber] = coordsInSet[coordNumber] or (coordSet[i][0]<=point[coordNumber]<=coordSet[i][1]) 
+            if (len(coordSet[i]) != 2):
+                raise Exception(
+                    'Each coordSet should be array of 2 dims arrays')
+
+            coordsInSet[coordNumber] = coordsInSet[coordNumber] or (
+                coordSet[i][0] <= point[coordNumber] <= coordSet[i][1])
 
     return coordsInSet[0] and coordsInSet[1]
-    
 
 
 # Do not let segments intersect even in in boundaries,
@@ -95,7 +98,6 @@ def validate_input(G: Callable, u: Callable, S0: np.array, SG: np.array, T: floa
             if not dim2PointInSet(slG_list[i], SG, [0, T]):
                 raise Exception(f"slG = {slG_list[i]} not in {SG} x {[0, T]}")
 
-            
         I = len(Li_list)
         if len(Yij_list) != I:
             raise Exception("Counts of Li and rows of Yij should match")
@@ -103,11 +105,12 @@ def validate_input(G: Callable, u: Callable, S0: np.array, SG: np.array, T: floa
             raise Exception("Counts of Li and rows of sij should match")
         for i in range(len(Yij_list)):
             if len(Yij_list[i]) != len(sij_list[i]):
-                raise Exception("Counts of corresponding rows of Yij and sij should match")
+                raise Exception(
+                    "Counts of corresponding rows of Yij and sij should match")
             for j in range(len(sij_list[i])):
-                if not dim2PointInSet(sij_list[i][j], S0, [0,T]):
-                    raise Exception(f"sij = {sij_list[i][j]} not in {S0} x {[0, T]}")
-
+                if not dim2PointInSet(sij_list[i][j], S0, [0, T]):
+                    raise Exception(
+                        f"sij = {sij_list[i][j]} not in {S0} x {[0, T]}")
 
         # There also should be validation of G but it is very hard to implement
 

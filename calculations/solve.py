@@ -38,8 +38,8 @@ def solve(G: Callable, u: Callable, S0: np.array, SG: np.array, T: float,
         res_A = A(G, Lr0_list, xl0_list, LrG_list, slG_list)
         res_Y_slash = Y_slash(res_y_infinity, Lr0_list,
                               xl0_list, Yrl0_list, LrG_list, slG_list, YrlG_list)
-        res_A_v = A_v(res_A, v_0, v_G, S0, T)
-        res_P = P(res_A, S0, T)
+        res_A_v = A_v(res_A, v_0, v_G, S0, SG, T)
+        res_P = P(res_A, S0, SG, T)
         res_u_0 = u_0(res_A, res_P, res_Y_slash, res_A_v, v_0)
         res_u_G = u_G(res_A, res_P, res_Y_slash, res_A_v, v_G)
         res_y_0 = y_0(G, S0, T, res_u_0)
