@@ -22,15 +22,17 @@ def Y_slash(y_infinity: Callable, LrG_list: np.array, slG_list: np.array, YrlG_l
 
     Ypl = []
     for ro in range(R_G):
+        LrG_y_inf = LrG_list[ro](y_infinity)
         for l in range(L_G):
-            Ypl.append(YrlG_list[ro][l] - LrG_list[ro](y_infinity)(slG_list[l][0],
-                                                                   slG_list[l][1]))
+            Ypl.append(YrlG_list[ro][l] -
+                       LrG_y_inf(slG_list[l][0], slG_list[l][1]))
 
     Ystar = []
     for i in range(I):
+        Li_y_inf = Li_list[i](y_infinity)
         for j in range(Ji[i]):
-            Ystar.append(Yij_list[i][j] - Li_list[i](y_infinity)(sij_list[i][j],
-                                                                 sij_list[i][j]))
+            Ystar.append(Yij_list[i][j] -
+                         Li_y_inf(sij_list[i][j], sij_list[i][j]))
 
     result = []
     for pl in range(R_G * L_G):

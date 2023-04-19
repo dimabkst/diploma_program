@@ -1,6 +1,6 @@
 from typing import Callable, Tuple
 import numpy as np
-from calculations import y_infinity, A, Y_slash, A_v, P, u_0, u_G, y_0, y_G, y, precision, validate_input
+from calculations import y_infinity, A, Y_slash, A_v, P, u_0G, y_0, y_G, y, precision, validate_input
 
 
 def solve(G: Callable, u: Callable, S0: np.array, SG: np.array, T: float,
@@ -40,8 +40,7 @@ def solve(G: Callable, u: Callable, S0: np.array, SG: np.array, T: float,
                               xl0_list, Yrl0_list, LrG_list, slG_list, YrlG_list)
         res_A_v = A_v(res_A, v_0, v_G, S0, SG, T)
         res_P = P(res_A, S0, SG, T)
-        res_u_0 = u_0(res_A, res_P, res_Y_slash, res_A_v, v_0)
-        res_u_G = u_G(res_A, res_P, res_Y_slash, res_A_v, v_G)
+        res_u_0, res_u_G = u_0G(res_A, res_P, res_Y_slash, res_A_v, v_0, v_G)
         res_y_0 = y_0(G, S0, T, res_u_0)
         res_y_G = y_G(G, SG, T, res_u_G)
         res_y = y(res_y_infinity, res_y_0, res_y_G)
