@@ -44,8 +44,8 @@ def parse_data(data: dict) -> dict:
         parsed_data['I'] = parse_number(data['I'])
         parsed_data['Ji_list'] = []
         for i in range(len(data['Ji_list'])):
-            parse_data['Ji_list'].append(parse_number(data['Ji_list'][i]))
-        parsed_data['Ji_list'] = np.array(parse_data['Ji_list'])
+            parsed_data['Ji_list'].append(parse_number(data['Ji_list'][i]))
+        parsed_data['Ji_list'] = np.array(parsed_data['Ji_list'])
 
         parsed_data['Li_list'] = []
         for i in range(len(data['Li_list'])):
