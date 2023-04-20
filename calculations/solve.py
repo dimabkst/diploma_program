@@ -4,7 +4,6 @@ from calculations import y_infinity, A, Y_slash, A_v, P, u_0G, y_0, y_G, y, prec
 
 
 def solve(G: Callable, u: Callable, S0: np.array, SG: np.array, T: float,
-          Lr0_list: np.array, xl0_list: np.array, Yrl0_list: np.array,
           LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
           Li_list: np.array, sij_list: np.array, Yij_list: np.array,
           v_0: Callable, v_G: Callable) -> Tuple[Callable, float]:
@@ -35,9 +34,9 @@ def solve(G: Callable, u: Callable, S0: np.array, SG: np.array, T: float,
                        v_0, v_G)
 
         res_y_infinity = y_infinity(G, u, S0, T)
-        res_A = A(G, Lr0_list, xl0_list, LrG_list, slG_list)
-        res_Y_slash = Y_slash(res_y_infinity, Lr0_list,
-                              xl0_list, Yrl0_list, LrG_list, slG_list, YrlG_list)
+        res_A = A(G, LrG_list, slG_list, Li_list, sij_list)
+        res_Y_slash = Y_slash(res_y_infinity,
+                              LrG_list, slG_list, YrlG_list, Li_list, sij_list, Yij_list)
         res_A_v = A_v(res_A, v_0, v_G, S0, SG, T)
         res_P = P(res_A, S0, SG, T)
         res_u_0, res_u_G = u_0G(res_A, res_P, res_Y_slash, res_A_v, v_0, v_G)

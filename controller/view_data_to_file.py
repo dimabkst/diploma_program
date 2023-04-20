@@ -10,35 +10,19 @@ def view_data_to_file(view, file_path: str) -> None:
     """
     try:
         problem_conditions_input = view.problem_conditions_input
-        initial_conditions_input = view.initial_boundary_conditions_input.initial_conditions_input
-        boundary_conditions_input = view.initial_boundary_conditions_input.boundary_conditions_input
+        boundary_conditions_input = view.boundary_desired_conditions_input.boundary_conditions_input
+        desired_conditions_input = view.boundary_desired_conditions_input.desired_conditions_input
         v_input = view.v_input
 
         data = dict()
 
         # problem conditions
         data['S0'] = problem_conditions_input.S0_var.get()
+        data['SG'] = problem_conditions_input.SG_var.get()
         data['T'] = problem_conditions_input.T_var.get()
         data['L'] = problem_conditions_input.L_var.get()
         data['u'] = problem_conditions_input.u_var.get()
         data['G'] = problem_conditions_input.G_var.get()
-
-        # initial conditions
-        data['R0'] = initial_conditions_input.R0_var.get()
-        data['Lr0_list'] = []
-        for _ in range(len(initial_conditions_input.Lr0_vars)):
-            data['Lr0_list'].append(initial_conditions_input.Lr0_vars[_].get())
-
-        data['L0'] = initial_conditions_input.L0_var.get()
-        data['xl0_list'] = []
-        for _ in range(len(initial_conditions_input.xl0_vars)):
-            data['xl0_list'].append(initial_conditions_input.xl0_vars[_].get())
-
-        data['Yrl0_list'] = []
-        for _ in range(len(initial_conditions_input.Lr0_vars)):
-            data['Yrl0_list'].append([])
-            for __ in range(len(initial_conditions_input.xl0_vars)):
-                data['Yrl0_list'][-1].append(initial_conditions_input.yrl0_vars[_][__].get())
 
         # boundary conditions
         data['RG'] = boundary_conditions_input.RG_var.get()
@@ -56,6 +40,28 @@ def view_data_to_file(view, file_path: str) -> None:
             data['YrlG_list'].append([])
             for __ in range(len(boundary_conditions_input.slG_vars)):
                 data['YrlG_list'][-1].append(boundary_conditions_input.yrlG_vars[_][__].get())
+
+        # desired conditions
+        data['I'] = desired_conditions_input.I_var.get()
+        data['Li_list'] = []
+        for _ in range(len(desired_conditions_input.Li_vars)):
+            data['Li_list'].append(desired_conditions_input.Li_vars[_].get())
+
+        data['Ji_list'] = []
+        for _ in range(len(desired_conditions_input.Ji_vars)):
+            data['Ji_list'].append(desired_conditions_input.Ji_vars[_].get())
+    
+        data['sij_list'] = []
+        for _ in range(len(desired_conditions_input.sij_vars)):
+            data['sij_list'].append([])
+            for __ in range(len(desired_conditions_input.sij_vars[_])):
+                data['sij_list'][-1].append(desired_conditions_input.sij_vars[_][__].get())
+
+        data['Yij_list'] = []
+        for _ in range(len(desired_conditions_input.yij_vars)):
+            data['Yij_list'].append([])
+            for __ in range(len(desired_conditions_input.yij_vars[_])):
+                data['Yij_list'][-1].append(desired_conditions_input.yij_vars[_][__].get())
 
         # v
         data['v0_list'] = []
