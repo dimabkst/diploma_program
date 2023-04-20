@@ -121,7 +121,7 @@ class boundary_conditions_input:
             self.slG_entries.append(ttk.Entry(self.slG_slG_frame, width=ENTRY_WIDTH, textvariable=self.slG_vars[i]))
             self.slG_entries[i].grid(row=1, column=i, sticky=(N, W, E, S))
 
-        ttk.Label(self.slG_label_frame, text="Дискретні точки спостережень LrG(dx), slG є G x [0, T] у форматі:",
+        ttk.Label(self.slG_label_frame, text="Дискретні точки спостережень LrG(dx), slG є SG x [0, T] у форматі:",
                   style="WhiteBg.TLabel").grid(column=0, row=0, sticky=(N, E, W, S))
         slG_format_image = PhotoImage(file="./assets/slG.gif")
         slG_format_image_label = ttk.Label(self.slG_label_frame, image=slG_format_image, style="WhiteBg.TLabel")

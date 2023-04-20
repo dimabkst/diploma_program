@@ -19,17 +19,20 @@ class problem_conditions_input:
         self.S0_frame = ttk.Frame(self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
         self.S0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
 
+        self.SG_frame = ttk.Frame(self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
+        self.SG_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+
         self.T_frame = ttk.Frame(self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-        self.T_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+        self.T_frame.grid(column=0, row=2, sticky=(N, W, E, S))
 
         self.L_frame = ttk.Frame(self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-        self.L_frame.grid(column=0, row=2, sticky=(N, W, E, S))
+        self.L_frame.grid(column=0, row=3, sticky=(N, W, E, S))
 
         self.u_frame = ttk.Frame(self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-        self.u_frame.grid(column=0, row=3, sticky=(N, W, E, S))
+        self.u_frame.grid(column=0, row=4, sticky=(N, W, E, S))
 
         self.G_frame = ttk.Frame(self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-        self.G_frame.grid(column=0, row=4, sticky=(N, W, E, S))
+        self.G_frame.grid(column=0, row=5, sticky=(N, W, E, S))
 
         # S0_input
         self.S0_label_frame = ttk.Frame(self.S0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
@@ -48,6 +51,25 @@ class problem_conditions_input:
         self.S0_entry.configure(xscrollcommand=self.S0_entry_hsb.set)
         self.S0_entry_hsb.grid(column=0, row=1, sticky=(E, W))
         self.S0_entry.grid(column=0, row=0, sticky=(N, E, W, S))
+        #
+
+        # SG_input
+        self.SG_label_frame = ttk.Frame(self.SG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+        self.SG_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+        self.SG_entry_frame = ttk.Frame(self.SG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+        self.SG_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+
+        self.SG_var = StringVar()
+        self.SG_var.set("[0, 1]")
+
+        ttk.Label(self.SG_label_frame, text="SG =", style="WhiteBg.TLabel") \
+            .grid(column=0, row=0, sticky=(N, E, W, S))
+
+        self.SG_entry = ttk.Entry(self.SG_entry_frame, width=ENTRY_WIDTH, textvariable=self.SG_var)
+        self.SG_entry_hsb = ttk.Scrollbar(self.SG_entry_frame, orient=HORIZONTAL, command=self.SG_entry.xview)
+        self.SG_entry.configure(xscrollcommand=self.SG_entry_hsb.set)
+        self.SG_entry_hsb.grid(column=0, row=1, sticky=(E, W))
+        self.SG_entry.grid(column=0, row=0, sticky=(N, E, W, S))
         #
 
         # T_input
@@ -132,6 +154,10 @@ class problem_conditions_input:
         self.align_rows_cols(self.S0_label_frame)
         self.align_rows_cols(self.S0_entry_frame)
         self.align_rows_cols(self.S0_frame)
+
+        self.align_rows_cols(self.SG_label_frame)
+        self.align_rows_cols(self.SG_entry_frame)
+        self.align_rows_cols(self.SG_frame)
 
         self.align_rows_cols(self.T_label_frame)
         self.align_rows_cols(self.T_entry_frame)

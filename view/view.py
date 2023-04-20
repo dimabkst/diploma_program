@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from .problem_conditions_input import problem_conditions_input
-from .initial_boundary_conditions_input import initial_boundary_conditions_input
+from .boundary_desired_conditions_input import boundary_desired_conditions_input
 from .solve_button import solve_button
 from .v_input import v_input
 from .save_load import save_load
@@ -28,14 +28,14 @@ class View:
                                        lambda _file_path: view_data_to_file(self, _file_path),
                                        lambda _file_path: file_data_to_view(self, _file_path))
             self.problem_conditions_input = problem_conditions_input(self.root)
-            self.initial_boundary_conditions_input = initial_boundary_conditions_input(self.root)
+            self.boundary_desired_conditions_input = boundary_desired_conditions_input(self.root)
             self.v_input = v_input(self.root)
             self.solve_button = solve_button(self.root, lambda: self.solve_button_command(file_path))
             self.results_output = results_output(self.root)
 
             self.notebook.add(self.save_load.root, text='Зберегти/Завантажити')
             self.notebook.add(self.problem_conditions_input.root, text='Умови задачі')
-            self.notebook.add(self.initial_boundary_conditions_input.root, text='Початково-крайові умови')
+            self.notebook.add(self.boundary_desired_conditions_input.root, text='Крайові та бажані умови')
             self.notebook.add(self.v_input.root, text='Ввід v(x,t)')
             self.notebook.add(self.solve_button.root, text="Розв'язати задачу")
             self.notebook.add(self.results_output.root, text="Результати")
