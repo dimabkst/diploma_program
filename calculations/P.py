@@ -55,18 +55,18 @@ def P(A_matrix: np.array, S0: np.array, SG: np.array, T: float) -> np.array:
                     for k in range(len(S0)):
                         # Sec value is precision
                         integral += dblquad(integrand1(row, col), T_0,
-                                            0, lambda t: S0[k][0], lambda t: S0[k][1])[0]
+                                            0, lambda t: S0[k][0], lambda t: S0[k][1], epsabs=1.5e-1, epsrel=1.5e-1)[0]
 
                     integral += dblquad(integrand2(row, col),
-                                        0, T, lambda t: C, lambda t: SG[0][0])[0]
+                                        0, T, lambda t: C, lambda t: SG[0][0], epsabs=1.5e-1, epsrel=1.5e-1)[0]
 
                     for e in range(1, len(SG) - 1):
                         # Sec value is precision
                         integral += dblquad(integrand2(row, col), 0, T,
-                                            lambda t: SG[e][1], lambda t: SG[e + 1][0])[0]
+                                            lambda t: SG[e][1], lambda t: SG[e + 1][0], epsabs=1.5e-1, epsrel=1.5e-1)[0]
 
                     integral += dblquad(integrand2(row, col),
-                                        0, T, lambda t: SG[-1][1], lambda t: D)[0]
+                                        0, T, lambda t: SG[-1][1], lambda t: D, epsabs=1.5e-1, epsrel=1.5e-1)[0]
 
                     P_parts[-1][row][col] = integral
 

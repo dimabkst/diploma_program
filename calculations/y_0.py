@@ -22,7 +22,7 @@ def y_0(G: Callable, S0: np.array, T: float, u_0: Callable) -> Callable:
 
         integral = 0.0
         for k in range(len(S0)):
-            integral += dblquad(integrand, T_0, 0, lambda t_: S0[k][0], lambda t_: S0[k][1])[
+            integral += dblquad(integrand, T_0, 0, lambda t_: S0[k][0], lambda t_: S0[k][1], epsabs=1.5e-1, epsrel=1.5e-1)[
                 0]  # Sec value is precision
 
         return integral
