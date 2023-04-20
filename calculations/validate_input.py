@@ -95,7 +95,7 @@ def validate_input(G: Callable, u: Callable, S0: np.array, SG: np.array, T: floa
             if len(row) != LG:
                 raise Exception("Counts of slG and YrlG should match")
         for i in range(LG):
-            if not dim2PointInSet(slG_list[i], SG, [0, T]):
+            if not dim2PointInSet(slG_list[i], SG, [[0, T]]):
                 raise Exception(f"slG = {slG_list[i]} not in {SG} x {[0, T]}")
 
         I = len(Li_list)
@@ -108,7 +108,7 @@ def validate_input(G: Callable, u: Callable, S0: np.array, SG: np.array, T: floa
                 raise Exception(
                     "Counts of corresponding rows of Yij and sij should match")
             for j in range(len(sij_list[i])):
-                if not dim2PointInSet(sij_list[i][j], S0, [0, T]):
+                if not dim2PointInSet(sij_list[i][j], S0, [[0, T]]):
                     raise Exception(
                         f"sij = {sij_list[i][j]} not in {S0} x {[0, T]}")
 
