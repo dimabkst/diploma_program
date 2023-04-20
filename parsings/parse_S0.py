@@ -6,7 +6,7 @@ def parse_S0(S0_string: str) -> np.array:
     """
 
     :param S0_string: S0 string to be parsed in format: [a0,b0] v [a1,b1] v ... v [a_last, b_last]
-    :return: parsed np.array of SO in format: np.array([[a0, b0],...,[a_last, b_last]])
+    :return: parsed np.array of S0 in format: np.array([[a0, b0],...,[a_last, b_last]])
     """
     try:
         S0_str = S0_string.replace(' ', '')  # Remove all spaces
