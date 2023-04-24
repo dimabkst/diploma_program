@@ -22,7 +22,7 @@ def y_infinity(G: Callable, u: Callable, S0: np.array, T: float) -> Callable:
         for k in range(len(S0)):
             # Sec value is precision
             integral += dblquad(integrand, 0, T,
-                                lambda t_: S0[k][0], lambda t_: S0[k][1], epsabs=1.5e-1, epsrel=1.5e-1)[0]
+                                lambda t_: S0[k][0], lambda t_: S0[k][1], epsabs=1.5e-3, epsrel=1.5e-3)[0]
 
         return integral
 

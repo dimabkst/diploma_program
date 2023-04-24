@@ -25,17 +25,22 @@ class View:
             self.notebook.grid(column=0, row=0, sticky=(N, E, W, S))
 
             self.save_load = save_load(self.root, file_path,
-                                       lambda _file_path: view_data_to_file(self, _file_path),
+                                       lambda _file_path: view_data_to_file(
+                                           self, _file_path),
                                        lambda _file_path: file_data_to_view(self, _file_path))
             self.problem_conditions_input = problem_conditions_input(self.root)
-            self.boundary_desired_conditions_input = boundary_desired_conditions_input(self.root)
+            self.boundary_desired_conditions_input = boundary_desired_conditions_input(
+                self.root)
             self.v_input = v_input(self.root)
-            self.solve_button = solve_button(self.root, lambda: self.solve_button_command(file_path))
+            self.solve_button = solve_button(
+                self.root, lambda: self.solve_button_command(file_path))
             self.results_output = results_output(self.root)
 
             self.notebook.add(self.save_load.root, text='Зберегти/Завантажити')
-            self.notebook.add(self.problem_conditions_input.root, text='Умови задачі')
-            self.notebook.add(self.boundary_desired_conditions_input.root, text='Крайові та бажані умови')
+            self.notebook.add(
+                self.problem_conditions_input.root, text='Умови задачі')
+            self.notebook.add(
+                self.boundary_desired_conditions_input.root, text='Крайові та бажані умови')
             self.notebook.add(self.v_input.root, text='Ввід v(x,t)')
             self.notebook.add(self.solve_button.root, text="Розв'язати задачу")
             self.notebook.add(self.results_output.root, text="Результати")

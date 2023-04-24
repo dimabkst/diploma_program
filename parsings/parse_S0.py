@@ -17,7 +17,8 @@ def parse_S0(S0_string: str) -> np.array:
 
         atomic_S0s = []
         for atomic_S0_match_object in atomic_S0s_str_iterator:
-            atomic_S0_str = atomic_S0_match_object[0]  # String that looks like: [constant1, constant2]
+            # String that looks like: [constant1, constant2]
+            atomic_S0_str = atomic_S0_match_object[0]
 
             atomic_S0_constant1_str = ""
             atomic_S0_constant2_str = ""

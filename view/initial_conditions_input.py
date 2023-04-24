@@ -7,192 +7,230 @@ ENTRY_WIDTH = 10
 class initial_conditions_input:
 
     def __init__(self, root):
-        s = ttk.Style()
-        s.configure("TopWhiteBg.TFrame", background="white", borderwidth=5, relief='raised')
-        s.configure("WhiteBg.TFrame", background="white")
-        s.configure("WhiteBg.TLabel", background="white")
+        try:
+            s = ttk.Style()
+            s.configure("TopWhiteBg.TFrame", background="white",
+                        borderwidth=5, relief='raised')
+            s.configure("WhiteBg.TFrame", background="white")
+            s.configure("WhiteBg.TLabel", background="white")
 
-        # Frames
-        self.root = ttk.Frame(root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-        self.root.grid()
+            # Frames
+            self.root = ttk.Frame(
+                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
+            self.root.grid()
 
-        self.initial_frame = ttk.Frame(self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
-        self.initial_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-        #
+            self.initial_frame = ttk.Frame(
+                self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
+            self.initial_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            #
 
-        # Initial conditions
-        self.initial_top_frame = ttk.Frame(self.initial_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.initial_top_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            # Initial conditions
+            self.initial_top_frame = ttk.Frame(
+                self.initial_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.initial_top_frame.grid(column=0, row=0, sticky=(N, W, E, S))
 
-        self.initial_bot_frame = ttk.Frame(self.initial_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.initial_bot_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.initial_bot_frame = ttk.Frame(
+                self.initial_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.initial_bot_frame.grid(column=0, row=1, sticky=(N, W, E, S))
 
-        self.initial_top_left_frame = ttk.Frame(self.initial_top_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.initial_top_left_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.initial_top_left_frame = ttk.Frame(
+                self.initial_top_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.initial_top_left_frame.grid(
+                column=0, row=0, sticky=(N, W, E, S))
 
-        self.initial_top_right_frame = ttk.Frame(self.initial_top_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.initial_top_right_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.initial_top_right_frame = ttk.Frame(
+                self.initial_top_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.initial_top_right_frame.grid(
+                column=1, row=0, sticky=(N, W, E, S))
 
-        # R0 input
-        self.R0_frame = ttk.Frame(self.initial_top_left_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.R0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-        self.R0_label_frame = ttk.Frame(self.R0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.R0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-        self.R0_entry_frame = ttk.Frame(self.R0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.R0_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            # R0 input
+            self.R0_frame = ttk.Frame(
+                self.initial_top_left_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.R0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.R0_label_frame = ttk.Frame(
+                self.R0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.R0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.R0_entry_frame = ttk.Frame(
+                self.R0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.R0_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
-        self.R0_var = StringVar()
-        self.R0_var.set("1")
-        self.R0_var.trace("w", lambda name, index, mode: self.change_and_show_initial())
+            self.R0_var = StringVar()
+            self.R0_var.set("1")
+            self.R0_var.trace("w", lambda name, index,
+                              mode: self.change_and_show_initial())
 
-        ttk.Label(self.R0_label_frame, text="Кількість початкових операторів Lr0(dt) -", style="WhiteBg.TLabel") \
-            .grid(column=0, row=0, sticky=(N, E, W, S))
+            ttk.Label(self.R0_label_frame, text="Кількість початкових операторів Lr0(dt) -", style="WhiteBg.TLabel") \
+                .grid(column=0, row=0, sticky=(N, E, W, S))
 
-        self.count_entry = ttk.Entry(self.R0_entry_frame, width=ENTRY_WIDTH, textvariable=self.R0_var)
-        self.count_entry.grid(column=0, row=0, sticky=(N, E, W, S))
-        #
+            self.count_entry = ttk.Entry(
+                self.R0_entry_frame, width=ENTRY_WIDTH, textvariable=self.R0_var)
+            self.count_entry.grid(column=0, row=0, sticky=(N, E, W, S))
+            #
 
-        # Lr0 input
-        self.Lr0_frame = ttk.Frame(self.initial_top_left_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.Lr0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
-        self.Lr0_label_frame = ttk.Frame(self.Lr0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.Lr0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-        self.Lr0_Lr0_frame = ttk.Frame(self.Lr0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.Lr0_Lr0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            # Lr0 input
+            self.Lr0_frame = ttk.Frame(
+                self.initial_top_left_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.Lr0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.Lr0_label_frame = ttk.Frame(
+                self.Lr0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.Lr0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.Lr0_Lr0_frame = ttk.Frame(
+                self.Lr0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.Lr0_Lr0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
 
-        self.Lr0_labels = []
-        self.Lr0_vars = []
-        self.Lr0_entries = []
+            self.Lr0_labels = []
+            self.Lr0_vars = []
+            self.Lr0_entries = []
 
-        for i in range(int(self.R0_var.get() or 0)):
-            self.Lr0_vars.append(StringVar())
-            self.Lr0_vars[i].set("1")
-            self.Lr0_vars[i].trace("w", lambda name, index, mode: self.change_and_show_initial())
+            for i in range(int(self.R0_var.get() or 0)):
+                self.Lr0_vars.append(StringVar())
+                self.Lr0_vars[i].set("1")
+                self.Lr0_vars[i].trace(
+                    "w", lambda name, index, mode: self.change_and_show_initial())
 
-            self.Lr0_labels.append(ttk.Label(self.Lr0_Lr0_frame, text=f"L{i + 1}0(dt):", style="WhiteBg.TLabel"))
-            self.Lr0_labels[i].grid(row=i, column=0, sticky=(N, W, E, S))
+                self.Lr0_labels.append(
+                    ttk.Label(self.Lr0_Lr0_frame, text=f"L{i + 1}0(dt):", style="WhiteBg.TLabel"))
+                self.Lr0_labels[i].grid(row=i, column=0, sticky=(N, W, E, S))
 
-            self.Lr0_entries.append(ttk.Entry(self.Lr0_Lr0_frame, width=ENTRY_WIDTH, textvariable=self.Lr0_vars[i]))
-            self.Lr0_entries[i].grid(row=i, column=1, sticky=(N, W, E, S))
+                self.Lr0_entries.append(ttk.Entry(
+                    self.Lr0_Lr0_frame, width=ENTRY_WIDTH, textvariable=self.Lr0_vars[i]))
+                self.Lr0_entries[i].grid(row=i, column=1, sticky=(N, W, E, S))
 
-        ttk.Label(self.Lr0_label_frame, text="Початкові оператори Lr0(dt):", style="WhiteBg.TLabel") \
-            .grid(column=0, row=0, sticky=(N, E, W, S))
-        #
+            ttk.Label(self.Lr0_label_frame, text="Початкові оператори Lr0(dt):", style="WhiteBg.TLabel") \
+                .grid(column=0, row=0, sticky=(N, E, W, S))
+            #
 
-        # L0 input
-        self.L0_frame = ttk.Frame(self.initial_top_right_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.L0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-        self.L0_label_frame = ttk.Frame(self.L0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.L0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-        self.L0_entry_frame = ttk.Frame(self.L0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.L0_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            # L0 input
+            self.L0_frame = ttk.Frame(
+                self.initial_top_right_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.L0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.L0_label_frame = ttk.Frame(
+                self.L0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.L0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.L0_entry_frame = ttk.Frame(
+                self.L0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.L0_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
-        self.L0_var = StringVar()
-        self.L0_var.set("1")
-        self.L0_var.trace("w", lambda name, index, mode: self.change_and_show_initial())
+            self.L0_var = StringVar()
+            self.L0_var.set("1")
+            self.L0_var.trace("w", lambda name, index,
+                              mode: self.change_and_show_initial())
 
-        ttk.Label(self.L0_label_frame, text="Кількість дискретних точок спостережень Lr0(dt) -",
-                  style="WhiteBg.TLabel").grid(column=0, row=0, sticky=(N, E, W, S))
+            ttk.Label(self.L0_label_frame, text="Кількість дискретних точок спостережень Lr0(dt) -",
+                      style="WhiteBg.TLabel").grid(column=0, row=0, sticky=(N, E, W, S))
 
-        self.count_entry = ttk.Entry(self.L0_entry_frame, width=ENTRY_WIDTH, textvariable=self.L0_var)
-        self.count_entry.grid(column=0, row=0, sticky=(N, E, W, S))
-        #
+            self.count_entry = ttk.Entry(
+                self.L0_entry_frame, width=ENTRY_WIDTH, textvariable=self.L0_var)
+            self.count_entry.grid(column=0, row=0, sticky=(N, E, W, S))
+            #
 
-        # xl0 input
-        self.xl0_frame = ttk.Frame(self.initial_top_right_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.xl0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
-        self.xl0_label_frame = ttk.Frame(self.xl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.xl0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-        self.xl0_xl0_frame = ttk.Frame(self.xl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.xl0_xl0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            # xl0 input
+            self.xl0_frame = ttk.Frame(
+                self.initial_top_right_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.xl0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.xl0_label_frame = ttk.Frame(
+                self.xl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.xl0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.xl0_xl0_frame = ttk.Frame(
+                self.xl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.xl0_xl0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
 
-        self.xl0_labels = []
-        self.xl0_vars = []
-        self.xl0_entries = []
+            self.xl0_labels = []
+            self.xl0_vars = []
+            self.xl0_entries = []
 
-        for i in range(int(self.L0_var.get() or 0)):
-            self.xl0_vars.append(StringVar())
-            self.xl0_vars[i].set("1")
-            self.xl0_vars[i].trace("w", lambda name, index, mode: self.change_and_show_initial())
+            for i in range(int(self.L0_var.get() or 0)):
+                self.xl0_vars.append(StringVar())
+                self.xl0_vars[i].set("1")
+                self.xl0_vars[i].trace(
+                    "w", lambda name, index, mode: self.change_and_show_initial())
 
-            self.xl0_labels.append(ttk.Label(self.xl0_xl0_frame, text=f"x{i + 1}0", style="WhiteBg.TLabel"))
-            self.xl0_labels[i].grid(row=0, column=i, sticky=(N, W, E, S))
+                self.xl0_labels.append(
+                    ttk.Label(self.xl0_xl0_frame, text=f"x{i + 1}0", style="WhiteBg.TLabel"))
+                self.xl0_labels[i].grid(row=0, column=i, sticky=(N, W, E, S))
 
-            self.xl0_entries.append(ttk.Entry(self.xl0_xl0_frame, width=ENTRY_WIDTH, textvariable=self.xl0_vars[i]))
-            self.xl0_entries[i].grid(row=1, column=i, sticky=(N, W, E, S))
+                self.xl0_entries.append(ttk.Entry(
+                    self.xl0_xl0_frame, width=ENTRY_WIDTH, textvariable=self.xl0_vars[i]))
+                self.xl0_entries[i].grid(row=1, column=i, sticky=(N, W, E, S))
 
-        ttk.Label(self.xl0_label_frame, text="Дискретні точки спостережень Lr0(dt), xl0 є S0:", style="WhiteBg.TLabel")\
-            .grid(column=0, row=0, sticky=(N, E, W, S))
-        #
+            ttk.Label(self.xl0_label_frame, text="Дискретні точки спостережень Lr0(dt), xl0 є S0:", style="WhiteBg.TLabel")\
+                .grid(column=0, row=0, sticky=(N, E, W, S))
+            #
 
-        # Yrl0 input
-        self.yrl0_frame = ttk.Frame(self.initial_bot_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.yrl0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-        self.yrl0_label_frame = ttk.Frame(self.yrl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.yrl0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-        self.yrl0_yrl0_frame = ttk.Frame(self.yrl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-        self.yrl0_yrl0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            # Yrl0 input
+            self.yrl0_frame = ttk.Frame(
+                self.initial_bot_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.yrl0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.yrl0_label_frame = ttk.Frame(
+                self.yrl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.yrl0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.yrl0_yrl0_frame = ttk.Frame(
+                self.yrl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.yrl0_yrl0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
 
-        ttk.Label(self.yrl0_label_frame, text="Початкові спостереження Yrl0 процесу:", style="WhiteBg.TLabel") \
-            .grid(column=0, row=0, sticky=(N, E, W, S))
+            ttk.Label(self.yrl0_label_frame, text="Початкові спостереження Yrl0 процесу:", style="WhiteBg.TLabel") \
+                .grid(column=0, row=0, sticky=(N, E, W, S))
 
-        self.yrl0_labels = []
-        self.yrl0_vars = []
-        self.yrl0_entries = []
+            self.yrl0_labels = []
+            self.yrl0_vars = []
+            self.yrl0_entries = []
 
-        for r in range(int(self.R0_var.get() or 0)):
-            self.yrl0_labels.append([])
-            self.yrl0_vars.append([])
-            self.yrl0_entries.append([])
+            for r in range(int(self.R0_var.get() or 0)):
+                self.yrl0_labels.append([])
+                self.yrl0_vars.append([])
+                self.yrl0_entries.append([])
 
-            for l in range(int(self.L0_var.get() or 0)):
-                self.yrl0_labels[r].append(ttk.Label(self.yrl0_yrl0_frame,
-                                                     text=f"L{r + 1}0y(x,t)|(x={self.xl0_vars[l].get()},t=0) "
-                                                          f"= Y{r + 1}{l + 1}0 =", style="WhiteBg.TLabel"))
-                self.yrl0_labels[r][l].grid(row=r, column=l * 2, sticky=(N, W, E, S))
+                for l in range(int(self.L0_var.get() or 0)):
+                    self.yrl0_labels[r].append(ttk.Label(self.yrl0_yrl0_frame,
+                                                         text=f"L{r + 1}0y(x,t)|(x={self.xl0_vars[l].get()},t=0) "
+                                                         f"= Y{r + 1}{l + 1}0 =", style="WhiteBg.TLabel"))
+                    self.yrl0_labels[r][l].grid(
+                        row=r, column=l * 2, sticky=(N, W, E, S))
 
-                self.yrl0_vars[r].append(StringVar())
-                self.yrl0_vars[r][l].set("0")
-                self.yrl0_vars[r][l].trace("w", lambda name, index, mode: self.change_and_show_initial())
+                    self.yrl0_vars[r].append(StringVar())
+                    self.yrl0_vars[r][l].set("0")
+                    self.yrl0_vars[r][l].trace(
+                        "w", lambda name, index, mode: self.change_and_show_initial())
 
-                self.yrl0_entries[r].append(ttk.Entry(self.yrl0_yrl0_frame, width=ENTRY_WIDTH,
-                                                      textvariable=self.yrl0_vars[r][l]))
-                self.yrl0_entries[r][l].grid(row=r, column=l * 2 + 1, sticky=(N, W, E, S))
-        #
+                    self.yrl0_entries[r].append(ttk.Entry(self.yrl0_yrl0_frame, width=ENTRY_WIDTH,
+                                                          textvariable=self.yrl0_vars[r][l]))
+                    self.yrl0_entries[r][l].grid(
+                        row=r, column=l * 2 + 1, sticky=(N, W, E, S))
+            #
 
-        #
+            # Align everything
+            self.align_rows_cols(self.R0_label_frame)
+            self.align_rows_cols(self.R0_entry_frame)
+            self.align_rows_cols(self.R0_frame)
 
-        # Align everything
-        self.align_rows_cols(self.R0_label_frame)
-        self.align_rows_cols(self.R0_entry_frame)
-        self.align_rows_cols(self.R0_frame)
+            self.align_rows_cols(self.Lr0_frame)
+            self.align_rows_cols(self.Lr0_label_frame)
+            self.align_rows_cols(self.Lr0_Lr0_frame)
 
-        self.align_rows_cols(self.Lr0_frame)
-        self.align_rows_cols(self.Lr0_label_frame)
-        self.align_rows_cols(self.Lr0_Lr0_frame)
+            self.align_rows_cols(self.L0_label_frame)
+            self.align_rows_cols(self.L0_entry_frame)
+            self.align_rows_cols(self.L0_frame)
 
-        self.align_rows_cols(self.L0_label_frame)
-        self.align_rows_cols(self.L0_entry_frame)
-        self.align_rows_cols(self.L0_frame)
+            self.align_rows_cols(self.xl0_frame)
+            self.align_rows_cols(self.xl0_label_frame)
+            self.align_rows_cols(self.xl0_xl0_frame)
 
-        self.align_rows_cols(self.xl0_frame)
-        self.align_rows_cols(self.xl0_label_frame)
-        self.align_rows_cols(self.xl0_xl0_frame)
+            self.align_rows_cols(self.initial_top_left_frame)
+            self.align_rows_cols(self.initial_top_right_frame)
+            self.align_rows_cols(self.initial_top_frame)
 
-        self.align_rows_cols(self.initial_top_left_frame)
-        self.align_rows_cols(self.initial_top_right_frame)
-        self.align_rows_cols(self.initial_top_frame)
+            self.align_rows_cols(self.yrl0_frame)
+            self.align_rows_cols(self.yrl0_label_frame)
+            self.align_rows_cols(self.yrl0_yrl0_frame)
 
-        self.align_rows_cols(self.yrl0_frame)
-        self.align_rows_cols(self.yrl0_label_frame)
-        self.align_rows_cols(self.yrl0_yrl0_frame)
+            self.align_rows_cols(self.initial_bot_frame)
 
-        self.align_rows_cols(self.initial_bot_frame)
+            self.align_rows_cols(self.initial_frame)
 
-        self.align_rows_cols(self.initial_frame)
-
-        self.align_rows_cols(self.root)
-        #
+            self.align_rows_cols(self.root)
+            #
+        except Exception as e:
+            raise e
 
     def align_rows_cols(self, frame):
         cols_num, rows_num = frame.grid_size()
@@ -227,9 +265,12 @@ class initial_conditions_input:
                                           textvariable=self.Lr0_vars[i]))
 
                             self.Lr0_vars[i].set("1")
-                            self.Lr0_vars[i].trace("w", lambda name, index, mode: self.change_and_show_initial())
-                            self.Lr0_labels[i].grid(row=i, column=0, sticky=(N, W, E, S))
-                            self.Lr0_entries[i].grid(row=i, column=1, sticky=(N, W, E, S))
+                            self.Lr0_vars[i].trace(
+                                "w", lambda name, index, mode: self.change_and_show_initial())
+                            self.Lr0_labels[i].grid(
+                                row=i, column=0, sticky=(N, W, E, S))
+                            self.Lr0_entries[i].grid(
+                                row=i, column=1, sticky=(N, W, E, S))
         except Exception as e:
             print(e)
 
@@ -258,9 +299,12 @@ class initial_conditions_input:
                                 ttk.Entry(self.xl0_xl0_frame, width=ENTRY_WIDTH, textvariable=self.xl0_vars[i]))
 
                             self.xl0_vars[i].set("1")
-                            self.xl0_vars[i].trace("w", lambda name, index, mode: self.change_and_show_initial())
-                            self.xl0_labels[i].grid(row=0, column=i, sticky=(N, W, E, S))
-                            self.xl0_entries[i].grid(row=1, column=i, sticky=(N, W, E, S))
+                            self.xl0_vars[i].trace(
+                                "w", lambda name, index, mode: self.change_and_show_initial())
+                            self.xl0_labels[i].grid(
+                                row=0, column=i, sticky=(N, W, E, S))
+                            self.xl0_entries[i].grid(
+                                row=1, column=i, sticky=(N, W, E, S))
         except Exception as e:
             print(e)
 
@@ -288,7 +332,8 @@ class initial_conditions_input:
                             self.yrl0_entries = self.yrl0_entries[0:i]
                             break
                         else:
-                            self.yrl0_vars.append([StringVar() for _ in range(int(self.L0_var.get() or 0))])
+                            self.yrl0_vars.append(
+                                [StringVar() for _ in range(int(self.L0_var.get() or 0))])
 
                             self.yrl0_labels.append([
                                 ttk.Label(self.yrl0_yrl0_frame,
@@ -302,8 +347,10 @@ class initial_conditions_input:
 
                             for k in range(int(self.L0_var.get() or 0)):
                                 self.yrl0_vars[i][k].set("0")
-                                self.yrl0_labels[i][k].grid(row=i, column=k * 2, sticky=(N, W, E, S))
-                                self.yrl0_entries[i][k].grid(row=i, column=k * 2 + 1, sticky=(N, W, E, S))
+                                self.yrl0_labels[i][k].grid(
+                                    row=i, column=k * 2, sticky=(N, W, E, S))
+                                self.yrl0_entries[i][k].grid(
+                                    row=i, column=k * 2 + 1, sticky=(N, W, E, S))
 
                     for j in range(max(old_L0, int(self.L0_var.get() or 0))):
                         if j >= min(old_L0, int(self.L0_var.get() or 0)):
@@ -323,18 +370,21 @@ class initial_conditions_input:
                                     ttk.Label(self.yrl0_yrl0_frame,
                                               text=f"L{i + 1}0y(x,t)|(x={self.xl0_vars[j].get()},t=0) "
                                                    f"= Y{i + 1}{j + 1}0 =", style="WhiteBg.TLabel"))
-                                self.yrl0_labels[i][j].grid(row=i, column=j * 2, sticky=(N, W, E, S))
+                                self.yrl0_labels[i][j].grid(
+                                    row=i, column=j * 2, sticky=(N, W, E, S))
 
                                 self.yrl0_entries[i].append(
                                     ttk.Entry(self.yrl0_yrl0_frame, width=ENTRY_WIDTH,
                                               textvariable=self.yrl0_vars[i][j]))
-                                self.yrl0_entries[i][j].grid(row=i, column=j * 2 + 1, sticky=(N, W, E, S))
+                                self.yrl0_entries[i][j].grid(
+                                    row=i, column=j * 2 + 1, sticky=(N, W, E, S))
                         else:
                             self.yrl0_labels[i][j].destroy()
                             self.yrl0_labels[i][j] = ttk.Label(self.yrl0_yrl0_frame,
                                                                text=f"L{i + 1}0y(x,t)|(x={self.xl0_vars[j].get()},t=0) "
                                                                     f"= Y{i + 1}{j + 1}0 =", style="WhiteBg.TLabel")
-                            self.yrl0_labels[i][j].grid(row=i, column=j * 2, sticky=(N, W, E, S))
+                            self.yrl0_labels[i][j].grid(
+                                row=i, column=j * 2, sticky=(N, W, E, S))
 
         except Exception as e:
             raise e

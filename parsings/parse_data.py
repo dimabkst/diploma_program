@@ -37,7 +37,8 @@ def parse_data(data: dict) -> dict:
         for i in range(len(data['YrlG_list'])):
             parsed_data['YrlG_list'].append([])
             for ii in range(len(data['YrlG_list'][i])):
-                parsed_data['YrlG_list'][-1].append(parse_number(data['YrlG_list'][i][ii]))
+                parsed_data['YrlG_list'][-1].append(
+                    parse_number(data['YrlG_list'][i][ii]))
         parsed_data['YrlG_list'] = np.array(parsed_data['YrlG_list'])
 
         # parse desired conditions
@@ -56,16 +57,17 @@ def parse_data(data: dict) -> dict:
         for i in range(len(data['sij_list'])):
             parsed_data['sij_list'].append([])
             for ii in range(len(data['sij_list'][i])):
-                parsed_data['sij_list'][-1].append(parse_sij(data['sij_list'][i][ii]))
+                parsed_data['sij_list'][-1].append(
+                    parse_sij(data['sij_list'][i][ii]))
         parsed_data['sij_list'] = np.array(parsed_data['sij_list'])
 
         parsed_data['Yij_list'] = []
         for i in range(len(data['Yij_list'])):
             parsed_data['Yij_list'].append([])
             for ii in range(len(data['Yij_list'][i])):
-                parsed_data['Yij_list'][-1].append(parse_number(data['Yij_list'][i][ii]))
+                parsed_data['Yij_list'][-1].append(
+                    parse_number(data['Yij_list'][i][ii]))
         parsed_data['Yij_list'] = np.array(parsed_data['Yij_list'])
-
 
         # parse v0, vG
         parsed_data['v0_list'] = []

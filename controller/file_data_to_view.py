@@ -39,7 +39,8 @@ def file_data_to_view(view, file_path: str) -> None:
 
         for _ in range(len(data['YrlG_list'])):
             for __ in range(len(data['YrlG_list'][_])):
-                boundary_conditions_input.yrlG_vars[_][__].set(data['YrlG_list'][_][__])
+                boundary_conditions_input.yrlG_vars[_][__].set(
+                    data['YrlG_list'][_][__])
 
          # desired conditions
         desired_conditions_input.I_var.set(data['I'])
@@ -51,15 +52,17 @@ def file_data_to_view(view, file_path: str) -> None:
         for _ in range(len(data['Ji_list'])):
             desired_conditions_input.Ji_vars[_].set(data['Ji_list'][_])
             desired_conditions_input.change_and_show_desired()
-    
+
         for _ in range(len(data['sij_list'])):
             for __ in range(len(data['sij_list'][_])):
-                desired_conditions_input.sij_vars[_][__].set(data['sij_list'][_][__])
+                desired_conditions_input.sij_vars[_][__].set(
+                    data['sij_list'][_][__])
 
         desired_conditions_input.change_and_show_desired()
         for _ in range(len(data['Yij_list'])):
             for __ in range(len(data['Yij_list'][_])):
-                desired_conditions_input.yij_vars[_][__].set(data['Yij_list'][_][__])
+                desired_conditions_input.yij_vars[_][__].set(
+                    data['Yij_list'][_][__])
 
         # v
         v_input.count_var.set(len(data['v0_list']))

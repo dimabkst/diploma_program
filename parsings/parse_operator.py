@@ -69,13 +69,15 @@ def parse_operator(operator_string: str) -> Callable:
             atomic_op_constant = float(atomic_op_constant_str)
             atomic_op_der_order = int(atomic_op_der_order_str)
 
-            atomic_ops.append(atomic_differential_operator(atomic_op_constant, atomic_op_var, atomic_op_der_order))
+            atomic_ops.append(atomic_differential_operator(
+                atomic_op_constant, atomic_op_var, atomic_op_der_order))
 
             # print(f'Constant: {atomic_op_constant}, var: {atomic_op_var}, der_order: {atomic_op_der_order}')
 
         def differential_operator(func: Callable) -> Callable:
             def differential_operator_of_func_in_point(*point) -> float:
-                res = sum([atomic_diff_op(func)(*point) for atomic_diff_op in atomic_ops])
+                res = sum([atomic_diff_op(func)(*point)
+                          for atomic_diff_op in atomic_ops])
 
                 return res
 

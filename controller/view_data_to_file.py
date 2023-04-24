@@ -28,18 +28,21 @@ def view_data_to_file(view, file_path: str) -> None:
         data['RG'] = boundary_conditions_input.RG_var.get()
         data['LrG_list'] = []
         for _ in range(len(boundary_conditions_input.LrG_vars)):
-            data['LrG_list'].append(boundary_conditions_input.LrG_vars[_].get())
+            data['LrG_list'].append(
+                boundary_conditions_input.LrG_vars[_].get())
 
         data['LG'] = boundary_conditions_input.LG_var.get()
         data['slG_list'] = []
         for _ in range(len(boundary_conditions_input.slG_vars)):
-            data['slG_list'].append(boundary_conditions_input.slG_vars[_].get())
+            data['slG_list'].append(
+                boundary_conditions_input.slG_vars[_].get())
 
         data['YrlG_list'] = []
         for _ in range(len(boundary_conditions_input.LrG_vars)):
             data['YrlG_list'].append([])
             for __ in range(len(boundary_conditions_input.slG_vars)):
-                data['YrlG_list'][-1].append(boundary_conditions_input.yrlG_vars[_][__].get())
+                data['YrlG_list'][-1].append(
+                    boundary_conditions_input.yrlG_vars[_][__].get())
 
         # desired conditions
         data['I'] = desired_conditions_input.I_var.get()
@@ -50,18 +53,20 @@ def view_data_to_file(view, file_path: str) -> None:
         data['Ji_list'] = []
         for _ in range(len(desired_conditions_input.Ji_vars)):
             data['Ji_list'].append(desired_conditions_input.Ji_vars[_].get())
-    
+
         data['sij_list'] = []
         for _ in range(len(desired_conditions_input.sij_vars)):
             data['sij_list'].append([])
             for __ in range(len(desired_conditions_input.sij_vars[_])):
-                data['sij_list'][-1].append(desired_conditions_input.sij_vars[_][__].get())
+                data['sij_list'][-1].append(
+                    desired_conditions_input.sij_vars[_][__].get())
 
         data['Yij_list'] = []
         for _ in range(len(desired_conditions_input.yij_vars)):
             data['Yij_list'].append([])
             for __ in range(len(desired_conditions_input.yij_vars[_])):
-                data['Yij_list'][-1].append(desired_conditions_input.yij_vars[_][__].get())
+                data['Yij_list'][-1].append(
+                    desired_conditions_input.yij_vars[_][__].get())
 
         # v
         data['v0_list'] = []

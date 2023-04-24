@@ -7,16 +7,20 @@ class solve_button:
     def __init__(self, root, command):
         try:
             s = ttk.Style()
-            s.configure("TopWhiteBg.TFrame", background="white", borderwidth=5, relief='raised')
-            s.configure("VectorWhiteBg.TFrame", background="white", borderwidth=5, relief="solid")
+            s.configure("TopWhiteBg.TFrame", background="white",
+                        borderwidth=5, relief='raised')
+            s.configure("VectorWhiteBg.TFrame", background="white",
+                        borderwidth=5, relief="solid")
             s.configure("WhiteBg.TFrame", background="white")
             s.configure("WhiteBg.TLabel", background="white")
 
             # Frames
-            self.root = ttk.Frame(root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
+            self.root = ttk.Frame(
+                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.root.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.solve_button_frame = ttk.Frame(self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
+            self.solve_button_frame = ttk.Frame(
+                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.solve_button_frame.grid(column=0, row=0, sticky=(N, W, E, S))
             #
 

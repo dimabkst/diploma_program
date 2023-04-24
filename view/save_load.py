@@ -14,27 +14,34 @@ class save_load:
             self.file_path = file_path
             self.save_file_prefix = "./saves/save"
             self.save_file_suffix = "." + file_path.split('.')[-1]
-            self.saves_absolute_path = os.path.abspath(f'{"/".join(self.save_file_prefix.split("/")[:-1])}')
+            self.saves_absolute_path = os.path.abspath(
+                f'{"/".join(self.save_file_prefix.split("/")[:-1])}')
             self.current_save_number = \
                 len(fnmatch.filter(os.listdir(self.saves_absolute_path),
                                    f'{self.save_file_prefix.split("/")[-1]}*{self.save_file_suffix}'))
 
-            self.save_file_path = self.save_file_prefix + str(self.current_save_number) + self.save_file_suffix
+            self.save_file_path = self.save_file_prefix + \
+                str(self.current_save_number) + self.save_file_suffix
 
             s = ttk.Style()
-            s.configure("TopWhiteBg.TFrame", background="white", borderwidth=5, relief='raised')
-            s.configure("VectorWhiteBg.TFrame", background="white", borderwidth=5, relief="solid")
+            s.configure("TopWhiteBg.TFrame", background="white",
+                        borderwidth=5, relief='raised')
+            s.configure("VectorWhiteBg.TFrame", background="white",
+                        borderwidth=5, relief="solid")
             s.configure("WhiteBg.TFrame", background="white")
             s.configure("WhiteBg.TLabel", background="white")
 
             # Frames
-            self.root = ttk.Frame(root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
+            self.root = ttk.Frame(
+                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.root.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.save_frame = ttk.Frame(self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
+            self.save_frame = ttk.Frame(
+                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.save_frame.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.load_frame = ttk.Frame(self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
+            self.load_frame = ttk.Frame(
+                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.load_frame.grid(column=1, row=0, sticky=(N, W, E, S))
             #
 
@@ -97,7 +104,8 @@ class save_load:
 
     def change_save_file_path(self):
         try:
-            self.save_file_path = self.save_file_prefix + str(self.current_save_number) + self.save_file_suffix
+            self.save_file_path = self.save_file_prefix + \
+                str(self.current_save_number) + self.save_file_suffix
         except Exception as e:
             raise e
 
@@ -106,12 +114,14 @@ class save_load:
             load_button = ttk.Button(self.load_frame, text=f'Збереження №{self.current_save_number}',
                                      command=lambda i=self.current_save_number: self.load_command(
                                          self.save_file_prefix + str(i) + self.save_file_suffix))
-            load_button.grid(column=0, row=self.current_save_number - 1, sticky=(N, W, E, S))
+            load_button.grid(
+                column=0, row=self.current_save_number - 1, sticky=(N, W, E, S))
             self.load_buttons.append(load_button)
 
             delete_button = ttk.Button(self.load_frame, text=f'Видалити збереження №{self.current_save_number}',
                                        command=lambda i=self.current_save_number: self.delete_save(i))
-            delete_button.grid(column=1, row=self.current_save_number - 1, sticky=(N, W, E, S))
+            delete_button.grid(
+                column=1, row=self.current_save_number - 1, sticky=(N, W, E, S))
             self.delete_buttons.append(delete_button)
 
             self.align_rows_cols(self.load_frame)
@@ -125,7 +135,8 @@ class save_load:
                 raise Exception("There is no such save file")
 
             # Delete wanted save file
-            os.remove(self.save_file_prefix + str(save_number) + self.save_file_suffix)
+            os.remove(self.save_file_prefix +
+                      str(save_number) + self.save_file_suffix)
 
             # Decrement numbers in names of save files that go after deleted one
             for i in range(save_number, len(self.load_buttons)):

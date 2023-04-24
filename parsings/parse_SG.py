@@ -17,7 +17,8 @@ def parse_SG(SG_string: str) -> np.array:
 
         atomic_SGs = []
         for atomic_SG_match_object in atomic_SGs_str_iterator:
-            atomic_SG_str = atomic_SG_match_object[0]  # String that looks like: [constant1, constant2]
+            # String that looks like: [constant1, constant2]
+            atomic_SG_str = atomic_SG_match_object[0]
 
             atomic_SG_constant1_str = ""
             atomic_SG_constant2_str = ""
