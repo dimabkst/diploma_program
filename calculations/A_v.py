@@ -15,8 +15,8 @@ def A_v(A_matrix: np.array, v_0: Callable, v_G: Callable, S0: np.array, SG: np.a
     :return: np.array matrix of floats with LG*RG + (sum(Ji, i=1..I)) * I rows and 1 col
     """
 
-    C = abs(SG[0][0]) - SG[0][0]
-    D = abs(SG[-1][1]) + SG[-1][1]
+    C = SG[0][0] - abs(SG[0][0])
+    D = SG[-1][1] + abs(SG[-1][1])
     T_0 = -T
 
     A21, A22, A31, A32 = A_matrix[0], A_matrix[1], A_matrix[2], A_matrix[3]

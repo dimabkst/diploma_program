@@ -13,8 +13,8 @@ def y_G(G: Callable, SG: np.array, T: float, u_G: Callable) -> Callable:
     :return: function of two variables x, t
     """
 
-    C = abs(SG[0][0]) - SG[0][0]
-    D = abs(SG[-1][1]) + SG[-1][1]
+    C = SG[0][0] - abs(SG[0][0])
+    D = SG[-1][1] + abs(SG[-1][1])
 
     def res(x: float, t: float) -> float:
         def integrand(x_: float,

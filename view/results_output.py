@@ -34,7 +34,7 @@ class results_output:
         except Exception as e:
             raise e
 
-    def receive_data_and_show_it(self, solutions):
+    def receive_data_and_show_it(self, solutions, dimensions):
         try:
             # Cleaning everything that was before
             for child in self.results_output_frame.winfo_children():
@@ -78,8 +78,13 @@ class results_output:
                 # adding the subplot
                 step_plot = step_fig.add_subplot(111, projection="3d")
                 # plotting the graph
-                x_values = np.arange(-1.0, 1.0, 0.05)
-                t_values = np.arange(-1.0, 1.0, 0.05)
+
+                count = 40 + 1
+                t_step = 2 * dimensions['T'] / (count - 1)
+                x_step = (dimensions['B'] - dimensions['A']) / (count - 1)
+
+                t_values = np.arange(-dimensions['T'], dimensions['T'], t_step)
+                x_values = np.arange(dimensions['A'], dimensions['B'], x_step)
 
                 X_values, T_values = np.meshgrid(x_values, t_values)
                 Y_values = [[solution(x_value, t_value)

@@ -33,6 +33,10 @@ def solve(G: Callable, u: Callable, S0: np.array, SG: np.array, T: float,
                        Li_list, sij_list, Yij_list,
                        v_0, v_G)
 
+        # In S0 should be b1 < a2 etc
+        S0.sort()
+        SG.sort()
+
         res_y_infinity = y_infinity(G, u, S0, T)
         res_A = A(G, LrG_list, slG_list, Li_list, sij_list)
         res_Y_slash = Y_slash(res_y_infinity,

@@ -31,7 +31,10 @@ def control(view, file_path: str) -> None:
 
             # print(f'№{v_index}. Solution: {solution}, precision: {precision}')
 
-        view.results_output.receive_data_and_show_it(solutions)
+        S0 = sorted(parsed_data['S0'])
+        dimensions = {'A': S0[0][0], 'B': S0[-1][1], 'T': parsed_data['T']}
+
+        view.results_output.receive_data_and_show_it(solutions, dimensions)
 
     except Exception as e:
         raise e

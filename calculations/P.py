@@ -13,8 +13,8 @@ def P(A_matrix: np.array, S0: np.array, SG: np.array, T: float) -> np.array:
     :return: np.array square matrix of P21, P22, P31, P32 matrices
     """
 
-    C = abs(SG[0][0]) - SG[0][0]
-    D = abs(SG[-1][1]) + SG[-1][1]
+    C = SG[0][0] - abs(SG[0][0])
+    D = SG[-1][1] + abs(SG[-1][1])
     T_0 = -T
 
     P_parts = []
