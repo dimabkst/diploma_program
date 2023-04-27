@@ -1,4 +1,5 @@
 from controller import put_data_to_file
+import numpy as np
 
 
 def view_data_to_file(view, file_path: str) -> None:
@@ -84,7 +85,7 @@ def view_data_to_file(view, file_path: str) -> None:
             for sol in solutions:
                 sol['solution'] = str(sol['solution'])
                 sol['solution_plot_data'] = {
-                    key: item.tolist() for key, item in sol['solution_plot_data'].items()}
+                    key: np.copy(item).tolist() for key, item in sol['solution_plot_data'].items()}
 
             data['solutions'] = solutions
 
