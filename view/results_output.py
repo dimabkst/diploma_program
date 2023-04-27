@@ -10,6 +10,8 @@ class results_output:
 
     def __init__(self, root):
         try:
+            self.solutions = None
+
             s = ttk.Style()
             s.configure("TopWhiteBg.TFrame", background="white",
                         borderwidth=5, relief='raised')
@@ -34,16 +36,14 @@ class results_output:
         except Exception as e:
             raise e
 
-    def receive_data_and_show_it(self, solutions, dimensions):
+    def receive_data_and_show_it(self, solutions):
         try:
             # Cleaning everything that was before
-            for child in self.results_output_frame.winfo_children():
-                for grandchild in child.winfo_children():
-                    grandchild.destroy()
+            self.clear()
 
             # Output results
             for i in range(len(solutions)):
-                solution = solutions[i]["solution"]
+                solution_plot_data = solutions[i]["solution_plot_data"]
                 precision = solutions[i]["precision"]
 
                 step_frame = ttk.Frame(
@@ -79,19 +79,8 @@ class results_output:
                 step_plot = step_fig.add_subplot(111, projection="3d")
                 # plotting the graph
 
-                count = 40 + 1
-                t_step = 2 * dimensions['T'] / (count - 1)
-                x_step = (dimensions['B'] - dimensions['A']) / (count - 1)
-
-                t_values = np.arange(-dimensions['T'], dimensions['T'], t_step)
-                x_values = np.arange(dimensions['A'], dimensions['B'], x_step)
-
-                X_values, T_values = np.meshgrid(x_values, t_values)
-                Y_values = [[solution(x_value, t_value)
-                             for t_value in t_values] for x_value in x_values]
-                Y_values = np.array(Y_values)
-                step_plot.plot_surface(X_values, T_values, Y_values, rstride=1, cstride=1,
-                                       cmap='viridis', edgecolor='none')
+                step_plot.plot_surface(solution_plot_data['X'], solution_plot_data['T'], solution_plot_data['Y'],
+                                       rstride=1, cstride=1, cmap='viridis', edgecolor='none')
 
                 # creating the Tkinter canvas containing the Matplotlib figure
                 step_canvas = FigureCanvasTkAgg(
@@ -118,8 +107,10 @@ class results_output:
 
                 self.align_rows_cols(step_frame)
 
+            self.solutions = solutions
             self.align_rows_cols(self.results_output_frame)
             self.align_rows_cols(self.root)
+
         except Exception as e:
             raise e
 
@@ -129,3 +120,9 @@ class results_output:
             frame.grid_rowconfigure(i, weight=1)
         for j in range(cols_num):
             frame.grid_columnconfigure(j, weight=1)
+
+    def clear(self):
+        self.solutions = None
+        for child in self.results_output_frame.winfo_children():
+            for grandchild in child.winfo_children():
+                grandchild.destroy()

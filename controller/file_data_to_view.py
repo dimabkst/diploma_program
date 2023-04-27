@@ -1,5 +1,6 @@
 from controller import retrieve_data_from_file
 from tkinter import StringVar
+import numpy as np
 
 
 def file_data_to_view(view, file_path: str) -> None:
@@ -14,6 +15,7 @@ def file_data_to_view(view, file_path: str) -> None:
         boundary_conditions_input = view.boundary_desired_conditions_input.boundary_conditions_input
         desired_conditions_input = view.boundary_desired_conditions_input.desired_conditions_input
         v_input = view.v_input
+        results_output = view.results_output
 
         # reading json file
         data = retrieve_data_from_file(file_path)
@@ -73,6 +75,15 @@ def file_data_to_view(view, file_path: str) -> None:
 
         for _ in range(len(data['vG_list'])):
             v_input.vG_vars[-1].set(data['vG_list'][_])
+
+        # solutions
+        if data.get('solutions'):
+            solutions = data.get('solutions')
+            for sol in solutions:
+                sol['solution_plot_data'] = {
+                    key: np.array(item) for key, item in sol['solution_plot_data'].items()}
+
+            results_output.receive_data_and_show_it(solutions)
 
     except Exception as e:
         raise e

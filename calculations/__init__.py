@@ -12,3 +12,4 @@ from .y import y
 from .precision import precision
 from .validate_input import validate_input
 from .solve import solve
+from .calculate_for_plot import calculate_for_plot

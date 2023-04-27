@@ -13,6 +13,7 @@ def view_data_to_file(view, file_path: str) -> None:
         boundary_conditions_input = view.boundary_desired_conditions_input.boundary_conditions_input
         desired_conditions_input = view.boundary_desired_conditions_input.desired_conditions_input
         v_input = view.v_input
+        results_output = view.results_output
 
         data = dict()
 
@@ -76,6 +77,16 @@ def view_data_to_file(view, file_path: str) -> None:
         data['vG_list'] = []
         for _ in range(len(v_input.vG_vars)):
             data['vG_list'].append(v_input.vG_vars[_].get())
+
+        # solutions
+        if results_output.solutions:
+            solutions = results_output.solutions
+            for sol in solutions:
+                sol['solution'] = str(sol['solution'])
+                sol['solution_plot_data'] = {
+                    key: item.tolist() for key, item in sol['solution_plot_data'].items()}
+
+            data['solutions'] = solutions
 
         # saving in json file
         put_data_to_file(file_path, data)
