@@ -19,6 +19,7 @@ def view_data_to_file(view, file_path: str) -> None:
         data = dict()
 
         # problem conditions
+        data['S'] = problem_conditions_input.S_var.get()
         data['S0'] = problem_conditions_input.S0_var.get()
         data['SG'] = problem_conditions_input.SG_var.get()
         data['T'] = problem_conditions_input.T_var.get()

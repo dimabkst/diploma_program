@@ -144,7 +144,7 @@ class desired_conditions_input:
                 self.sij_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
             self.sij_sij_frame.grid(column=0, row=1, sticky=(N, W, E, S))
 
-            ttk.Label(self.sij_label_frame, text="Дискретні точки спостережень Li(dx, dt), sij є S0 x [0, T] у форматі:", style="WhiteBg.TLabel")\
+            ttk.Label(self.sij_label_frame, text="Дискретні точки спостережень Li(dx, dt), sij є SG x [0, T] у форматі:", style="WhiteBg.TLabel")\
                 .grid(column=0, row=0, sticky=(N, E, W, S))
             sij_format_image = PhotoImage(file="./assets/sij.gif")
             sij_format_image_label = ttk.Label(

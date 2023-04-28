@@ -21,6 +21,7 @@ def file_data_to_view(view, file_path: str) -> None:
         data = retrieve_data_from_file(file_path)
 
         # problem conditions
+        problem_conditions_input.S_var.set(data['S'])
         problem_conditions_input.S0_var.set(data['S0'])
         problem_conditions_input.SG_var.set(data['SG'])
         problem_conditions_input.T_var.set(data['T'])

@@ -7,7 +7,7 @@ def P(A_matrix: np.array, S0: np.array, SG: np.array, T: float) -> np.array:
     """
 
     :param A_matrix: np.array with elements A21, A22, A31, A32
-    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]) - Space-time domain
+    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Initial space domain
     :param SG: has next form: np.array([[c0, d0],...,[c_last, d_last]]) - Boundary space domain
     :param T: float greater that zero - Max time value
     :return: np.array square matrix of P21, P22, P31, P32 matrices

@@ -43,7 +43,7 @@ def segments_intersect(segment1: np.array, segment2: np.array) -> bool:
     return intersect
 
 
-def validate_input(G: Callable, u: Callable, S0: np.array, SG: np.array, T: float,
+def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: float,
                    LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
                    Li_list: np.array, sij_list: np.array, Yij_list: np.array,
                    v_0: Callable, v_G: Callable) -> None:
@@ -51,7 +51,8 @@ def validate_input(G: Callable, u: Callable, S0: np.array, SG: np.array, T: floa
 
     :param G: function of two variables x, t - Green's function
     :param u: function of two variables x, t - Disturbance
-    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Space domain
+    :param S: has next form: np.array([[f0, g0],...,[f_last, g_last]]) - Space domain
+    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Initial space domain
     :param SG: has next form: np.array([[c0, d0],...,[c_last, d_last]]) - Boundary space domain
     :param T: float greater that zero - Max time value
     :param LrG_list: list of LrG differential operators that look like: L(f) -> scipy.derivative(f) + ...
@@ -66,6 +67,15 @@ def validate_input(G: Callable, u: Callable, S0: np.array, SG: np.array, T: floa
     """
     try:
         # All data has needed type and format because they went through parser and it would have caught such problems
+        for segment in S:
+            if segment[1] <= segment[0]:
+                raise Exception("In S should be: bk > ak for all k")
+
+        for i in range(len(S)):
+            for j in range(i + 1, len(S)):
+                if segments_intersect(S[i], S[j]):
+                    raise Exception("Segments in S should not intersect")
+
         for segment in S0:
             if segment[1] <= segment[0]:
                 raise Exception("In S0 should be: bk > ak for all k")
@@ -108,9 +118,9 @@ def validate_input(G: Callable, u: Callable, S0: np.array, SG: np.array, T: floa
                 raise Exception(
                     "Counts of corresponding rows of Yij and sij should match")
             for j in range(len(sij_list[i])):
-                if not dim2PointInSet(sij_list[i][j], S0, [[0, T]]):
+                if not dim2PointInSet(sij_list[i][j], SG, [[0, T]]):
                     raise Exception(
-                        f"sij = {sij_list[i][j]} not in {S0} x {[0, T]}")
+                        f"sij = {sij_list[i][j]} not in {SG} x {[0, T]}")
 
         # There also should be validation of G but it is very hard to implement
 

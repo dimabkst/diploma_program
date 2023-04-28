@@ -3,7 +3,7 @@ import numpy as np
 from calculations import y_infinity, A, Y_slash, A_v, P, u_0G, y_0, y_G, y, precision, validate_input
 
 
-def solve(G: Callable, u: Callable, S0: np.array, SG: np.array, T: float,
+def solve(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: float,
           LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
           Li_list: np.array, sij_list: np.array, Yij_list: np.array,
           v_0: Callable, v_G: Callable) -> Tuple[Callable, float]:
@@ -11,7 +11,8 @@ def solve(G: Callable, u: Callable, S0: np.array, SG: np.array, T: float,
 
     :param G: function of two variables x, t - Green's function
     :param u: function of two variables x, t - Disturbance
-    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Space domain
+    :param S: has next form: np.array([[f0, g0],...,[f_last, g_last]]) - Space domain
+    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Initial space domain
     :param SG: has next form: np.array([[c0, d0],...,[c_last, d_last]]) - Boundary space domain
     :param T: float greater that zero - Max time value
     :param Lr0_list: list of Lr0 differential operators that look like: L(f) -> scipy.derivative(f) + ...
@@ -28,16 +29,17 @@ def solve(G: Callable, u: Callable, S0: np.array, SG: np.array, T: float,
     :return: tuple of function of 2 variables x, t and float precision
     """
     try:
-        validate_input(G, u, S0, SG, T,
+        validate_input(G, u, S, S0, SG, T,
                        LrG_list, slG_list, YrlG_list,
                        Li_list, sij_list, Yij_list,
                        v_0, v_G)
 
         # In S0 should be b1 < a2 etc
+        S.sort()
         S0.sort()
         SG.sort()
 
-        res_y_infinity = y_infinity(G, u, S0, T)
+        res_y_infinity = y_infinity(G, u, S, T)
         res_A = A(G, LrG_list, slG_list, Li_list, sij_list)
         res_Y_slash = Y_slash(res_y_infinity,
                               LrG_list, slG_list, YrlG_list, Li_list, sij_list, Yij_list)

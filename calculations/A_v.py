@@ -9,7 +9,7 @@ def A_v(A_matrix: np.array, v_0: Callable, v_G: Callable, S0: np.array, SG: np.a
     :param A_matrix: np.array with elements A21, A22, A31, A32
     :param v_0: function of two arguments x, t
     :param v_G: function of two arguments x, t
-    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]) - Space-time domain
+    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Initial space domain
     :param SG: has next form: np.array([[c0, d0],...,[c_last, d_last]]) - Boundary space domain
     :param T: float greater that zero - Max time value
     :return: np.array matrix of floats with LG*RG + (sum(Ji, i=1..I)) * I rows and 1 col

@@ -1,4 +1,4 @@
-from parsings import parse_number, parse_S0, parse_SG, parse_function, parse_operator, parse_slG, parse_sij
+from parsings import parse_number, parse_S_, parse_function, parse_operator, parse_slG, parse_sij
 import numpy as np
 
 
@@ -12,8 +12,9 @@ def parse_data(data: dict) -> dict:
         parsed_data = dict()
 
         # parse problem conditions
-        parsed_data['S0'] = parse_S0(data['S0'])
-        parsed_data['SG'] = parse_SG(data['SG'])
+        parsed_data['S'] = parse_S_(data['S'])
+        parsed_data['S0'] = parse_S_(data['S0'])
+        parsed_data['SG'] = parse_S_(data['SG'])
         parsed_data['T'] = parse_number(data['T'])
         parsed_data['L'] = parse_operator(data['L'])
         parsed_data['u'] = parse_function(data['u'])

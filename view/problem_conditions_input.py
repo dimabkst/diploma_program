@@ -19,29 +19,56 @@ class problem_conditions_input:
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.root.grid(column=0, row=0, sticky=(N, W, E, S))
 
+            self.S_frame = ttk.Frame(
+                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
+            self.S_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+
             self.S0_frame = ttk.Frame(
                 self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.S0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.S0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
 
             self.SG_frame = ttk.Frame(
                 self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.SG_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.SG_frame.grid(column=0, row=2, sticky=(N, W, E, S))
 
             self.T_frame = ttk.Frame(
                 self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.T_frame.grid(column=0, row=2, sticky=(N, W, E, S))
+            self.T_frame.grid(column=0, row=3, sticky=(N, W, E, S))
 
             self.L_frame = ttk.Frame(
                 self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.L_frame.grid(column=0, row=3, sticky=(N, W, E, S))
+            self.L_frame.grid(column=0, row=4, sticky=(N, W, E, S))
 
             self.u_frame = ttk.Frame(
                 self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.u_frame.grid(column=0, row=4, sticky=(N, W, E, S))
+            self.u_frame.grid(column=0, row=5, sticky=(N, W, E, S))
 
             self.G_frame = ttk.Frame(
                 self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.G_frame.grid(column=0, row=5, sticky=(N, W, E, S))
+            self.G_frame.grid(column=0, row=6, sticky=(N, W, E, S))
+
+            # S_input
+            self.S_label_frame = ttk.Frame(
+                self.S_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.S_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.S_entry_frame = ttk.Frame(
+                self.S_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.S_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+
+            self.S_var = StringVar()
+            self.S_var.set("[0, 1]")
+
+            ttk.Label(self.S_label_frame, text="S =", style="WhiteBg.TLabel") \
+                .grid(column=0, row=0, sticky=(N, E, W, S))
+
+            self.S_entry = ttk.Entry(
+                self.S_entry_frame, width=ENTRY_WIDTH, textvariable=self.S_var)
+            self.S_entry_hsb = ttk.Scrollbar(
+                self.S_entry_frame, orient=HORIZONTAL, command=self.S_entry.xview)
+            self.S_entry.configure(xscrollcommand=self.S_entry_hsb.set)
+            self.S_entry_hsb.grid(column=0, row=1, sticky=(E, W))
+            self.S_entry.grid(column=0, row=0, sticky=(N, E, W, S))
+            #
 
             # S0_input
             self.S0_label_frame = ttk.Frame(
@@ -183,6 +210,10 @@ class problem_conditions_input:
             #
 
             # Align everything
+            self.align_rows_cols(self.S_label_frame)
+            self.align_rows_cols(self.S_entry_frame)
+            self.align_rows_cols(self.S_frame)
+
             self.align_rows_cols(self.S0_label_frame)
             self.align_rows_cols(self.S0_entry_frame)
             self.align_rows_cols(self.S0_frame)

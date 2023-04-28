@@ -7,7 +7,7 @@ def y_0(G: Callable, S0: np.array, T: float, u_0: Callable) -> Callable:
     """
 
     :param G: function of two variables x, t - Green's function
-    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Space domain
+    :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Initial space domain
     :param T: float greater that zero - Max time value
     :param u_0: function of two variables x, t
     :return: function of two variables x, t
