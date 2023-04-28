@@ -28,7 +28,7 @@ def parse_operator(operator_string: str) -> Callable:
     """
     try:
         op_str = operator_string.replace(' ', '')  # Remove all spaces
-        atomic_op_regex = r"[+-]?[0-9]+([.][0-9]+)?\*[d]\[(x|t)[,][1-9][0-9]*\]"
+        atomic_op_regex = r"[+-]?[0-9]+([.][0-9]+)?\*[d]\[(x|t)[,](0|[1-9][0-9]*)\]"
         atomic_op_regex_obj = re.compile(atomic_op_regex)
 
         atomic_ops_str_iterator = atomic_op_regex_obj.finditer(op_str)
@@ -74,6 +74,9 @@ def parse_operator(operator_string: str) -> Callable:
 
             # print(f'Constant: {atomic_op_constant}, var: {atomic_op_var}, der_order: {atomic_op_der_order}')
 
+        if not len(atomic_ops):
+            raise Exception(f"Operator with string: '{op_str}' is not correct")
+
         def differential_operator(func: Callable) -> Callable:
             def differential_operator_of_func_in_point(*point) -> float:
                 res = sum([atomic_diff_op(func)(*point)
@@ -85,4 +88,4 @@ def parse_operator(operator_string: str) -> Callable:
 
         return differential_operator
     except Exception as e:
-        print(e)
+        raise e

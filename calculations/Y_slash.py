@@ -32,7 +32,7 @@ def Y_slash(y_infinity: Callable, LrG_list: np.array, slG_list: np.array, YrlG_l
         Li_y_inf = Li_list[i](y_infinity)
         for j in range(Ji[i]):
             Ystar.append(Yij_list[i][j] -
-                         Li_y_inf(sij_list[i][j], sij_list[i][j]))
+                         Li_y_inf(sij_list[i][j][0], sij_list[i][j][1]))
 
     result = []
     for pl in range(R_G * L_G):

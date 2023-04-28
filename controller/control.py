@@ -1,6 +1,7 @@
 from controller import view_data_to_file, retrieve_data_from_file
 from parsings import parse_data
 from calculations import solve, calculate_for_plot
+from utils import beep
 
 
 def control(view, file_path: str) -> None:
@@ -40,6 +41,8 @@ def control(view, file_path: str) -> None:
             # f'№{v_index + 1}. Solution plot data: {solution_plot_data}, precision: {precision}')
 
         view.results_output.receive_data_and_show_it(solutions)
+
+        beep()
 
     except Exception as e:
         raise e

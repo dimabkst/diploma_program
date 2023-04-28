@@ -292,7 +292,7 @@ class desired_conditions_input:
                             self.Li_entries[i].grid(
                                 row=i, column=1, sticky=(N, W, E, S))
         except Exception as e:
-            print(e)
+            raise e
 
     def change_and_show_Ji(self):
         try:
@@ -326,7 +326,7 @@ class desired_conditions_input:
                             self.Ji_entries[i].grid(
                                 row=1, column=i, sticky=(N, W, E, S))
         except Exception as e:
-            print(e)
+            raise e
 
     def change_and_show_sij(self):
         try:

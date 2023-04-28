@@ -22,14 +22,14 @@ def y_G(G: Callable, SG: np.array, T: float, u_G: Callable) -> Callable:
             return G(x - x_, t - t_) * u_G(x_, t_)
 
         integral = 0.0
-        integral += dblquad(integrand, T, 0, lambda t_: C,
+        integral += dblquad(integrand, 0, T, lambda t_: C,
                             lambda t_: SG[0][0], epsabs=1.5e-3, epsrel=1.5e-3)[0]
 
         for e in range(1, len(SG) - 1):
-            integral += dblquad(integrand, T, 0, lambda t_: SG[e][1], lambda t_: SG[e + 1][0], epsabs=1.5e-3, epsrel=1.5e-3)[
+            integral += dblquad(integrand, 0, T, lambda t_: SG[e][1], lambda t_: SG[e + 1][0], epsabs=1.5e-3, epsrel=1.5e-3)[
                 0]  # Sec value is precision
 
-        integral += dblquad(integrand, T, 0,
+        integral += dblquad(integrand, 0, T,
                             lambda t_: SG[-1][1], lambda t_: D, epsabs=1.5e-3, epsrel=1.5e-3)[0]
 
         return integral

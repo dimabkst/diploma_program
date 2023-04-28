@@ -31,7 +31,7 @@ def A(G: Callable, LrG_list: np.array, slG_list: np.array, Li_list: np.array, si
             A21.append(
                 [LrG_list[ro](func_wrapped_for_A(G, slG_list[l][0], slG_list[l][1]))])
     A21 = np.array(A21)
-    A22 = A21
+    A22 = np.copy(A21)
 
     A31 = []
     for i in range(I):
@@ -39,6 +39,6 @@ def A(G: Callable, LrG_list: np.array, slG_list: np.array, Li_list: np.array, si
             A31.append([Li_list[i](func_wrapped_for_A(
                 G, sij_list[i][j][0], sij_list[i][j][1]))])
     A31 = np.array(A31)
-    A32 = A31
+    A32 = np.copy(A31)
 
     return [A21, A22, A31, A32]

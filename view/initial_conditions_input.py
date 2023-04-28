@@ -272,7 +272,7 @@ class initial_conditions_input:
                             self.Lr0_entries[i].grid(
                                 row=i, column=1, sticky=(N, W, E, S))
         except Exception as e:
-            print(e)
+            raise e
 
     def change_and_show_xl0(self):
         try:
@@ -306,7 +306,7 @@ class initial_conditions_input:
                             self.xl0_entries[i].grid(
                                 row=1, column=i, sticky=(N, W, E, S))
         except Exception as e:
-            print(e)
+            raise e
 
     def change_and_show_yrl0(self):
         try:
