@@ -2,6 +2,7 @@ from controller import view_data_to_file, retrieve_data_from_file
 from parsings import parse_data
 from calculations import solve, calculate_for_plot
 from utils import beep
+from datetime import datetime
 
 
 def control(view, file_path: str) -> None:
@@ -12,6 +13,8 @@ def control(view, file_path: str) -> None:
     :return:
     """
     try:
+        start_time = datetime.now()
+
         view_data_to_file(view, file_path)
 
         data_from_file = retrieve_data_from_file(file_path)
@@ -42,7 +45,9 @@ def control(view, file_path: str) -> None:
 
         view.results_output.receive_data_and_show_it(solutions)
 
-        beep()
+        end_time = datetime.now()
 
+        print(f'Time to get result: {end_time - start_time}')
+        beep()
     except Exception as e:
         raise e

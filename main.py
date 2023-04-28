@@ -1,6 +1,6 @@
 from view import View
 from traceback import print_exc
-from parsings import parse_function
+from utils import error_beep
 
 if __name__ == "__main__":
     try:
@@ -10,3 +10,4 @@ if __name__ == "__main__":
     except Exception as e:
         print('Error occured:')
         print_exc(e)
+        error_beep()
