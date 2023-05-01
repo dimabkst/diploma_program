@@ -11,3 +11,4 @@ from .v_input import v_input
 from .results_output import results_output
 from .save_load import save_load
 from .input_rules import input_rules
+from .settings_input import settings_input

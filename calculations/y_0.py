@@ -3,13 +3,14 @@ from typing import Callable
 from scipy.integrate import dblquad
 
 
-def y_0(G: Callable, S0: np.array, T: float, u_0: Callable) -> Callable:
+def y_0(G: Callable, S0: np.array, T: float, u_0: Callable, integrals_precision: float) -> Callable:
     """
 
     :param G: function of two variables x, t - Green's function
     :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Initial space domain
     :param T: float greater that zero - Max time value
     :param u_0: function of two variables x, t
+    :param integrals_precision: dblquad integrals precision
     :return: function of two variables x, t
     """
 
@@ -22,7 +23,7 @@ def y_0(G: Callable, S0: np.array, T: float, u_0: Callable) -> Callable:
 
         integral = 0.0
         for k in range(len(S0)):
-            integral += dblquad(integrand, T_0, 0, lambda t_: S0[k][0], lambda t_: S0[k][1], epsabs=1.5e-3, epsrel=1.5e-3)[
+            integral += dblquad(integrand, T_0, 0, lambda t_: S0[k][0], lambda t_: S0[k][1], epsabs=integrals_precision, epsrel=integrals_precision)[
                 0]  # Sec value is precision
 
         return integral

@@ -69,7 +69,8 @@ def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.a
                    Lr0_list: np.array, xl0_list: np.array,
                    LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
                    Li_list: np.array, sij_list: np.array, Yij_list: np.array,
-                   v_0: Callable, v_G: Callable) -> None:
+                   v_0: Callable, v_G: Callable,
+                   integrals_precision: float, plot_grid_dimension: int) -> None:
     """
 
     :param G: function of two variables x, t - Green's function
@@ -88,6 +89,8 @@ def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.a
     :param Yij_list: np.array of np.arrays of Yij that is float: [[Y11, Y12, ...], ...]
     :param v_0: function of two variables x, t
     :param v_G: function of two variables x, t
+    :param integrals_precision: dblquad integrals precision
+    :param plot_grid_dimension: dimension of grid to plot
     :return: tuple of function of 2 variables x, t and float precision
     """
     try:
@@ -151,6 +154,10 @@ def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.a
                     raise Exception(
                         f"sij = {sij_list[i][j]} not in {SG} x {[0, T]}")
 
+        if integrals_precision < 5e-29:
+            raise Exception('Integrals precision should be greater than 5e-29')
+        if not isinstance(plot_grid_dimension, int) and plot_grid_dimension < 1:
+            raise Exception('Plot grid dimension should be natural number')
         # There also should be validation of G but it is very hard to implement
 
     except Exception as e:

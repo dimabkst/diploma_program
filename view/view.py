@@ -7,6 +7,7 @@ from .v_input import v_input
 from .save_load import save_load
 from .results_output import results_output
 from .input_rules import input_rules
+from .settings_input import settings_input
 from controller import control, view_data_to_file, file_data_to_view
 
 
@@ -34,6 +35,7 @@ class View:
             self.initial_boundary_desired_conditions_input = initial_boundary_desired_conditions_input(
                 self.root)
             self.v_input = v_input(self.root)
+            self.settings_input = settings_input(self.root)
             self.solve_button = solve_button(
                 self.root, lambda: self.solve_button_command(file_path))
             self.results_output = results_output(self.root)
@@ -45,6 +47,7 @@ class View:
             self.notebook.add(
                 self.initial_boundary_desired_conditions_input.root, text='Початкові, крайові та бажані умови')
             self.notebook.add(self.v_input.root, text='Ввід v(x,t)')
+            self.notebook.add(self.settings_input.root, text='Налаштування')
             self.notebook.add(self.solve_button.root, text="Розв'язати задачу")
             self.notebook.add(self.results_output.root, text="Результати")
 

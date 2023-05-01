@@ -3,13 +3,14 @@ from typing import Callable
 from scipy.integrate import dblquad
 
 
-def P(A_matrix: np.array, S0: np.array, SG: np.array, T: float) -> np.array:
+def P(A_matrix: np.array, S0: np.array, SG: np.array, T: float, integrals_precision: float) -> np.array:
     """
 
     :param A_matrix: np.array with elements A21, A22, A31, A32
     :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Initial space domain
     :param SG: has next form: np.array([[c0, d0],...,[c_last, d_last]]) - Boundary space domain
     :param T: float greater that zero - Max time value
+    :param integrals_precision: dblquad integrals precision
     :return: np.array square matrix of P21, P22, P31, P32 matrices
     """
 
@@ -55,18 +56,18 @@ def P(A_matrix: np.array, S0: np.array, SG: np.array, T: float) -> np.array:
                     for k in range(len(S0)):
                         # Sec value is precision
                         integral += dblquad(integrand1(row, col), T_0,
-                                            0, lambda t: S0[k][0], lambda t: S0[k][1], epsabs=1.5e-3, epsrel=1.5e-3)[0]
+                                            0, lambda t: S0[k][0], lambda t: S0[k][1], epsabs=integrals_precision, epsrel=integrals_precision)[0]
 
                     integral += dblquad(integrand2(row, col),
-                                        0, T, lambda t: C, lambda t: SG[0][0], epsabs=1.5e-3, epsrel=1.5e-3)[0]
+                                        0, T, lambda t: C, lambda t: SG[0][0], epsabs=integrals_precision, epsrel=integrals_precision)[0]
 
                     for e in range(1, len(SG) - 1):
                         # Sec value is precision
                         integral += dblquad(integrand2(row, col), 0, T,
-                                            lambda t: SG[e][1], lambda t: SG[e + 1][0], epsabs=1.5e-3, epsrel=1.5e-3)[0]
+                                            lambda t: SG[e][1], lambda t: SG[e + 1][0], epsabs=integrals_precision, epsrel=integrals_precision)[0]
 
                     integral += dblquad(integrand2(row, col),
-                                        0, T, lambda t: SG[-1][1], lambda t: D, epsabs=1.5e-3, epsrel=1.5e-3)[0]
+                                        0, T, lambda t: SG[-1][1], lambda t: D, epsabs=integrals_precision, epsrel=integrals_precision)[0]
 
                     P_parts[-1][row][col] = integral
 

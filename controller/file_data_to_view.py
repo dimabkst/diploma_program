@@ -16,6 +16,7 @@ def file_data_to_view(view, file_path: str) -> None:
         boundary_conditions_input = view.initial_boundary_desired_conditions_input.boundary_conditions_input
         desired_conditions_input = view.initial_boundary_desired_conditions_input.desired_conditions_input
         v_input = view.v_input
+        settings_input = view.settings_input
         results_output = view.results_output
 
         # reading json file
@@ -88,6 +89,10 @@ def file_data_to_view(view, file_path: str) -> None:
 
         for _ in range(len(data['vG_list'])):
             v_input.vG_vars[-1].set(data['vG_list'][_])
+
+        # settings
+        settings_input.integrals_precision_var.set(data['integrals_precision'])
+        settings_input.plot_grid_dimension_var.set(data['plot_grid_dimension'])
 
         # solutions
         if data.get('solutions'):

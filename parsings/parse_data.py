@@ -93,6 +93,12 @@ def parse_data(data: dict) -> dict:
         for i in range(len(data['vG_list'])):
             parsed_data['vG_list'].append(parse_function(data['vG_list'][i]))
 
+        # parse settings
+        parsed_data['integrals_precision'] = parse_number(
+            data['integrals_precision'])
+        parsed_data['plot_grid_dimension'] = parse_number(
+            data['plot_grid_dimension'])
+
         return parsed_data
     except Exception as e:
         raise e

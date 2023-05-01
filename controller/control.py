@@ -24,7 +24,6 @@ def control(view, file_path: str) -> None:
 
         S = sorted(parsed_data['S'])
         dimensions = {'A': S[0][0], 'B': S[-1][1], 'T': parsed_data['T']}
-        plot_count = 5  # grid for plot would be p_c * p_c
 
         if len(parsed_data['v0_list']) != len(parsed_data['vG_list']):
             raise Exception("Lengths of v0s and vGs should be equal")
@@ -34,9 +33,10 @@ def control(view, file_path: str) -> None:
                                               parsed_data['Lr0_list'], parsed_data['xl0_list'],
                                               parsed_data['LrG_list'], parsed_data['slG_list'], parsed_data['YrlG_list'],
                                               parsed_data['Li_list'], parsed_data['sij_list'], parsed_data['Yij_list'],
-                                              parsed_data['v0_list'][v_index], parsed_data['vG_list'][v_index])
+                                              parsed_data['v0_list'][v_index], parsed_data['vG_list'][v_index],
+                                              parsed_data['integrals_precision'], parsed_data['plot_grid_dimension'])
             solution_plot_data = calculate_for_plot(
-                solution, plot_count, dimensions['A'], dimensions['B'], -dimensions['T'], dimensions['T'])
+                solution, parsed_data['plot_grid_dimension'], dimensions['A'], dimensions['B'], -dimensions['T'], dimensions['T'])
 
             solutions.append({"solution": solution, "solution_plot_data": solution_plot_data,
                               "precision": precision, "Yrl0": Yrl0})

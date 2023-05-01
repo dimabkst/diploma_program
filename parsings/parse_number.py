@@ -8,7 +8,7 @@ def parse_number(number_string: str):
     :return: parsed number
     """
     try:
-        if '.' in number_string:
+        if '.' or 'e' in number_string:
             return parse_float_number(number_string)
         else:
             return parse_int_number(number_string)

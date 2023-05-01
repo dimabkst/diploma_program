@@ -15,6 +15,7 @@ def view_data_to_file(view, file_path: str) -> None:
         boundary_conditions_input = view.initial_boundary_desired_conditions_input.boundary_conditions_input
         desired_conditions_input = view.initial_boundary_desired_conditions_input.desired_conditions_input
         v_input = view.v_input
+        settings_input = view.settings_input
         results_output = view.results_output
 
         data = dict()
@@ -93,6 +94,10 @@ def view_data_to_file(view, file_path: str) -> None:
         data['vG_list'] = []
         for _ in range(len(v_input.vG_vars)):
             data['vG_list'].append(v_input.vG_vars[_].get())
+
+        # settings
+        data['integrals_precision'] = settings_input.integrals_precision_var.get()
+        data['plot_grid_dimension'] = settings_input.plot_grid_dimension_var.get()
 
         # solutions
         if results_output.solutions:

@@ -50,7 +50,7 @@ class input_rules:
                       style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
 
-            ttk.Label(self.numbers, text="""YrlG, Yij - довільні числа.\n\nT - довільне число більше 0.\n\nR0, L0, RG, LG, I, Ji, кількість векторів v(x,t) - довільні натуральні числа.""",
+            ttk.Label(self.numbers, text="""YrlG, Yij - довільні числа.\n\nT - довільне число більше 0.\n\nR0, L0, RG, LG, I, Ji, кількість векторів v(x,t) - довільні натуральні числа. \n\nТочність обчислення інтегралів - довільне додатне число не нижче 5e-29. \n\nРозмірність сітки графіка - довільне натуральне число""",
                       font=font,
                       style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))

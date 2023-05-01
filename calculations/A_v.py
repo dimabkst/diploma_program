@@ -3,7 +3,7 @@ from typing import Callable
 from scipy.integrate import dblquad
 
 
-def A_v(A_matrix: np.array, v_0: Callable, v_G: Callable, S0: np.array, SG: np.array, T: float) -> np.array:
+def A_v(A_matrix: np.array, v_0: Callable, v_G: Callable, S0: np.array, SG: np.array, T: float, integrals_precision: float) -> np.array:
     """
 
     :param A_matrix: np.array with elements A21, A22, A31, A32
@@ -12,6 +12,7 @@ def A_v(A_matrix: np.array, v_0: Callable, v_G: Callable, S0: np.array, SG: np.a
     :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Initial space domain
     :param SG: has next form: np.array([[c0, d0],...,[c_last, d_last]]) - Boundary space domain
     :param T: float greater that zero - Max time value
+    :param integrals_precision: dblquad integrals precision
     :return: np.array matrix of floats with LG*RG + (sum(Ji, i=1..I)) * I rows and 1 col
     """
 
@@ -33,18 +34,18 @@ def A_v(A_matrix: np.array, v_0: Callable, v_G: Callable, S0: np.array, SG: np.a
 
         integral = 0.0
         for k in range(len(S0)):
-            integral += dblquad(integrand1, T_0, 0, lambda t: S0[k][0], lambda t: S0[k][1], epsabs=1.5e-3, epsrel=1.5e-3)[
+            integral += dblquad(integrand1, T_0, 0, lambda t: S0[k][0], lambda t: S0[k][1], epsabs=integrals_precision, epsrel=integrals_precision)[
                 0]  # Sec value is precision
 
         integral += dblquad(integrand2, 0, T, lambda t: C,
-                            lambda t: SG[0][0], epsabs=1.5e-3, epsrel=1.5e-3)[0]
+                            lambda t: SG[0][0], epsabs=integrals_precision, epsrel=integrals_precision)[0]
 
         for e in range(1, len(SG) - 1):
-            integral += dblquad(integrand2, 0, T, lambda t: SG[e][1], lambda t: S0[e + 1][0], epsabs=1.5e-3, epsrel=1.5e-3)[
+            integral += dblquad(integrand2, 0, T, lambda t: SG[e][1], lambda t: S0[e + 1][0], epsabs=integrals_precision, epsrel=integrals_precision)[
                 0]  # Sec value is precision
 
         integral += dblquad(integrand2, 0, T,
-                            lambda t: SG[-1][1], lambda t: D, epsabs=1.5e-3, epsrel=1.5e-3)[0]
+                            lambda t: SG[-1][1], lambda t: D, epsabs=integrals_precision, epsrel=integrals_precision)[0]
 
         A_v0.append(integral)
 
@@ -57,18 +58,18 @@ def A_v(A_matrix: np.array, v_0: Callable, v_G: Callable, S0: np.array, SG: np.a
 
         integral = 0.0
         for k in range(len(S0)):
-            integral += dblquad(integrand1, T_0, 0, lambda t: S0[k][0], lambda t: S0[k][1], epsabs=1.5e-3, epsrel=1.5e-3)[
+            integral += dblquad(integrand1, T_0, 0, lambda t: S0[k][0], lambda t: S0[k][1], epsabs=integrals_precision, epsrel=integrals_precision)[
                 0]  # Sec value is precision
 
         integral += dblquad(integrand2, 0, T, lambda t: C,
-                            lambda t: SG[0][0], epsabs=1.5e-3, epsrel=1.5e-3)[0]
+                            lambda t: SG[0][0], epsabs=integrals_precision, epsrel=integrals_precision)[0]
 
         for e in range(1, len(SG) - 1):
-            integral += dblquad(integrand2, 0, T, lambda t: SG[e][1], lambda t: SG[e + 1][0], epsabs=1.5e-3, epsrel=1.5e-3)[
+            integral += dblquad(integrand2, 0, T, lambda t: SG[e][1], lambda t: SG[e + 1][0], epsabs=integrals_precision, epsrel=integrals_precision)[
                 0]  # Sec value is precision
 
         integral += dblquad(integrand2, 0, T,
-                            lambda t: SG[-1][1], lambda t: D, epsabs=1.5e-3, epsrel=1.5e-3)[0]
+                            lambda t: SG[-1][1], lambda t: D, epsabs=integrals_precision, epsrel=integrals_precision)[0]
 
         A_vG.append(integral)
 

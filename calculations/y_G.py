@@ -3,13 +3,14 @@ from typing import Callable
 from scipy.integrate import dblquad
 
 
-def y_G(G: Callable, SG: np.array, T: float, u_G: Callable) -> Callable:
+def y_G(G: Callable, SG: np.array, T: float, u_G: Callable, integrals_precision: float) -> Callable:
     """
 
     :param G: function of two variables x, t - Green's function
     :param SG: has next form: np.array([[c0, d0],...,[c_last, d_last]) - Boundary space domain
     :param T: float greater that zero - Max time value
     :param u_G: function of two variables x, t
+    :param integrals_precision: dblquad integrals precision
     :return: function of two variables x, t
     """
 
@@ -23,14 +24,14 @@ def y_G(G: Callable, SG: np.array, T: float, u_G: Callable) -> Callable:
 
         integral = 0.0
         integral += dblquad(integrand, 0, T, lambda t_: C,
-                            lambda t_: SG[0][0], epsabs=1.5e-3, epsrel=1.5e-3)[0]
+                            lambda t_: SG[0][0], epsabs=integrals_precision, epsrel=integrals_precision)[0]
 
         for e in range(1, len(SG) - 1):
-            integral += dblquad(integrand, 0, T, lambda t_: SG[e][1], lambda t_: SG[e + 1][0], epsabs=1.5e-3, epsrel=1.5e-3)[
+            integral += dblquad(integrand, 0, T, lambda t_: SG[e][1], lambda t_: SG[e + 1][0], epsabs=integrals_precision, epsrel=integrals_precision)[
                 0]  # Sec value is precision
 
         integral += dblquad(integrand, 0, T,
-                            lambda t_: SG[-1][1], lambda t_: D, epsabs=1.5e-3, epsrel=1.5e-3)[0]
+                            lambda t_: SG[-1][1], lambda t_: D, epsabs=integrals_precision, epsrel=integrals_precision)[0]
 
         return integral
 
