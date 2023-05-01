@@ -24,7 +24,7 @@ def control(view, file_path: str) -> None:
 
         S = sorted(parsed_data['S'])
         dimensions = {'A': S[0][0], 'B': S[-1][1], 'T': parsed_data['T']}
-        plot_count = 5 + 1  # grid for plot would be p_c * p_c
+        plot_count = 5  # grid for plot would be p_c * p_c
 
         if len(parsed_data['v0_list']) != len(parsed_data['vG_list']):
             raise Exception("Lengths of v0s and vGs should be equal")

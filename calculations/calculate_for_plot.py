@@ -28,11 +28,8 @@ def calculate_for_plot(y_solution: Callable, count: int, A: float, B: float, T0:
             raise Exception(
                 f'T0 should be no greater than T in {inspect.currentframe().f_code.co_name}')
 
-        t_step = (T - T0) / (count - 1)
-        x_step = (B - A) / (count - 1)
-
-        t_values = np.arange(T0, T, t_step)
-        x_values = np.arange(A, B, x_step)
+        t_values = np.linspace(T0, T, count)
+        x_values = np.linspace(A, B, count)
 
         X_values, T_values = np.meshgrid(x_values, t_values)
         Y_values = [[y_solution(x_value, t_value)

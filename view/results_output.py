@@ -42,10 +42,12 @@ class results_output:
 
             # Output results
             for i in range(len(solutions)):
+                # Data
                 solution_plot_data = solutions[i].get("solution_plot_data")
                 precision = solutions[i].get("precision")
                 Yrl0 = solutions[i].get("Yrl0")
 
+                # Frames
                 step_frame = ttk.Frame(
                     self.results_output_frame, style="TopWhiteBg.TFrame", padding="3 3 12 12")
                 step_frame.grid(column=0, row=i, sticky=(N, W, E, S))
@@ -66,10 +68,9 @@ class results_output:
                     step_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
                 Yrl0_step_frame.grid(column=2, row=0, sticky=(N, W, E, S))
 
+                # Place data
                 ttk.Label(solution_step_frame, text=f"Розв'язок №{i + 1}", style="WhiteBg.TLabel") \
                     .grid(column=0, row=0, sticky=(N, W, E, S))
-                # ttk.Label(solution_step_frame, text=f"{solution}", style="WhiteBg.TLabel") \
-                #     .grid(column=1, row=0, sticky=(N, W, E, S))
 
                 # Plot of solution
                 # the figure that will contain the plot
@@ -80,7 +81,7 @@ class results_output:
 
                 # plotting the graph
                 step_plot.plot_surface(solution_plot_data['X'], solution_plot_data['T'], solution_plot_data['Y'],
-                                       rstride=1, cstride=1, cmap='viridis', edgecolor='none')
+                                       cmap='viridis', edgecolor='none')
                 step_plot.set_xlabel('X')
                 step_plot.set_ylabel('T')
                 step_plot.set_zlabel('Y')
@@ -112,6 +113,7 @@ class results_output:
                 ttk.Label(Yrl0_step_frame, text=f"{Yrl0}", style="WhiteBg.TLabel") \
                     .grid(column=1, row=0, sticky=(N, W, E, S))
 
+                # Align
                 self.align_rows_cols(solution_step_frame)
                 self.align_rows_cols(plot_step_frame)
 
