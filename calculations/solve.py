@@ -1,13 +1,13 @@
 from typing import Callable, Tuple
 import numpy as np
-from calculations import y_infinity, A, Y_slash, A_v, P, u_0G, y_0, y_G, y, precision, validate_input
+from calculations import y_infinity, A, Y_slash, A_v, P, u_0G, y_0, y_G, y, precision, validate_input, Yrl0
 
 
 def solve(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: float,
           Lr0_list: np.array, xl0_list: np.array,
           LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
           Li_list: np.array, sij_list: np.array, Yij_list: np.array,
-          v_0: Callable, v_G: Callable) -> Tuple[Callable, float]:
+          v_0: Callable, v_G: Callable) -> Tuple[Callable, float, np.array]:
     """
 
     :param G: function of two variables x, t - Green's function
@@ -26,7 +26,7 @@ def solve(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: 
     :param Yij_list: np.array of np.arrays of Yij that is float: [[Y11, Y12, ...], ...]
     :param v_0: function of two variables x, t
     :param v_G: function of two variables x, t
-    :return: tuple of function of 2 variables x, t and float precision
+    :return: tuple of function of 2 variables x, t, float precision and np.array of np.arrays with floats
     """
     try:
         validate_input(G, u, S, S0, SG, T,
@@ -53,6 +53,8 @@ def solve(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: 
 
         res_precision = precision(res_Y_slash, res_P)
 
-        return res_y, res_precision
+        res_Yrl0 = Yrl0(res_y, Lr0_list, xl0_list)
+
+        return res_y, res_precision, res_Yrl0
     except Exception as e:
         raise e

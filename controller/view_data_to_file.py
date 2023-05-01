@@ -101,6 +101,7 @@ def view_data_to_file(view, file_path: str) -> None:
                 sol['solution'] = str(sol['solution'])
                 sol['solution_plot_data'] = {
                     key: np.copy(item).tolist() for key, item in sol['solution_plot_data'].items()}
+                sol['Yrl0'] = np.copy(sol['Yrl0']).tolist()
 
             data['solutions'] = solutions
 

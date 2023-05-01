@@ -42,8 +42,9 @@ class results_output:
 
             # Output results
             for i in range(len(solutions)):
-                solution_plot_data = solutions[i]["solution_plot_data"]
-                precision = solutions[i]["precision"]
+                solution_plot_data = solutions[i].get("solution_plot_data")
+                precision = solutions[i].get("precision")
+                Yrl0 = solutions[i].get("Yrl0")
 
                 step_frame = ttk.Frame(
                     self.results_output_frame, style="TopWhiteBg.TFrame", padding="3 3 12 12")
@@ -61,10 +62,9 @@ class results_output:
                     step_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
                 precision_step_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
-                ttk.Label(precision_step_frame, text=f"Точність розв'язку №{i + 1} Ɛ²:", style="WhiteBg.TLabel") \
-                    .grid(column=0, row=0, sticky=(N, W, E, S))
-                ttk.Label(precision_step_frame, text=f"{precision}", style="WhiteBg.TLabel") \
-                    .grid(column=1, row=0, sticky=(N, W, E, S))
+                Yrl0_step_frame = ttk.Frame(
+                    step_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
+                Yrl0_step_frame.grid(column=2, row=0, sticky=(N, W, E, S))
 
                 ttk.Label(solution_step_frame, text=f"Розв'язок №{i + 1}", style="WhiteBg.TLabel") \
                     .grid(column=0, row=0, sticky=(N, W, E, S))
@@ -102,11 +102,22 @@ class results_output:
                 step_canvas.get_tk_widget().pack()
                 #
 
+                ttk.Label(precision_step_frame, text=f"Точність розв'язку №{i + 1} Ɛ²:", style="WhiteBg.TLabel") \
+                    .grid(column=0, row=0, sticky=(N, W, E, S))
+                ttk.Label(precision_step_frame, text=f"{precision}", style="WhiteBg.TLabel") \
+                    .grid(column=1, row=0, sticky=(N, W, E, S))
+
+                ttk.Label(Yrl0_step_frame, text=f"Керуючі Yrl0 ≡ phi №{i + 1}:", style="WhiteBg.TLabel") \
+                    .grid(column=0, row=0, sticky=(N, W, E, S))
+                ttk.Label(Yrl0_step_frame, text=f"{Yrl0}", style="WhiteBg.TLabel") \
+                    .grid(column=1, row=0, sticky=(N, W, E, S))
+
                 self.align_rows_cols(solution_step_frame)
-                self.align_rows_cols(solution_step_frame)
+                self.align_rows_cols(plot_step_frame)
 
                 self.align_rows_cols(precision_step_frame)
-                self.align_rows_cols(precision_step_frame)
+
+                self.align_rows_cols(Yrl0_step_frame)
 
                 self.align_rows_cols(step_frame)
 

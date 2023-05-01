@@ -95,6 +95,7 @@ def file_data_to_view(view, file_path: str) -> None:
             for sol in solutions:
                 sol['solution_plot_data'] = {
                     key: np.array(item) for key, item in sol['solution_plot_data'].items()}
+                sol['Yrl0'] = np.array(sol['Yrl0'])
 
             results_output.receive_data_and_show_it(solutions)
 

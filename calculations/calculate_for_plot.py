@@ -4,6 +4,17 @@ import inspect
 
 
 def calculate_for_plot(y_solution: Callable, count: int, A: float, B: float, T0: float, T: float) -> Dict[str, np.array]:
+    """
+
+    :param y_solution: function of two variables x, t to calculate for plot
+    :param count: count of points where to calculate function on each axis 
+    :param A: start point on x axis
+    :param B: end point on x axis
+    :param T0: start point on t axis
+    :param T: end point on t axis
+    :return: dict of points on axes and values of function to plot
+    """
+
     try:
         if count < 1:
             raise Exception(

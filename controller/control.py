@@ -24,22 +24,22 @@ def control(view, file_path: str) -> None:
 
         S = sorted(parsed_data['S'])
         dimensions = {'A': S[0][0], 'B': S[-1][1], 'T': parsed_data['T']}
-        plot_count = 40 + 1  # grid for plot would be p_c * p_c
+        plot_count = 5 + 1  # grid for plot would be p_c * p_c
 
         if len(parsed_data['v0_list']) != len(parsed_data['vG_list']):
             raise Exception("Lengths of v0s and vGs should be equal")
         solutions = []
         for v_index in range(len(parsed_data['v0_list'])):
-            solution, precision = solve(parsed_data['G'], parsed_data['u'], parsed_data['S'], parsed_data['S0'], parsed_data['SG'], parsed_data['T'],
-                                        parsed_data['Lr0_list'], parsed_data['xl0_list'],
-                                        parsed_data['LrG_list'], parsed_data['slG_list'], parsed_data['YrlG_list'],
-                                        parsed_data['Li_list'], parsed_data['sij_list'], parsed_data['Yij_list'],
-                                        parsed_data['v0_list'][v_index], parsed_data['vG_list'][v_index])
+            solution, precision, Yrl0 = solve(parsed_data['G'], parsed_data['u'], parsed_data['S'], parsed_data['S0'], parsed_data['SG'], parsed_data['T'],
+                                              parsed_data['Lr0_list'], parsed_data['xl0_list'],
+                                              parsed_data['LrG_list'], parsed_data['slG_list'], parsed_data['YrlG_list'],
+                                              parsed_data['Li_list'], parsed_data['sij_list'], parsed_data['Yij_list'],
+                                              parsed_data['v0_list'][v_index], parsed_data['vG_list'][v_index])
             solution_plot_data = calculate_for_plot(
                 solution, plot_count, dimensions['A'], dimensions['B'], -dimensions['T'], dimensions['T'])
 
             solutions.append({"solution": solution, "solution_plot_data": solution_plot_data,
-                              "precision": precision})
+                              "precision": precision, "Yrl0": Yrl0})
             for el in parsed_data['sij_list']:
                 for sij in el:
                     print(sij, solution(sij[0], sij[1]))
