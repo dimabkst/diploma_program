@@ -39,6 +39,9 @@ def control(view, file_path: str) -> None:
 
             solutions.append({"solution": solution, "solution_plot_data": solution_plot_data,
                               "precision": precision})
+            for el in parsed_data['sij_list']:
+                for sij in el:
+                    print(sij, solution(sij[0], sij[1]))
 
             # print(
             # f'№{v_index + 1}. Solution plot data: {solution_plot_data}, precision: {precision}')

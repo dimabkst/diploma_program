@@ -25,7 +25,7 @@ def calculate_for_plot(y_solution: Callable, count: int, A: float, B: float, T0:
 
         X_values, T_values = np.meshgrid(x_values, t_values)
         Y_values = [[y_solution(x_value, t_value)
-                    for t_value in t_values] for x_value in x_values]
+                    for x_value in x_values] for t_value in t_values]
         Y_values = np.array(Y_values)
 
         return {'X': X_values, 'T': T_values, 'Y': Y_values}

@@ -3,7 +3,6 @@ from tkinter import ttk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
-import numpy as np
 
 
 class results_output:
@@ -75,12 +74,16 @@ class results_output:
                 # Plot of solution
                 # the figure that will contain the plot
                 step_fig = Figure(figsize=(5, 5), dpi=100)
+
                 # adding the subplot
                 step_plot = step_fig.add_subplot(111, projection="3d")
-                # plotting the graph
 
+                # plotting the graph
                 step_plot.plot_surface(solution_plot_data['X'], solution_plot_data['T'], solution_plot_data['Y'],
                                        rstride=1, cstride=1, cmap='viridis', edgecolor='none')
+                step_plot.set_xlabel('X')
+                step_plot.set_ylabel('T')
+                step_plot.set_zlabel('Y')
 
                 # creating the Tkinter canvas containing the Matplotlib figure
                 step_canvas = FigureCanvasTkAgg(
