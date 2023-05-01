@@ -51,6 +51,9 @@ class View:
             self.notebook.add(self.solve_button.root, text="Розв'язати задачу")
             self.notebook.add(self.results_output.root, text="Результати")
 
+            self.notebook.bind("<<NotebookTabChanged>>",
+                               func=self.resize_window)
+
             self.align_rows_cols(self.notebook)
             self.align_rows_cols(self.root)
 
@@ -68,5 +71,24 @@ class View:
     def solve_button_command(self, file_path: str):
         try:
             control(self, file_path)
+        except Exception as e:
+            raise e
+
+    def resize_window(self, event):
+        try:
+            notebook = self.notebook
+            index = notebook.index(notebook.select())
+            frames = [child for child in self.root.winfo_children()
+                      if isinstance(child, ttk.Frame)]
+            current_frame = frames[index]
+
+            current_frame_true_width = current_frame.winfo_reqwidth()
+            current_frame_true_height = current_frame.winfo_reqheight()
+            print(current_frame_true_width, current_frame_true_height)
+
+            for frame in frames:
+                if frame != current_frame:
+                    frame.config(width=current_frame_true_width,
+                                 height=current_frame_true_height)
         except Exception as e:
             raise e
