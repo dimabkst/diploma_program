@@ -84,7 +84,7 @@ class desired_conditions_input:
 
             for i in range(int(self.I_var.get() or 0)):
                 self.Li_vars.append(StringVar())
-                self.Li_vars[i].set("1")
+                self.Li_vars[i].set("1*d[x,0]")
                 self.Li_vars[i].trace(
                     "w", lambda name, index, mode: self.change_and_show_desired())
 
@@ -284,7 +284,7 @@ class desired_conditions_input:
                                 ttk.Entry(self.Li_Li_frame, width=ENTRY_WIDTH,
                                           textvariable=self.Li_vars[i]))
 
-                            self.Li_vars[i].set("1")
+                            self.Li_vars[i].set("1*d[x,0]")
                             self.Li_vars[i].trace(
                                 "w", lambda name, index, mode: self.change_and_show_desired())
                             self.Li_labels[i].grid(

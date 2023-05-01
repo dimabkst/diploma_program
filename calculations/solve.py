@@ -4,6 +4,7 @@ from calculations import y_infinity, A, Y_slash, A_v, P, u_0G, y_0, y_G, y, prec
 
 
 def solve(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: float,
+          Lr0_list: np.array, xl0_list: np.array,
           LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
           Li_list: np.array, sij_list: np.array, Yij_list: np.array,
           v_0: Callable, v_G: Callable) -> Tuple[Callable, float]:
@@ -17,7 +18,6 @@ def solve(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: 
     :param T: float greater that zero - Max time value
     :param Lr0_list: list of Lr0 differential operators that look like: L(f) -> scipy.derivative(f) + ...
     :param xl0_list: list of float xl0: [x0, x1, x2, ...]
-    :param Yrl0_list: np.array of np.arrays of Yrl0 that is float: [[Y110, Y120, ...], ...]
     :param LrG_list: list of LrG differential operators that look like: L(f) -> scipy.derivative(f) + ...
     :param slG_list: list of slG that is np.array of two float values x and t: [[x0, t0], [x1, t1], ...]
     :param YrlG_list: np.array of np.arrays of YrlG that is float: [[Y11G, Y12G, ...], ...]
@@ -30,6 +30,7 @@ def solve(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: 
     """
     try:
         validate_input(G, u, S, S0, SG, T,
+                       Lr0_list, xl0_list,
                        LrG_list, slG_list, YrlG_list,
                        Li_list, sij_list, Yij_list,
                        v_0, v_G)

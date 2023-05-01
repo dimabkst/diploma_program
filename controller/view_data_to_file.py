@@ -11,8 +11,9 @@ def view_data_to_file(view, file_path: str) -> None:
     """
     try:
         problem_conditions_input = view.problem_conditions_input
-        boundary_conditions_input = view.boundary_desired_conditions_input.boundary_conditions_input
-        desired_conditions_input = view.boundary_desired_conditions_input.desired_conditions_input
+        initial_conditions_input = view.initial_boundary_desired_conditions_input.initial_conditions_input
+        boundary_conditions_input = view.initial_boundary_desired_conditions_input.boundary_conditions_input
+        desired_conditions_input = view.initial_boundary_desired_conditions_input.desired_conditions_input
         v_input = view.v_input
         results_output = view.results_output
 
@@ -26,6 +27,19 @@ def view_data_to_file(view, file_path: str) -> None:
         data['L'] = problem_conditions_input.L_var.get()
         data['u'] = problem_conditions_input.u_var.get()
         data['G'] = problem_conditions_input.G_var.get()
+
+        # initial conditions
+        data['R0'] = initial_conditions_input.R0_var.get()
+        data['Lr0_list'] = []
+        for _ in range(len(initial_conditions_input.Lr0_vars)):
+            data['Lr0_list'].append(
+                initial_conditions_input.Lr0_vars[_].get())
+
+        data['L0'] = initial_conditions_input.L0_var.get()
+        data['xl0_list'] = []
+        for _ in range(len(initial_conditions_input.xl0_vars)):
+            data['xl0_list'].append(
+                initial_conditions_input.xl0_vars[_].get())
 
         # boundary conditions
         data['RG'] = boundary_conditions_input.RG_var.get()

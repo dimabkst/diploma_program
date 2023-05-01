@@ -84,7 +84,7 @@ class boundary_conditions_input:
 
             for i in range(int(self.RG_var.get() or 0)):
                 self.LrG_vars.append(StringVar())
-                self.LrG_vars[i].set("1")
+                self.LrG_vars[i].set("1*d[x,0]")
                 self.LrG_vars[i].trace(
                     "w", lambda name, index, mode: self.change_and_show_boundary())
 
@@ -269,7 +269,7 @@ class boundary_conditions_input:
                                 ttk.Entry(self.LrG_LrG_frame, width=ENTRY_WIDTH,
                                           textvariable=self.LrG_vars[i]))
 
-                            self.LrG_vars[i].set("1")
+                            self.LrG_vars[i].set("1*d[x,0]")
                             self.LrG_vars[i].trace(
                                 "w", lambda name, index, mode: self.change_and_show_boundary())
                             self.LrG_labels[i].grid(

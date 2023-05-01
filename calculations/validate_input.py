@@ -2,6 +2,28 @@ from typing import Callable
 import numpy as np
 
 
+def dim1PointInSet(point: float, pointSet: np.array) -> bool:
+    """
+
+    :param point: 1 dimension point with next form: coord1 as float
+    :param pointSet: set that point should be in with next form: np.array([[a0, b0],...,[a_last, b_last]])
+    """
+
+    if not (len(pointSet)):
+        raise Exception(
+            'Set should have form of one array whit at least one 2 dims array')
+
+    pointInSet = False
+    for i in range(len(pointSet)):
+        if (len(pointSet[i]) != 2):
+            raise Exception(
+                'Set should be array of 2 dims arrays')
+
+        pointInSet = pointInSet or (pointSet[i][0] <= point <= pointSet[i][1])
+
+    return pointInSet
+
+
 def dim2PointInSet(point: np.array, firstCoordSet: np.array, secondCoordSet: np.array) -> bool:
     """
 
@@ -44,6 +66,7 @@ def segments_intersect(segment1: np.array, segment2: np.array) -> bool:
 
 
 def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: float,
+                   Lr0_list: np.array, xl0_list: np.array,
                    LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
                    Li_list: np.array, sij_list: np.array, Yij_list: np.array,
                    v_0: Callable, v_G: Callable) -> None:
@@ -55,6 +78,8 @@ def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.a
     :param S0: has next form: np.array([[a0, b0],...,[a_last, b_last]]) - Initial space domain
     :param SG: has next form: np.array([[c0, d0],...,[c_last, d_last]]) - Boundary space domain
     :param T: float greater that zero - Max time value
+    :param Lr0_list: list of Lr0 differential operators that look like: L(f) -> scipy.derivative(f) + ...
+    :param xl0_list: list of float xl0: [x0, x1, x2, ...]
     :param LrG_list: list of LrG differential operators that look like: L(f) -> scipy.derivative(f) + ...
     :param slG_list: list of slG that is np.array of two float values x and t: [[x0, t0], [x1, t1], ...]
     :param YrlG_list: np.array of np.arrays of YrlG that is float: [[Y11G, Y12G, ...], ...]
@@ -96,6 +121,10 @@ def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.a
 
         if T <= 0:
             raise Exception("T should be positive float")
+
+        for point in xl0_list:
+            if not dim1PointInSet(point, S0):
+                raise Exception(f"xl0 = {point} not in {S0}")
 
         RG = len(LrG_list)
         LG = len(slG_list)

@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from .problem_conditions_input import problem_conditions_input
-from .boundary_desired_conditions_input import boundary_desired_conditions_input
+from .initial_boundary_desired_conditions_input import initial_boundary_desired_conditions_input
 from .solve_button import solve_button
 from .v_input import v_input
 from .save_load import save_load
@@ -19,7 +19,7 @@ class View:
         try:
             self.root = Tk()
             self.root.configure(bg="white")
-            self.root.title("Математичне моделювання. Лабораторна робота №3")
+            self.root.title("Керування просторово-часовим процесом")
 
             self.notebook = ttk.Notebook(self.root)
             self.notebook.grid(column=0, row=0, sticky=(N, E, W, S))
@@ -29,7 +29,7 @@ class View:
                                            self, _file_path),
                                        lambda _file_path: file_data_to_view(self, _file_path))
             self.problem_conditions_input = problem_conditions_input(self.root)
-            self.boundary_desired_conditions_input = boundary_desired_conditions_input(
+            self.initial_boundary_desired_conditions_input = initial_boundary_desired_conditions_input(
                 self.root)
             self.v_input = v_input(self.root)
             self.solve_button = solve_button(
@@ -40,7 +40,7 @@ class View:
             self.notebook.add(
                 self.problem_conditions_input.root, text='Умови задачі')
             self.notebook.add(
-                self.boundary_desired_conditions_input.root, text='Крайові та бажані умови')
+                self.initial_boundary_desired_conditions_input.root, text='Початкові, крайові та бажані умови')
             self.notebook.add(self.v_input.root, text='Ввід v(x,t)')
             self.notebook.add(self.solve_button.root, text="Розв'язати задачу")
             self.notebook.add(self.results_output.root, text="Результати")

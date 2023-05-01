@@ -148,7 +148,7 @@ class problem_conditions_input:
             self.L_format_frame.grid(column=1, row=1, sticky=(N, W, E, S))
 
             self.L_var = StringVar()
-            self.L_var.set("1*d[t,2]-16*d[x,2]")
+            self.L_var.set("1*d[t,1]-1*d[x,2]")
 
             ttk.Label(self.L_label_frame, text="L(dx,dt) =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -176,7 +176,7 @@ class problem_conditions_input:
             self.u_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.u_var = StringVar()
-            self.u_var.set("x^3+exp(t)")
+            self.u_var.set("0")
 
             ttk.Label(self.u_label_frame, text="u(x,t) =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -195,7 +195,7 @@ class problem_conditions_input:
             self.G_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.G_var = StringVar()
-            self.G_var.set("x**2 + t**3")
+            self.G_var.set("Heaviside(t)*exp(-x^2/(4*t)) / sqrt(4 * pi * t)")
 
             ttk.Label(self.G_label_frame, text="G(x,t) =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))

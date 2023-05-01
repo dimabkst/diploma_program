@@ -84,7 +84,7 @@ class initial_conditions_input:
 
             for i in range(int(self.R0_var.get() or 0)):
                 self.Lr0_vars.append(StringVar())
-                self.Lr0_vars[i].set("1")
+                self.Lr0_vars[i].set("1*d[t,0]")
                 self.Lr0_vars[i].trace(
                     "w", lambda name, index, mode: self.change_and_show_initial())
 
@@ -188,12 +188,12 @@ class initial_conditions_input:
                         row=r, column=l * 2, sticky=(N, W, E, S))
 
                     self.yrl0_vars[r].append(StringVar())
-                    self.yrl0_vars[r][l].set("0")
+                    self.yrl0_vars[r][l].set(f'phi{r + 1}{l + 1}')
                     self.yrl0_vars[r][l].trace(
                         "w", lambda name, index, mode: self.change_and_show_initial())
 
                     self.yrl0_entries[r].append(ttk.Entry(self.yrl0_yrl0_frame, width=ENTRY_WIDTH,
-                                                          textvariable=self.yrl0_vars[r][l]))
+                                                          textvariable=self.yrl0_vars[r][l], state="readonly"))
                     self.yrl0_entries[r][l].grid(
                         row=r, column=l * 2 + 1, sticky=(N, W, E, S))
             #
@@ -264,7 +264,7 @@ class initial_conditions_input:
                                 ttk.Entry(self.Lr0_Lr0_frame, width=ENTRY_WIDTH,
                                           textvariable=self.Lr0_vars[i]))
 
-                            self.Lr0_vars[i].set("1")
+                            self.Lr0_vars[i].set("1*d[t,0]")
                             self.Lr0_vars[i].trace(
                                 "w", lambda name, index, mode: self.change_and_show_initial())
                             self.Lr0_labels[i].grid(
@@ -342,11 +342,11 @@ class initial_conditions_input:
                                 range(int(self.L0_var.get() or 0))])
                             self.yrl0_entries.append([
                                 ttk.Entry(self.yrl0_yrl0_frame, width=ENTRY_WIDTH,
-                                          textvariable=self.yrl0_vars[i][k]) for k in
+                                          textvariable=self.yrl0_vars[i][k], state="readonly") for k in
                                 range(int(self.L0_var.get() or 0))])
 
                             for k in range(int(self.L0_var.get() or 0)):
-                                self.yrl0_vars[i][k].set("0")
+                                self.yrl0_vars[i][k].set(f'phi{i + 1}{k + 1}')
                                 self.yrl0_labels[i][k].grid(
                                     row=i, column=k * 2, sticky=(N, W, E, S))
                                 self.yrl0_entries[i][k].grid(
@@ -364,7 +364,7 @@ class initial_conditions_input:
                                 break
                             else:
                                 self.yrl0_vars[i].append(StringVar())
-                                self.yrl0_vars[i][j].set("0")
+                                self.yrl0_vars[i][j].set(f'phi{i + 1}{j + 1}')
 
                                 self.yrl0_labels[i].append(
                                     ttk.Label(self.yrl0_yrl0_frame,
@@ -375,7 +375,7 @@ class initial_conditions_input:
 
                                 self.yrl0_entries[i].append(
                                     ttk.Entry(self.yrl0_yrl0_frame, width=ENTRY_WIDTH,
-                                              textvariable=self.yrl0_vars[i][j]))
+                                              textvariable=self.yrl0_vars[i][j], state="readonly"))
                                 self.yrl0_entries[i][j].grid(
                                     row=i, column=j * 2 + 1, sticky=(N, W, E, S))
                         else:
