@@ -139,10 +139,10 @@ class problem_conditions_input:
             self.L_label_frame = ttk.Frame(
                 self.L_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
             self.L_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+
             self.L_entry_frame = ttk.Frame(
                 self.L_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
             self.L_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
-
             self.L_format_frame = ttk.Frame(
                 self.L_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
             self.L_format_frame.grid(column=1, row=1, sticky=(N, W, E, S))

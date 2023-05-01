@@ -6,6 +6,7 @@ from .solve_button import solve_button
 from .v_input import v_input
 from .save_load import save_load
 from .results_output import results_output
+from .input_rules import input_rules
 from controller import control, view_data_to_file, file_data_to_view
 
 
@@ -28,6 +29,7 @@ class View:
                                        lambda _file_path: view_data_to_file(
                                            self, _file_path),
                                        lambda _file_path: file_data_to_view(self, _file_path))
+            self.input_rules = input_rules(self.root)
             self.problem_conditions_input = problem_conditions_input(self.root)
             self.initial_boundary_desired_conditions_input = initial_boundary_desired_conditions_input(
                 self.root)
@@ -37,6 +39,7 @@ class View:
             self.results_output = results_output(self.root)
 
             self.notebook.add(self.save_load.root, text='Зберегти/Завантажити')
+            self.notebook.add(self.input_rules.root, text='Правила вводу')
             self.notebook.add(
                 self.problem_conditions_input.root, text='Умови задачі')
             self.notebook.add(
