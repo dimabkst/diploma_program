@@ -12,7 +12,7 @@ def Y_slash(y_infinity: Callable, LrG_list: np.array, slG_list: np.array, YrlG_l
     :param Li_list: list of Li differential operators that look like: L(f) -> scipy.derivative(f) + ...
     :param sij_list: np.array of np.arrays of of sij that is np.array of two float values x and t: [[[x00, t00], [x01, t01], ...], ...]
     :param Yij_list: np.array of np.arrays of Yij that is float: [[Y11, Y12, ...], ...]
-    :return: np.array matrix of floats with LG*RG + (sum(Ji, i=1..I)) * I rows and 1 col
+    :return: np.array matrix of floats with LG*RG + sum(Ji, i=1..I) rows and 1 col
     """
     I = len(Li_list)
     Ji = [len(sij_list[i]) for i in range(I)]
@@ -37,7 +37,7 @@ def Y_slash(y_infinity: Callable, LrG_list: np.array, slG_list: np.array, YrlG_l
     result = []
     for pl in range(R_G * L_G):
         result.append([Ypl[pl]])
-    for ij in range(I * sum(Ji)):
+    for ij in range(sum(Ji)):
         result.append([Ystar[ij]])
 
     return np.array(result)

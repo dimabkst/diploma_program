@@ -1,6 +1,6 @@
 from typing import Callable, Tuple
 import numpy as np
-from calculations import y_infinity, A, Y_slash, A_v, P, u_0G, y_0, y_G, y, precision, validate_input, Yrl0
+from calculations import y_infinity, A, Y_slash, A_v, P, u_0G, y_0, y_G, y, precision, Yrl0
 
 
 def solve(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: float,
@@ -8,7 +8,7 @@ def solve(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: 
           LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
           Li_list: np.array, sij_list: np.array, Yij_list: np.array,
           v_0: Callable, v_G: Callable,
-          integrals_precision: float, plot_grid_dimension: int) -> Tuple[Callable, float, np.array]:
+          integrals_precision: float) -> Tuple[Callable, float, np.array]:
     """
 
     :param G: function of two variables x, t - Green's function
@@ -28,17 +28,9 @@ def solve(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: 
     :param v_0: function of two variables x, t
     :param v_G: function of two variables x, t
     :param integrals_precision: dblquad integrals precision
-    :param plot_grid_dimension: dimension of grid to plot
     :return: tuple of function of 2 variables x, t, float precision and np.array of np.arrays with floats
     """
     try:
-        validate_input(G, u, S, S0, SG, T,
-                       Lr0_list, xl0_list,
-                       LrG_list, slG_list, YrlG_list,
-                       Li_list, sij_list, Yij_list,
-                       v_0, v_G,
-                       integrals_precision, plot_grid_dimension)
-
         # In S0 should be b1 < a2 etc
         S.sort()
         S0.sort()

@@ -1,13 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from .problem_conditions_input import problem_conditions_input
-from .initial_boundary_desired_conditions_input import initial_boundary_desired_conditions_input
-from .solve_button import solve_button
-from .v_input import v_input
-from .save_load import save_load
-from .results_output import results_output
-from .input_rules import input_rules
-from .settings_input import settings_input
+from view import problem_conditions_input, initial_boundary_desired_conditions_input, solve_button, v_input, save_load, results_output, input_rules, settings_input
 from controller import control, view_data_to_file, file_data_to_view
 
 

@@ -1,4 +1,3 @@
-from .view import View
 from .problem_conditions_input import problem_conditions_input
 from .initial_conditions_input import initial_conditions_input
 from .boundary_conditions_input import boundary_conditions_input
@@ -12,3 +11,4 @@ from .results_output import results_output
 from .save_load import save_load
 from .input_rules import input_rules
 from .settings_input import settings_input
+from .view import View

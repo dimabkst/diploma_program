@@ -13,7 +13,7 @@ def A_v(A_matrix: np.array, v_0: Callable, v_G: Callable, S0: np.array, SG: np.a
     :param SG: has next form: np.array([[c0, d0],...,[c_last, d_last]]) - Boundary space domain
     :param T: float greater that zero - Max time value
     :param integrals_precision: dblquad integrals precision
-    :return: np.array matrix of floats with LG*RG + (sum(Ji, i=1..I)) * I rows and 1 col
+    :return: np.array matrix of floats with LG*RG + sum(Ji, i=1..I) rows and 1 col
     """
 
     C = SG[0][0] - abs(SG[0][0])

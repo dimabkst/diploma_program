@@ -10,7 +10,6 @@ from .y_0 import y_0
 from .y_G import y_G
 from .y import y
 from .precision import precision
-from .validate_input import validate_input
 from .Yrl0 import Yrl0
 from .solve import solve
 from .calculate_for_plot import calculate_for_plot

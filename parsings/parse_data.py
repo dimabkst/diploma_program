@@ -74,7 +74,9 @@ def parse_data(data: dict) -> dict:
             for ii in range(len(data['sij_list'][i])):
                 parsed_data['sij_list'][-1].append(
                     parse_sij(data['sij_list'][i][ii]))
-        parsed_data['sij_list'] = np.array(parsed_data['sij_list'])
+            parsed_data['sij_list'][-1] = np.array(parsed_data['sij_list'][-1])
+        parsed_data['sij_list'] = np.array(
+            parsed_data['sij_list'], dtype=object)
 
         parsed_data['Yij_list'] = []
         for i in range(len(data['Yij_list'])):
@@ -82,7 +84,8 @@ def parse_data(data: dict) -> dict:
             for ii in range(len(data['Yij_list'][i])):
                 parsed_data['Yij_list'][-1].append(
                     parse_number(data['Yij_list'][i][ii]))
-        parsed_data['Yij_list'] = np.array(parsed_data['Yij_list'])
+        parsed_data['Yij_list'] = np.array(
+            parsed_data['Yij_list'], dtype=object)
 
         # parse v0, vG
         parsed_data['v0_list'] = []

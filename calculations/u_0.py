@@ -6,9 +6,9 @@ def u_0(A_matrix: np.array, P: np.array, Y_slash: np.array, A_v: np.array, v_0: 
     """
 
     :param A_matrix: np.array with elements A21, A22, A31, A32
-    :param P: np.array square matrix of floats P with LG*RG + (sum(Ji, i=1..I)) * I dimension
-    :param Y_slash: np.array matrix of floats with LG*RG + (sum(Ji, i=1..I)) * I rows and 1 col
-    :param A_v: np.array matrix of floats with LG*RG + (sum(Ji, i=1..I)) * I rows and 1 col
+    :param P: np.array square matrix of floats P with LG*RG + sum(Ji, i=1..I) dimension
+    :param Y_slash: np.array matrix of floats with LG*RG + sum(Ji, i=1..I) rows and 1 col
+    :param A_v: np.array matrix of floats with LG*RG + sum(Ji, i=1..I) rows and 1 col
     :param v_0: function of two variables x, t
     :return: u_0 function of two variables x, t
     """
