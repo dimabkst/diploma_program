@@ -11,4 +11,5 @@ from .results_output import results_output
 from .save_load import save_load
 from .input_rules import input_rules
 from .settings_input import settings_input
+from .console_output import console_output
 from .view import View

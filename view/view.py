@@ -1,6 +1,8 @@
+import logging
 from tkinter import *
+from tkinter import messagebox
 from tkinter import ttk
-from view import problem_conditions_input, initial_boundary_desired_conditions_input, solve_button, v_input, save_load, results_output, input_rules, settings_input
+from view import problem_conditions_input, initial_boundary_desired_conditions_input, solve_button, v_input, save_load, results_output, input_rules, settings_input, console_output
 from controller import control, view_data_to_file, file_data_to_view
 
 
@@ -32,6 +34,7 @@ class View:
             self.solve_button = solve_button(
                 self.root, lambda: self.solve_button_command(file_path))
             self.results_output = results_output(self.root)
+            self.console_output = console_output(self.root)
 
             self.notebook.add(self.save_load.root, text='Зберегти/Завантажити')
             self.notebook.add(self.input_rules.root, text='Правила вводу')
@@ -43,6 +46,7 @@ class View:
             self.notebook.add(self.settings_input.root, text='Налаштування')
             self.notebook.add(self.solve_button.root, text="Розв'язати задачу")
             self.notebook.add(self.results_output.root, text="Результати")
+            self.notebook.add(self.console_output.root, text="Вивід консолі")
 
             self.align_rows_cols(self.notebook)
             self.align_rows_cols(self.root)
@@ -62,4 +66,6 @@ class View:
         try:
             control(self, file_path)
         except Exception as e:
+            messagebox.showerror('Помилка', str(e))
+            logging.error(e, exc_info=True)
             raise e
