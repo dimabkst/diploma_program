@@ -48,6 +48,9 @@ class View:
             self.notebook.add(self.results_output.root, text="Результати")
             self.notebook.add(self.console_output.root, text="Вивід консолі")
 
+            self.notebook.bind("<<NotebookTabChanged>>",
+                               func=self.notebook_tab_changed_callback)
+
             self.align_rows_cols(self.notebook)
             self.align_rows_cols(self.root)
 
@@ -68,4 +71,24 @@ class View:
         except Exception as e:
             messagebox.showerror('Помилка', str(e))
             logging.error(e, exc_info=True)
+            raise e
+
+    def update_dynamic_data(self):
+        try:
+            pci = self.problem_conditions_input
+            S = pci.S_var.get()
+            S0 = pci.S0_var.get()
+            SG = pci.SG_var.get()
+            T = pci.T_var.get()
+
+            self.initial_boundary_desired_conditions_input.change_S0_SG_T(
+                S0, SG, T)
+            self.settings_input.change_S_S0_SG_T(S, S0, SG, T)
+        except Exception as e:
+            raise e
+
+    def notebook_tab_changed_callback(self, event):
+        try:
+            self.update_dynamic_data()
+        except Exception as e:
             raise e
