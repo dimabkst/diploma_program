@@ -1,6 +1,6 @@
 from controller import view_data_to_file, retrieve_data_from_file, validate_input
 from parsings import parse_data
-from calculations import solve, calculate_for_plot
+from calculations import solve, calculate_for_plot, Yij
 from utils import beep
 from datetime import datetime
 import logging
@@ -45,12 +45,13 @@ def control(view, file_path: str) -> None:
             solutions.append({"solution": solution, "solution_plot_data": solution_plot_data,
                               "precision": precision, "Yrl0": Yrl0})
 
-            logging.info('Desired conditions check:')
-            for i in range(len(parsed_data['Li_list'])):
-                Li = parsed_data['Li_list'][i]
-                for j in range(len(parsed_data['sij_list'][i])):
+            logging.info('Real desired conditions:')
+            real_Yij = Yij(
+                solution, parsed_data['Li_list'], parsed_data['sij_list'])
+            for i in range(len(real_Yij)):
+                for j in range(len(real_Yij[i])):
                     sij = parsed_data['sij_list'][i][j]
-                    str_to_log = f"s{i+1}{j+1}: {sij}, Y{i+1}{j+1}: {Li(solution)(sij[0], sij[1])}"
+                    str_to_log = f"s{i+1}{j+1}: {sij}, Y{i+1}{j+1}: {real_Yij[i][j]}"
                     logging.info(str_to_log)
 
         view.results_output.receive_data_and_show_it(solutions)
