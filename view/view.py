@@ -71,7 +71,6 @@ class View:
         except Exception as e:
             messagebox.showerror('Помилка', str(e))
             logging.error(e, exc_info=True)
-            raise e
 
     def update_dynamic_data(self):
         try:

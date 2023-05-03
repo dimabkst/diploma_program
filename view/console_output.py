@@ -32,6 +32,10 @@ class console_output:
 
             text_handler = TextHandler(self.console_widget)
 
+            # Logging configuration
+            logging.basicConfig(level=logging.INFO,
+                                format='%(asctime)s - %(levelname)s - %(message)s')
+
             # Add the handler to logger
             logger = logging.getLogger()
             logger.addHandler(text_handler)
