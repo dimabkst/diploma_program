@@ -99,6 +99,11 @@ def view_data_to_file(view, file_path: str) -> None:
         data['integrals_precision'] = settings_input.integrals_precision_var.get()
         data['plot_grid_dimension'] = settings_input.plot_grid_dimension_var.get()
 
+        data['X0'] = settings_input.X0_var.get()
+        data['X1'] = settings_input.X1_var.get()
+        data['T0'] = settings_input.T0_var.get()
+        data['T1'] = settings_input.T1_var.get()
+
         # solutions
         if results_output.solutions:
             solutions = results_output.solutions

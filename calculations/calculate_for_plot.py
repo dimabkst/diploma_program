@@ -3,7 +3,7 @@ import numpy as np
 import inspect
 
 
-def calculate_for_plot(y_solution: Callable, count: int, A: float, B: float, T0: float, T: float) -> Dict[str, np.array]:
+def calculate_for_plot(y_solution: Callable, count: int, X0: float, X1: float, T0: float, T1: float) -> Dict[str, np.array]:
     """
 
     :param y_solution: function of two variables x, t to calculate for plot
@@ -20,16 +20,16 @@ def calculate_for_plot(y_solution: Callable, count: int, A: float, B: float, T0:
             raise Exception(
                 f'count should be greater than 1 in {inspect.currentframe().f_code.co_name}')
 
-        if (A > B):
+        if (X0 > X1):
             raise Exception(
-                f'A should be no greater than B in {inspect.currentframe().f_code.co_name}')
+                f'X0 should be no greater than X1 in {inspect.currentframe().f_code.co_name}')
 
-        if (T0 > T):
+        if (T0 > T1):
             raise Exception(
-                f'T0 should be no greater than T in {inspect.currentframe().f_code.co_name}')
+                f'T0 should be no greater than T1 in {inspect.currentframe().f_code.co_name}')
 
-        t_values = np.linspace(T0, T, count)
-        x_values = np.linspace(A, B, count)
+        t_values = np.linspace(T0, T1, count)
+        x_values = np.linspace(X0, X1, count)
 
         X_values, T_values = np.meshgrid(x_values, t_values)
         Y_values = [[y_solution(x_value, t_value)

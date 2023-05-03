@@ -29,6 +29,11 @@ class settings_input:
             self.plot_grid_dimension_frame.grid(
                 column=0, row=1, sticky=(N, W, E, S))
 
+            self.plot_limits_frame = ttk.Frame(
+                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
+            self.plot_limits_frame.grid(
+                column=0, row=2, sticky=(N, W, E, S))
+
             # integrals_precision_input
             self.integrals_precision_label_frame = ttk.Frame(
                 self.integrals_precision_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
@@ -75,6 +80,98 @@ class settings_input:
                 column=0, row=0, sticky=(N, E, W, S))
             #
 
+            # plot_limits_input
+            # X0
+            self.X0_label_frame = ttk.Frame(
+                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.X0_label_frame.grid(
+                column=0, row=0, sticky=(N, W, E, S))
+
+            self.X0_entry_frame = ttk.Frame(
+                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.X0_entry_frame.grid(
+                column=1, row=0, sticky=(N, W, E, S))
+
+            ttk.Label(self.X0_label_frame, text="Крайня ліва межа осі X - X0  =", style="WhiteBg.TLabel") \
+                .grid(column=0, row=0, sticky=(N, E, W, S))
+
+            self.X0_var = StringVar()
+            self.X0_var.set("0")
+
+            self.X0_entry = ttk.Entry(
+                self.X0_entry_frame, width=ENTRY_WIDTH, textvariable=self.X0_var)
+            self.X0_entry.grid(
+                column=0, row=0, sticky=(N, E, W, S))
+
+            # X1
+            self.X1_label_frame = ttk.Frame(
+                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.X1_label_frame.grid(
+                column=2, row=0, sticky=(N, W, E, S))
+
+            self.X1_entry_frame = ttk.Frame(
+                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.X1_entry_frame.grid(
+                column=3, row=0, sticky=(N, W, E, S))
+
+            ttk.Label(self.X1_label_frame, text="Крайня права межа осі X - X1 =", style="WhiteBg.TLabel") \
+                .grid(column=0, row=0, sticky=(N, E, W, S))
+
+            self.X1_var = StringVar()
+            self.X1_var.set("1")
+
+            self.X1_entry = ttk.Entry(
+                self.X1_entry_frame, width=ENTRY_WIDTH, textvariable=self.X1_var)
+            self.X1_entry.grid(
+                column=0, row=0, sticky=(N, E, W, S))
+            #
+
+            # T0
+            self.T0_label_frame = ttk.Frame(
+                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.T0_label_frame.grid(
+                column=0, row=1, sticky=(N, W, E, S))
+
+            self.T0_entry_frame = ttk.Frame(
+                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.T0_entry_frame.grid(
+                column=1, row=1, sticky=(N, W, E, S))
+
+            ttk.Label(self.T0_label_frame, text="Крайня ліва межа осі T - T0 =", style="WhiteBg.TLabel") \
+                .grid(column=0, row=0, sticky=(N, E, W, S))
+
+            self.T0_var = StringVar()
+            self.T0_var.set("0")
+
+            self.T0_entry = ttk.Entry(
+                self.T0_entry_frame, width=ENTRY_WIDTH, textvariable=self.T0_var)
+            self.T0_entry.grid(
+                column=0, row=0, sticky=(N, E, W, S))
+            #
+
+            # T1
+            self.T1_label_frame = ttk.Frame(
+                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.T1_label_frame.grid(
+                column=2, row=1, sticky=(N, W, E, S))
+
+            self.T1_entry_frame = ttk.Frame(
+                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
+            self.T1_entry_frame.grid(
+                column=3, row=1, sticky=(N, W, E, S))
+
+            ttk.Label(self.T1_label_frame, text="Крайня права межа осі T - T1 =", style="WhiteBg.TLabel") \
+                .grid(column=0, row=0, sticky=(N, E, W, S))
+
+            self.T1_var = StringVar()
+            self.T1_var.set("1")
+
+            self.T1_entry = ttk.Entry(
+                self.T1_entry_frame, width=ENTRY_WIDTH, textvariable=self.T1_var)
+            self.T1_entry.grid(
+                column=0, row=0, sticky=(N, E, W, S))
+            #
+
             # Align everything
             self.align_rows_cols(self.integrals_precision_frame)
             self.align_rows_cols(self.integrals_precision_label_frame)
@@ -83,6 +180,16 @@ class settings_input:
             self.align_rows_cols(self.plot_grid_dimension_frame)
             self.align_rows_cols(self.plot_grid_dimension_label_frame)
             self.align_rows_cols(self.plot_grid_dimension_entry_frame)
+
+            self.align_rows_cols(self.plot_limits_frame)
+            self.align_rows_cols(self.X0_label_frame)
+            self.align_rows_cols(self.X0_entry_frame)
+            self.align_rows_cols(self.X1_label_frame)
+            self.align_rows_cols(self.X1_entry_frame)
+            self.align_rows_cols(self.T0_label_frame)
+            self.align_rows_cols(self.T0_entry_frame)
+            self.align_rows_cols(self.T1_label_frame)
+            self.align_rows_cols(self.T1_entry_frame)
 
             self.align_rows_cols(self.root)
         except Exception as e:

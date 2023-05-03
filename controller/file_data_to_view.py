@@ -94,6 +94,11 @@ def file_data_to_view(view, file_path: str) -> None:
         settings_input.integrals_precision_var.set(data['integrals_precision'])
         settings_input.plot_grid_dimension_var.set(data['plot_grid_dimension'])
 
+        settings_input.X0_var.set(data['X0'])
+        settings_input.X1_var.set(data['X1'])
+        settings_input.T0_var.set(data['T0'])
+        settings_input.T1_var.set(data['T1'])
+
         # solutions
         if data.get('solutions'):
             solutions = data.get('solutions')

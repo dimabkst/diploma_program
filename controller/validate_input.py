@@ -70,7 +70,8 @@ def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.a
                    LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
                    Li_list: np.array, sij_list: np.array, Yij_list: np.array,
                    v0_list: list, vG_list: list,
-                   integrals_precision: float, plot_grid_dimension: int) -> None:
+                   integrals_precision: float, plot_grid_dimension: int,
+                   X0: float, X1: float, T0: float, T1: float) -> None:
     """
 
     :param G: function of two variables x, t - Green's function
@@ -91,6 +92,10 @@ def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.a
     :param vG_list: list of function of two variables x, t
     :param integrals_precision: dblquad integrals precision
     :param plot_grid_dimension: dimension of grid to plot
+    :param X0: left limit of plot X axes
+    :param X1: right limit of plot X axes
+    :param T0: left limit of plot T axes
+    :param T1: right limit of plot T axes
     :return: tuple of function of 2 variables x, t and float precision
     """
     try:
@@ -161,6 +166,11 @@ def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.a
             raise Exception('Integrals precision should be greater than 5e-29')
         if not isinstance(plot_grid_dimension, int) and plot_grid_dimension < 1:
             raise Exception('Plot grid dimension should be natural number')
+
+        if X0 > X1:
+            raise Exception('X1 should be greater than X0')
+        if T0 > T1:
+            raise Exception('T1 should be greater than T0')
 
         # There also should be validation of G but it is very hard to implement
 

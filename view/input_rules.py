@@ -50,13 +50,13 @@ class input_rules:
                       style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
 
-            ttk.Label(self.numbers, text="""YrlG, Yij - довільні числа.\n\nT - довільне число більше 0.\n\nR0, L0, RG, LG, I, Ji, кількість векторів v(x,t) - довільні натуральні числа. \n\nТочність обчислення інтегралів - довільне додатне число не нижче 5e-29. \n\nРозмірність сітки графіка - довільне натуральне число""",
+            ttk.Label(self.numbers, text="""YrlG, Yij - довільні числа.\n\nT - довільне число більше 0.\n\nR0, L0, RG, LG, I, Ji, кількість векторів v(x,t) - довільні натуральні числа. \n\nТочність обчислення інтегралів - довільне додатне число не нижче 5e-29. \n\nРозмірність сітки графіка - довільне натуральне число. \n\nМежі осей графіка X0, X1, T0, T1 - довільні числа для яких: X0 < X1, T0 < T1.""",
                       font=font,
                       style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
 
             ttk.Label(self.points,
-                      text="""xl0 - довільне число, таке, що xl0 є S0.\n\nslG, sij - точки вигляду (a,b) є SG x [0, T]""",
+                      text="""xl0 - довільне число, таке, що xl0 є S0.\n\nslG, sij - точки вигляду (a,b) є SG x [0, T].""",
                       font=font,
                       style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))

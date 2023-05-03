@@ -102,6 +102,11 @@ def parse_data(data: dict) -> dict:
         parsed_data['plot_grid_dimension'] = parse_number(
             data['plot_grid_dimension'])
 
+        parsed_data['X0'] = parse_number(data['X0'])
+        parsed_data['X1'] = parse_number(data['X1'])
+        parsed_data['T0'] = parse_number(data['T0'])
+        parsed_data['T1'] = parse_number(data['T1'])
+
         return parsed_data
     except Exception as e:
         raise e
