@@ -12,4 +12,6 @@ from .save_load import save_load
 from .input_rules import input_rules
 from .settings_input import settings_input
 from .console_output import console_output
+from .alpha_beta_gamma_window import alpha_beta_gamma_window
+from .stock_problem_page import stock_problem_page
 from .view import View

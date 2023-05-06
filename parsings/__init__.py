@@ -7,3 +7,4 @@ from .parse_S_ import parse_S_
 from .parse_slG import parse_slG
 from .parse_sij import parse_sij
 from .parse_data import parse_data
+from .stock_problem import parse_alpha_beta_gamma_data

@@ -2,8 +2,8 @@ import logging
 from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
-from view import problem_conditions_input, initial_boundary_desired_conditions_input, solve_button, v_input, save_load, results_output, input_rules, settings_input, console_output
-from controller import control, view_data_to_file, file_data_to_view
+from view import problem_conditions_input, initial_boundary_desired_conditions_input, solve_button, v_input, save_load, results_output, input_rules, settings_input, console_output, stock_problem_page
+from controller import control, view_data_to_file, file_data_to_view, control_alpha_beta_gamma
 
 
 class View:
@@ -26,6 +26,8 @@ class View:
                                            self, _file_path),
                                        lambda _file_path: file_data_to_view(self, _file_path))
             self.input_rules = input_rules(self.root)
+            self.stock_problem_page = stock_problem_page(
+                self.root, lambda: self.alpha_beta_gamma_solve_button_command())
             self.problem_conditions_input = problem_conditions_input(self.root)
             self.initial_boundary_desired_conditions_input = initial_boundary_desired_conditions_input(
                 self.root)
@@ -38,6 +40,8 @@ class View:
 
             self.notebook.add(self.save_load.root, text='Зберегти/Завантажити')
             self.notebook.add(self.input_rules.root, text='Правила вводу')
+            self.notebook.add(self.stock_problem_page.root,
+                              text='Задача керуваня щільністю акцій')
             self.notebook.add(
                 self.problem_conditions_input.root, text='Умови задачі')
             self.notebook.add(
@@ -68,6 +72,13 @@ class View:
     def solve_button_command(self, file_path: str):
         try:
             control(self, file_path)
+        except Exception as e:
+            messagebox.showerror('Помилка', str(e))
+            logging.error(e, exc_info=True)
+
+    def alpha_beta_gamma_solve_button_command(self):
+        try:
+            control_alpha_beta_gamma(self)
         except Exception as e:
             messagebox.showerror('Помилка', str(e))
             logging.error(e, exc_info=True)
