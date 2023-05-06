@@ -45,7 +45,6 @@ class stock_problem_page:
         try:
             self.alpha_beta_gamma_window = alpha_beta_gamma_window(
                 self.root, self.alpha_beta_gamma_solve_button_command)
-            self.alpha_beta_gamma_window.window.deiconify()
         except Exception as e:
             raise e
 

@@ -242,8 +242,6 @@ class alpha_beta_gamma_window:
 
             self.align_rows_cols(self.window)
             #
-
-            self.window.withdraw()
         except Exception as e:
             raise e
 
