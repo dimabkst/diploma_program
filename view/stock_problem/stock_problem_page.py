@@ -35,7 +35,8 @@ class stock_problem_page:
             self.alpha_beta_gamma_window = None
 
             self.stock_problem_solve_button_command = stock_problem_solve_button_command
-            self.stock_problem_window = None
+            self.stock_problem_window = stock_problem_window(
+                self.root, self.stock_problem_solve_button_command)
 
             # alpha_beta_gamma button
             self.alpha_beta_gamma_button = ttk.Button(self.alpha_beta_gamma_button_frame, text="Знайти альфа, бета, гамма",
@@ -65,8 +66,7 @@ class stock_problem_page:
 
     def stock_problem_button_callback(self):
         try:
-            self.stock_problem_window = stock_problem_window(
-                self.root, self.stock_problem_solve_button_command)
+            self.stock_problem_window.window.deiconify()
         except Exception as e:
             raise e
 

@@ -11,7 +11,7 @@ class View:
     def __init__(self, file_path):
         """
 
-    :param file_path: string with path to the file with data
+        :param file_path: string with path to the file with data
         """
         try:
             self.root = Tk()
@@ -59,6 +59,8 @@ class View:
 
             self.align_rows_cols(self.notebook)
             self.align_rows_cols(self.root)
+
+            self.root.protocol("WM_DELETE_WINDOW", self.close_root_callback)
 
             self.root.mainloop()
         except Exception as e:
@@ -111,3 +113,7 @@ class View:
             self.update_dynamic_data()
         except Exception as e:
             raise e
+
+    def close_root_callback(self):
+        if messagebox.askokcancel("Вихід", "Ви справді бажаєте вийти?"):
+            self.root.destroy()

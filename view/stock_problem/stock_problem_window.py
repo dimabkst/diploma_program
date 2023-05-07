@@ -513,6 +513,10 @@ class stock_problem_window:
 
             self.align_rows_cols(self.window)
             #
+
+            self.window.protocol("WM_DELETE_WINDOW",
+                                 self.close_window_callback)
+            self.window.withdraw()
         except Exception as e:
             raise e
 
@@ -703,3 +707,6 @@ class stock_problem_window:
             self.change_and_show_uk()
         except Exception as e:
             raise e
+
+    def close_window_callback(self):
+        self.window.withdraw()
