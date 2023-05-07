@@ -27,7 +27,9 @@ class View:
                                        lambda _file_path: file_data_to_view(self, _file_path))
             self.input_rules = input_rules(self.root)
             self.stock_problem_page = stock_problem_page(
-                self.root, lambda: self.alpha_beta_gamma_solve_button_command())
+                self.root,
+                lambda: self.alpha_beta_gamma_solve_button_command(),
+                lambda: print("ASDADSADAS"))
             self.problem_conditions_input = problem_conditions_input(self.root)
             self.initial_boundary_desired_conditions_input = initial_boundary_desired_conditions_input(
                 self.root)
