@@ -56,7 +56,7 @@ class stock_problem_window:
             self.alpha_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.alpha_var = StringVar()
-            self.alpha_var.set("0")
+            self.alpha_var.set("1")
 
             ttk.Label(self.alpha_label_frame, text="alpha =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -80,7 +80,7 @@ class stock_problem_window:
             self.beta_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.beta_var = StringVar()
-            self.beta_var.set("0")
+            self.beta_var.set("1")
 
             ttk.Label(self.beta_label_frame, text="beta =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -104,7 +104,7 @@ class stock_problem_window:
             self.gamma_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.gamma_var = StringVar()
-            self.gamma_var.set("0")
+            self.gamma_var.set("1")
 
             ttk.Label(self.gamma_label_frame, text="gamma =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -128,7 +128,7 @@ class stock_problem_window:
             self.a_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.a_var = StringVar()
-            self.a_var.set("0")
+            self.a_var.set("1")
 
             ttk.Label(self.a_label_frame, text="a =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -152,7 +152,7 @@ class stock_problem_window:
             self.b_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.b_var = StringVar()
-            self.b_var.set("1")
+            self.b_var.set("2")
 
             ttk.Label(self.b_label_frame, text="b =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -176,7 +176,7 @@ class stock_problem_window:
             self.T_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.T_var = StringVar()
-            self.T_var.set("1")
+            self.T_var.set("2")
 
             ttk.Label(self.T_label_frame, text="T =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
