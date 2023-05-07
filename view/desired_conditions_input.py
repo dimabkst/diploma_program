@@ -59,7 +59,7 @@ class desired_conditions_input:
             self.I_var.trace("w", lambda name, index,
                              mode: self.change_and_show_desired())
 
-            ttk.Label(self.I_label_frame, text="Кількість операторів Li(dx, dt) -", style="WhiteBg.TLabel") \
+            ttk.Label(self.I_label_frame, text="Кількість операторів Li(dx, dt) I -", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
 
             self.count_entry = ttk.Entry(
@@ -115,7 +115,7 @@ class desired_conditions_input:
             self.Ji_vars = []
             self.Ji_entries = []
 
-            ttk.Label(self.Ji_label_frame, text="Кількість дискретних точок спостережень Li(dx, dt) -", style="WhiteBg.TLabel")\
+            ttk.Label(self.Ji_label_frame, text="Кількість дискретних точок спостережень Li(dx, dt) Ji -", style="WhiteBg.TLabel")\
                 .grid(column=0, row=0, sticky=(N, E, W, S))
 
             for i in range(int(self.I_var.get() or 0)):

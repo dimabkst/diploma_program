@@ -17,16 +17,31 @@ class stock_problem_window:
             self.solve_button_command = solve_button_command
 
             # Frames
+            self.input_rules_frame = ttk.Frame(
+                self.window, style="TopWhiteBg.TFrame", padding="3 3 12 12")
+            self.input_rules_frame.grid(
+                column=0, row=0, sticky=(N, W, E, S))
+
             self.input_frame = ttk.Frame(
                 self.window, style="WhiteBg.TFrame", padding="3 3 12 12")
             self.input_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
+                column=0, row=1, sticky=(N, W, E, S))
 
             self.solve_button_frame = ttk.Frame(
                 self.window, style="WhiteBg.TFrame", padding="3 3 12 12")
             self.solve_button_frame.grid(
-                column=0, row=1, sticky=(N, W, E, S))
+                column=0, row=2, sticky=(N, W, E, S))
 
+            # Input rules
+            font = ("Arial", 14)
+            ttk.Label(self.input_rules_frame,
+                      text="a, b - довільні додатні числа, b > a. T - довільне додатне число.\n\nI, J, K - довільні натуральні числа. xi, xk є [a, b]. tj, tk є [0, T]. \n\nalpha, beta, gamma, uk - довільні числа.",
+                      font=font,
+                      style="WhiteBg.TLabel") \
+                .grid(column=0, row=0, sticky=(N, E, W, S))
+            #
+
+            # Input
             # alpha input
             self.alpha_frame = ttk.Frame(
                 self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")

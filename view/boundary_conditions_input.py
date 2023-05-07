@@ -59,7 +59,7 @@ class boundary_conditions_input:
             self.RG_var.trace("w", lambda name, index,
                               mode: self.change_and_show_boundary())
 
-            ttk.Label(self.RG_label_frame, text="Кількість крайових операторів LrG(dx) -", style="WhiteBg.TLabel") \
+            ttk.Label(self.RG_label_frame, text="Кількість крайових операторів LrG(dx) RG -", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
 
             self.count_entry = ttk.Entry(
@@ -116,7 +116,7 @@ class boundary_conditions_input:
             self.LG_var.trace("w", lambda name, index,
                               mode: self.change_and_show_boundary())
 
-            ttk.Label(self.LG_label_frame, text="Кількість дискретних точок спостережень LrG(dx) -",
+            ttk.Label(self.LG_label_frame, text="Кількість дискретних точок спостережень LrG(dx) LG -",
                       style="WhiteBg.TLabel").grid(column=0, row=0, sticky=(N, E, W, S))
 
             self.count_entry = ttk.Entry(

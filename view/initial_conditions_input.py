@@ -59,7 +59,7 @@ class initial_conditions_input:
             self.R0_var.trace("w", lambda name, index,
                               mode: self.change_and_show_initial())
 
-            ttk.Label(self.R0_label_frame, text="Кількість початкових операторів Lr0(dt) -", style="WhiteBg.TLabel") \
+            ttk.Label(self.R0_label_frame, text="Кількість початкових операторів Lr0(dt) R0 -", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
 
             self.count_entry = ttk.Entry(
@@ -116,7 +116,7 @@ class initial_conditions_input:
             self.L0_var.trace("w", lambda name, index,
                               mode: self.change_and_show_initial())
 
-            ttk.Label(self.L0_label_frame, text="Кількість дискретних точок спостережень Lr0(dt) -",
+            ttk.Label(self.L0_label_frame, text="Кількість дискретних точок спостережень Lr0(dt) L0 -",
                       style="WhiteBg.TLabel").grid(column=0, row=0, sticky=(N, E, W, S))
 
             self.count_entry = ttk.Entry(
