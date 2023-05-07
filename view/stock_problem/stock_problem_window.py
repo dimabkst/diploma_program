@@ -35,7 +35,7 @@ class stock_problem_window:
             # Input rules
             font = ("Arial", 14)
             ttk.Label(self.input_rules_frame,
-                      text="a, b - довільні додатні числа, b > a. T - довільне додатне число.\n\nI, J, K - довільні натуральні числа. xi, xk є [a, b]. tj, tk є [0, T]. \n\nalpha, beta, gamma, uk - довільні числа.",
+                      text="a, b - довільні додатні числа, b > a. T - довільне додатне число.\n\nI, J, K - довільні натуральні числа. xi, xk є [a, b]. tj, tk є [0, T].\n\nalpha, beta, gamma, uk - довільні числа.",
                       font=font,
                       style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
