@@ -1,1 +1,2 @@
 from .parse_alpha_beta_gamma_data import parse_alpha_beta_gamma_data
+from .parse_stock_problem import parse_stock_problem

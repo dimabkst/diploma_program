@@ -430,7 +430,7 @@ class stock_problem_window:
             #
 
             # Solve button
-            self.solve_button = ttk.Button(self.solve_button_frame, text="Знайти альфа, бета, гамма",
+            self.solve_button = ttk.Button(self.solve_button_frame, text="Привести задачу",
                                            command=self.solve_button_callback)
             self.solve_button.grid(column=0, row=0, sticky=(N, W, E, S))
             #

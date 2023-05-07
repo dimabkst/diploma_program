@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
 from view import problem_conditions_input, initial_boundary_desired_conditions_input, solve_button, v_input, save_load, results_output, input_rules, settings_input, console_output, stock_problem_page
-from controller import control, view_data_to_file, file_data_to_view, control_alpha_beta_gamma
+from controller import control, view_data_to_file, file_data_to_view, control_alpha_beta_gamma, control_stock_problem
 
 
 class View:
@@ -29,7 +29,7 @@ class View:
             self.stock_problem_page = stock_problem_page(
                 self.root,
                 lambda: self.alpha_beta_gamma_solve_button_command(),
-                lambda: print("ASDADSADAS"))
+                lambda: self.stock_problem_solve_button_command())
             self.problem_conditions_input = problem_conditions_input(self.root)
             self.initial_boundary_desired_conditions_input = initial_boundary_desired_conditions_input(
                 self.root)
@@ -81,6 +81,13 @@ class View:
     def alpha_beta_gamma_solve_button_command(self):
         try:
             control_alpha_beta_gamma(self)
+        except Exception as e:
+            messagebox.showerror('Помилка', str(e))
+            logging.error(e, exc_info=True)
+
+    def stock_problem_solve_button_command(self):
+        try:
+            control_stock_problem(self)
         except Exception as e:
             messagebox.showerror('Помилка', str(e))
             logging.error(e, exc_info=True)

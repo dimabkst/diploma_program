@@ -1,12 +1,11 @@
-from controller import retrieve_data_from_file
-import numpy as np
+from typing import Dict
 
 
-def file_data_to_view(view, file_path: str) -> None:
+def stock_problem_data_to_view(view, data: Dict[str, float]) -> None:
     """
 
     :param view: object of View class in which to save
-    :param file_path: string with path to the file from which to load
+    :param data: data to put im view
     :return: None
     """
     try:
@@ -14,12 +13,6 @@ def file_data_to_view(view, file_path: str) -> None:
         initial_conditions_input = view.initial_boundary_desired_conditions_input.initial_conditions_input
         boundary_conditions_input = view.initial_boundary_desired_conditions_input.boundary_conditions_input
         desired_conditions_input = view.initial_boundary_desired_conditions_input.desired_conditions_input
-        v_input = view.v_input
-        settings_input = view.settings_input
-        results_output = view.results_output
-
-        # reading json file
-        data = retrieve_data_from_file(file_path)
 
         # problem conditions
         problem_conditions_input.S_var.set(data['S'])
@@ -78,35 +71,6 @@ def file_data_to_view(view, file_path: str) -> None:
             for __ in range(len(data['Yij_list'][_])):
                 desired_conditions_input.yij_vars[_][__].set(
                     data['Yij_list'][_][__])
-
-        # v
-        v_input.count_var.set(len(data['v0_list']))
-        v_input.change_and_show_v()
-
-        for _ in range(len(data['v0_list'])):
-            v_input.v0_vars[-1].set(data['v0_list'][_])
-
-        for _ in range(len(data['vG_list'])):
-            v_input.vG_vars[-1].set(data['vG_list'][_])
-
-        # settings
-        settings_input.integrals_precision_var.set(data['integrals_precision'])
-        settings_input.plot_grid_dimension_var.set(data['plot_grid_dimension'])
-
-        settings_input.X0_var.set(data['X0'])
-        settings_input.X1_var.set(data['X1'])
-        settings_input.T0_var.set(data['T0'])
-        settings_input.T1_var.set(data['T1'])
-
-        # solutions
-        if data.get('solutions'):
-            solutions = data.get('solutions')
-            for sol in solutions:
-                sol['solution_plot_data'] = {
-                    key: np.array(item) for key, item in sol['solution_plot_data'].items()}
-                sol['Yrl0'] = np.array(sol['Yrl0'])
-
-            results_output.receive_data_and_show_it(solutions)
 
     except Exception as e:
         raise e

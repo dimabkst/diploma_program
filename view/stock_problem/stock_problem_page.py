@@ -1,7 +1,7 @@
 from typing import Callable
 from tkinter import *
 from tkinter import ttk
-from view import alpha_beta_gamma_window, stock_problem_window
+from view.stock_problem import alpha_beta_gamma_window, stock_problem_window
 
 ENTRY_WIDTH = 10
 

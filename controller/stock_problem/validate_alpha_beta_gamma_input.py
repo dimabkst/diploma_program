@@ -1,4 +1,4 @@
-def validate_alpha_beta_gamma_input(mu: float, sigma: float, b: float, c: float):
+def validate_alpha_beta_gamma_input(mu: float, sigma: float, b: float, c: float) -> None:
     try:
         if mu <= 0:
             raise Exception('mu should be positive number')

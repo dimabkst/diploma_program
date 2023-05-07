@@ -2,3 +2,7 @@ from .validate_alpha_beta_gamma_input import validate_alpha_beta_gamma_input
 from .view_alpha_beta_gamma_data import view_alpha_beta_gamma_data
 from .alpha_beta_gamma_data_to_view import alpha_beta_gamma_data_to_view
 from .control_alpha_beta_gamma import control_alpha_beta_gamma
+from .validate_stock_problem_input import validate_stock_problem_input
+from .view_stock_problem_data import view_stock_problem_data
+from .stock_problem_data_to_view import stock_problem_data_to_view
+from .control_stock_problem import control_stock_problem

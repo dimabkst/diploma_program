@@ -96,7 +96,7 @@ def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.a
     :param X1: right limit of plot X axes
     :param T0: left limit of plot T axes
     :param T1: right limit of plot T axes
-    :return: tuple of function of 2 variables x, t and float precision
+    :return: None
     """
     try:
         # All data has needed type and format because they went through parser and it would have caught such problems
