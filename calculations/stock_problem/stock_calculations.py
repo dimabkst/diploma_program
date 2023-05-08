@@ -23,9 +23,44 @@ def gamma_f(mu: float, sigma: float, b: float, c: float) -> float:
         raise e
 
 
+def alpha_beta_gamma(mu: float, sigma: float, b: float, c: float) -> Dict[str, float]:
+    try:
+        return {"alpha": alpha_f(sigma, b), "beta": beta_f(mu, sigma, b, c), "gamma": gamma_f(mu, sigma, b, c)}
+    except Exception as e:
+        raise e
+
+
 def C_f(alpha: float, beta: float) -> float:
     try:
         return beta - alpha
+    except Exception as e:
+        raise e
+
+
+def x_f(z: float, tau: float, C: float, alpha: float) -> float:
+    try:
+        return exp(z - C * tau / alpha)
+    except Exception as e:
+        raise e
+
+
+def t_f(tau: float, alpha: float) -> float:
+    try:
+        return tau / alpha
+    except Exception as e:
+        raise e
+
+
+def z_f(x: float, t: float, C: float) -> float:
+    try:
+        return log(x) + C * t
+    except Exception as e:
+        raise e
+
+
+def tau_f(t: float, alpha: float) -> float:
+    try:
+        return alpha * t
     except Exception as e:
         raise e
 
@@ -54,64 +89,22 @@ def discrete_y_f(t: float, u: float, gamma: float) -> float:
         raise e
 
 
-def discrete_ys_f(tk: List[float], uk: List[float], gamma: float) -> List[float]:
-    try:
-        return [discrete_y_f(tk[k], uk[k], gamma) for k in range(len(uk))]
-    except Exception as e:
-        raise e
-
-
-def x_f(z: float, tau: float, C: float, alpha: float) -> float:
-    try:
-        return exp(z - C * tau / alpha)
-    except Exception as e:
-        raise e
-
-
-def t_f(tau: float, alpha: float) -> float:
-    try:
-        return tau / alpha
-    except Exception as e:
-        raise e
-
-
 def programm_T(T: float, alpha: float) -> float:
     try:
-        return alpha * T
+        return tau_f(T, alpha)
     except Exception as e:
         raise e
 
 
-def programm_S(a: float, b: float, T: float, C: float) -> List[float]:
+def programm_S_(a: float, b: float, T: float, C: float) -> List[float]:
     try:
-        return [log(a), log(b) + C * T]
-    except Exception as e:
-        raise e
-
-
-def programm_S0(a: float, b: float) -> List[float]:
-    try:
-        return [log(a), log(b)]
-    except Exception as e:
-        raise e
-
-
-def programm_SG(a: float, b: float, T: float, C: float) -> List[float]:
-    try:
-        return [log(a), log(b) + C * T]
+        return [z_f(a, 0, C), z_f(b, T, C)]
     except Exception as e:
         raise e
 
 
 def programm_s_(x_: List[float], t_: List[float], C: float, alpha: float) -> List[str]:
-    return [f'({log(x_[_]) + C * t_[_]},{alpha * t_[_]})' for _ in range(len(x_))]
-
-
-def alpha_beta_gamma(mu: float, sigma: float, b: float, c: float) -> Dict[str, float]:
-    try:
-        return {"alpha": alpha_f(sigma, b), "beta": beta_f(mu, sigma, b, c), "gamma": gamma_f(mu, sigma, b, c)}
-    except Exception as e:
-        raise e
+    return [f'({z_f(x_[_], t_[_], C)},{tau_f(t_[_], alpha)})' for _ in range(len(x_))]
 
 
 def transform_stocks_problem(alpha: float, beta: float, gamma: float,
@@ -123,9 +116,9 @@ def transform_stocks_problem(alpha: float, beta: float, gamma: float,
         C = C_f(alpha, beta)
 
         res = {
-            'S': str(programm_S(a, b, T, C)),
-            'S0': str(programm_S0(a, b)),
-            'SG': str(programm_SG(a, b, T, C)),
+            'S': str(programm_S_(a, b, T, C)),
+            'S0': str(programm_S_(a, b, 0, C)),
+            'SG': str(programm_S_(a, b, T, C)),
             'T': str(programm_T(T, alpha)),
             'L': '1*d[t,1]-1*d[x,2]',
             'u': '0',
@@ -143,7 +136,7 @@ def transform_stocks_problem(alpha: float, beta: float, gamma: float,
             'Ji_list': [str(K)],
             'Li_list': ['1*d[x,0]'],
             'sij_list': [programm_s_(xk_list, tk_list, C, alpha)],
-            'Yij_list': [[str(el) for el in discrete_ys_f(tk_list, uk_list, gamma)]]
+            'Yij_list': [[str(el) for el in [discrete_y_f(tk_list[k], uk_list[k], gamma) for k in range(len(uk_list))]]]
         }
 
         return res

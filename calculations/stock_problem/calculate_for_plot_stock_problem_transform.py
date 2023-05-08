@@ -1,6 +1,6 @@
-from typing import Dict
 import numpy as np
-from calculations.stock_problem import x_f, t_f, discrete_u_f, C_f
+from typing import Dict
+from calculations.stock_problem import C_f, x_f, t_f, discrete_u_f
 
 
 def calculate_for_plot_stock_problem_transform(data: Dict[str, np.array], alpha: float, beta: float, gamma: float) -> Dict[str, np.array]:
