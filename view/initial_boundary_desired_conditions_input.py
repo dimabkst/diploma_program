@@ -3,6 +3,7 @@ from tkinter import ttk
 from .initial_conditions_input import initial_conditions_input
 from .boundary_conditions_input import boundary_conditions_input
 from .desired_conditions_input import desired_conditions_input
+from view.utils import align_rows_cols
 
 ENTRY_WIDTH = 10
 
@@ -121,33 +122,26 @@ class initial_boundary_desired_conditions_input:
             self.T_entry.grid(column=0, row=0, sticky=(N, E, W, S))
 
             # Align
-            self.align_rows_cols(self.initial_frame)
+            align_rows_cols(self.initial_frame)
 
-            self.align_rows_cols(self.boundary_frame)
+            align_rows_cols(self.boundary_frame)
 
-            self.align_rows_cols(self.desired_frame)
+            align_rows_cols(self.desired_frame)
 
-            self.align_rows_cols(self.S0_entry_frame)
-            self.align_rows_cols(self.S0_label_frame)
-            self.align_rows_cols(self.S0_frame)
-            self.align_rows_cols(self.SG_entry_frame)
-            self.align_rows_cols(self.SG_label_frame)
-            self.align_rows_cols(self.SG_frame)
-            self.align_rows_cols(self.T_entry_frame)
-            self.align_rows_cols(self.T_label_frame)
-            self.align_rows_cols(self.T_frame)
-            self.align_rows_cols(self.S0_SG_T_frame)
+            align_rows_cols(self.S0_entry_frame)
+            align_rows_cols(self.S0_label_frame)
+            align_rows_cols(self.S0_frame)
+            align_rows_cols(self.SG_entry_frame)
+            align_rows_cols(self.SG_label_frame)
+            align_rows_cols(self.SG_frame)
+            align_rows_cols(self.T_entry_frame)
+            align_rows_cols(self.T_label_frame)
+            align_rows_cols(self.T_frame)
+            align_rows_cols(self.S0_SG_T_frame)
 
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.root)
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)
 
     def change_S0_SG_T(self, S0: str, SG: str, T: str):
         try:

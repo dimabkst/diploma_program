@@ -2,6 +2,7 @@ import fnmatch
 import os
 from tkinter import *
 from tkinter import ttk
+from view.utils import align_rows_cols
 
 
 class save_load:
@@ -69,20 +70,13 @@ class save_load:
             #
 
             # Align
-            self.align_rows_cols(self.save_frame)
-            self.align_rows_cols(self.load_frame)
+            align_rows_cols(self.save_frame)
+            align_rows_cols(self.load_frame)
 
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.root)
             #
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)
 
     def align_rows_cols_after_row_deleting(self, frame):
         cols_num, rows_num = frame.grid_size()
@@ -124,7 +118,7 @@ class save_load:
                 column=1, row=self.current_save_number - 1, sticky=(N, W, E, S))
             self.delete_buttons.append(delete_button)
 
-            self.align_rows_cols(self.load_frame)
+            align_rows_cols(self.load_frame)
         except Exception as e:
             raise e
 

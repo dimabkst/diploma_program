@@ -3,6 +3,7 @@ from tkinter import ttk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
+from view.utils import align_rows_cols
 
 
 class results_output:
@@ -29,8 +30,8 @@ class results_output:
             #
 
             # Align
-            self.align_rows_cols(self.results_output_frame)
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.results_output_frame)
+            align_rows_cols(self.root)
             #
         except Exception as e:
             raise e
@@ -155,31 +156,24 @@ class results_output:
                     #
 
                 # Align
-                self.align_rows_cols(solution_step_frame)
+                align_rows_cols(solution_step_frame)
 
-                self.align_rows_cols(plot_step_frame)
+                align_rows_cols(plot_step_frame)
 
-                self.align_rows_cols(precision_step_frame)
+                align_rows_cols(precision_step_frame)
 
-                self.align_rows_cols(Yrl0_step_frame)
+                align_rows_cols(Yrl0_step_frame)
 
-                self.align_rows_cols(stock_problem_plot_step_frame)
+                align_rows_cols(stock_problem_plot_step_frame)
 
-                self.align_rows_cols(step_frame)
+                align_rows_cols(step_frame)
 
             self.solutions = solutions
-            self.align_rows_cols(self.results_output_frame)
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.results_output_frame)
+            align_rows_cols(self.root)
 
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)
 
     def clear(self):
         self.solutions = None

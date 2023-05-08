@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from view.utils import align_rows_cols
 
 ENTRY_WIDTH = 10
 
@@ -90,18 +91,11 @@ class input_rules:
                 .grid(column=0, row=0, sticky=(N, E, W, S))
 
             # Align
-            self.align_rows_cols(self.sets)
-            self.align_rows_cols(self.numbers)
-            self.align_rows_cols(self.points)
-            self.align_rows_cols(self.operators)
-            self.align_rows_cols(self.functions)
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.sets)
+            align_rows_cols(self.numbers)
+            align_rows_cols(self.points)
+            align_rows_cols(self.operators)
+            align_rows_cols(self.functions)
+            align_rows_cols(self.root)
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)

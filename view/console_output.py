@@ -2,7 +2,7 @@ import logging
 from tkinter import *
 from tkinter import scrolledtext
 from tkinter import ttk
-from .utils import TextHandler
+from .utils import TextHandler, align_rows_cols
 
 ENTRY_WIDTH = 10
 
@@ -41,14 +41,7 @@ class console_output:
             logger.addHandler(text_handler)
 
             # Align
-            self.align_rows_cols(self.console_frame)
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.console_frame)
+            align_rows_cols(self.root)
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)

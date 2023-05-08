@@ -2,6 +2,7 @@ import logging
 from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
+from view.utils import align_rows_cols
 from view import problem_conditions_input, initial_boundary_desired_conditions_input, solve_button, v_input, save_load, results_output, input_rules, settings_input, console_output, stock_problem_page
 from controller import control, view_data_to_file, file_data_to_view, control_alpha_beta_gamma, control_stock_problem
 
@@ -57,21 +58,14 @@ class View:
             self.notebook.bind("<<NotebookTabChanged>>",
                                func=self.notebook_tab_changed_callback)
 
-            self.align_rows_cols(self.notebook)
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.notebook)
+            align_rows_cols(self.root)
 
             self.root.protocol("WM_DELETE_WINDOW", self.close_root_callback)
 
             self.root.mainloop()
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)
 
     def solve_button_command(self, file_path: str, plot: bool, plot_stock: bool):
         try:

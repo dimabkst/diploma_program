@@ -1,6 +1,7 @@
 from typing import Callable
 from tkinter import *
 from tkinter import ttk
+from view.utils import align_rows_cols
 
 ENTRY_WIDTH = 10
 
@@ -451,67 +452,67 @@ class stock_problem_window:
             #
 
             # Align
-            self.align_rows_cols(self.alpha_frame)
-            self.align_rows_cols(self.alpha_label_frame)
-            self.align_rows_cols(self.alpha_entry_frame)
+            align_rows_cols(self.alpha_frame)
+            align_rows_cols(self.alpha_label_frame)
+            align_rows_cols(self.alpha_entry_frame)
 
-            self.align_rows_cols(self.beta_frame)
-            self.align_rows_cols(self.beta_label_frame)
-            self.align_rows_cols(self.beta_entry_frame)
+            align_rows_cols(self.beta_frame)
+            align_rows_cols(self.beta_label_frame)
+            align_rows_cols(self.beta_entry_frame)
 
-            self.align_rows_cols(self.gamma_frame)
-            self.align_rows_cols(self.gamma_label_frame)
-            self.align_rows_cols(self.gamma_entry_frame)
+            align_rows_cols(self.gamma_frame)
+            align_rows_cols(self.gamma_label_frame)
+            align_rows_cols(self.gamma_entry_frame)
 
-            self.align_rows_cols(self.a_frame)
-            self.align_rows_cols(self.a_label_frame)
-            self.align_rows_cols(self.a_entry_frame)
+            align_rows_cols(self.a_frame)
+            align_rows_cols(self.a_label_frame)
+            align_rows_cols(self.a_entry_frame)
 
-            self.align_rows_cols(self.b_frame)
-            self.align_rows_cols(self.b_label_frame)
-            self.align_rows_cols(self.b_entry_frame)
+            align_rows_cols(self.b_frame)
+            align_rows_cols(self.b_label_frame)
+            align_rows_cols(self.b_entry_frame)
 
-            self.align_rows_cols(self.T_frame)
-            self.align_rows_cols(self.T_label_frame)
-            self.align_rows_cols(self.T_entry_frame)
+            align_rows_cols(self.T_frame)
+            align_rows_cols(self.T_label_frame)
+            align_rows_cols(self.T_entry_frame)
 
-            self.align_rows_cols(self.I_frame)
-            self.align_rows_cols(self.I_label_frame)
-            self.align_rows_cols(self.I_entry_frame)
+            align_rows_cols(self.I_frame)
+            align_rows_cols(self.I_label_frame)
+            align_rows_cols(self.I_entry_frame)
 
-            self.align_rows_cols(self.xi_list_frame)
-            self.align_rows_cols(self.xi_list_label_frame)
-            self.align_rows_cols(self.xi_list_xi_frame)
+            align_rows_cols(self.xi_list_frame)
+            align_rows_cols(self.xi_list_label_frame)
+            align_rows_cols(self.xi_list_xi_frame)
 
-            self.align_rows_cols(self.J_frame)
-            self.align_rows_cols(self.J_label_frame)
-            self.align_rows_cols(self.J_entry_frame)
+            align_rows_cols(self.J_frame)
+            align_rows_cols(self.J_label_frame)
+            align_rows_cols(self.J_entry_frame)
 
-            self.align_rows_cols(self.tj_list_frame)
-            self.align_rows_cols(self.tj_list_label_frame)
-            self.align_rows_cols(self.tj_list_tj_frame)
+            align_rows_cols(self.tj_list_frame)
+            align_rows_cols(self.tj_list_label_frame)
+            align_rows_cols(self.tj_list_tj_frame)
 
-            self.align_rows_cols(self.K_frame)
-            self.align_rows_cols(self.K_label_frame)
-            self.align_rows_cols(self.K_entry_frame)
+            align_rows_cols(self.K_frame)
+            align_rows_cols(self.K_label_frame)
+            align_rows_cols(self.K_entry_frame)
 
-            self.align_rows_cols(self.xk_list_frame)
-            self.align_rows_cols(self.xk_list_label_frame)
-            self.align_rows_cols(self.xk_list_xk_frame)
+            align_rows_cols(self.xk_list_frame)
+            align_rows_cols(self.xk_list_label_frame)
+            align_rows_cols(self.xk_list_xk_frame)
 
-            self.align_rows_cols(self.tk_list_frame)
-            self.align_rows_cols(self.tk_list_label_frame)
-            self.align_rows_cols(self.tk_list_tk_frame)
+            align_rows_cols(self.tk_list_frame)
+            align_rows_cols(self.tk_list_label_frame)
+            align_rows_cols(self.tk_list_tk_frame)
 
-            self.align_rows_cols(self.uk_list_frame)
-            self.align_rows_cols(self.uk_list_label_frame)
-            self.align_rows_cols(self.uk_list_uk_frame)
+            align_rows_cols(self.uk_list_frame)
+            align_rows_cols(self.uk_list_label_frame)
+            align_rows_cols(self.uk_list_uk_frame)
 
-            self.align_rows_cols(self.input_frame)
+            align_rows_cols(self.input_frame)
 
-            self.align_rows_cols(self.solve_button_frame)
+            align_rows_cols(self.solve_button_frame)
 
-            self.align_rows_cols(self.window)
+            align_rows_cols(self.window)
             #
 
             self.window.protocol("WM_DELETE_WINDOW",
@@ -525,13 +526,6 @@ class stock_problem_window:
             self.solve_button_command()
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)
 
     def change_and_show_xi(self):
         try:

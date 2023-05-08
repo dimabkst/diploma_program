@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
+from view.utils import align_rows_cols
 
 
 class solve_button:
@@ -54,25 +55,18 @@ class solve_button:
                 column=1, row=0, sticky=(N, W, S))
 
             # Align
-            self.align_rows_cols(self.solve_button_frame)
+            align_rows_cols(self.solve_button_frame)
             self.solve_button_frame.grid_rowconfigure(0, weight=1)
             self.solve_button_frame.grid_rowconfigure(2, weight=1)
             self.solve_button_frame.grid_columnconfigure(0, weight=1)
             self.solve_button_frame.grid_columnconfigure(2, weight=1)
 
-            self.align_rows_cols(self.check_buttons_frame)
+            align_rows_cols(self.check_buttons_frame)
 
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.root)
             #
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)
 
     def solve_button_callback(self):
         try:

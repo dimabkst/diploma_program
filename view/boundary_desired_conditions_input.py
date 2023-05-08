@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from .boundary_conditions_input import boundary_conditions_input
 from .desired_conditions_input import desired_conditions_input
+from view.utils import align_rows_cols
 
 ENTRY_WIDTH = 10
 
@@ -33,15 +34,8 @@ class boundary_desired_conditions_input:
             self.desired_conditions_input = desired_conditions_input(
                 self.desired_frame)
 
-            self.align_rows_cols(self.boundary_frame)
-            self.align_rows_cols(self.desired_frame)
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.boundary_frame)
+            align_rows_cols(self.desired_frame)
+            align_rows_cols(self.root)
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)

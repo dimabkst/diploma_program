@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from view.utils import align_rows_cols
 
 ENTRY_WIDTH = 10
 
@@ -199,45 +200,38 @@ class initial_conditions_input:
             #
 
             # Align everything
-            self.align_rows_cols(self.R0_label_frame)
-            self.align_rows_cols(self.R0_entry_frame)
-            self.align_rows_cols(self.R0_frame)
+            align_rows_cols(self.R0_label_frame)
+            align_rows_cols(self.R0_entry_frame)
+            align_rows_cols(self.R0_frame)
 
-            self.align_rows_cols(self.Lr0_frame)
-            self.align_rows_cols(self.Lr0_label_frame)
-            self.align_rows_cols(self.Lr0_Lr0_frame)
+            align_rows_cols(self.Lr0_frame)
+            align_rows_cols(self.Lr0_label_frame)
+            align_rows_cols(self.Lr0_Lr0_frame)
 
-            self.align_rows_cols(self.L0_label_frame)
-            self.align_rows_cols(self.L0_entry_frame)
-            self.align_rows_cols(self.L0_frame)
+            align_rows_cols(self.L0_label_frame)
+            align_rows_cols(self.L0_entry_frame)
+            align_rows_cols(self.L0_frame)
 
-            self.align_rows_cols(self.xl0_frame)
-            self.align_rows_cols(self.xl0_label_frame)
-            self.align_rows_cols(self.xl0_xl0_frame)
+            align_rows_cols(self.xl0_frame)
+            align_rows_cols(self.xl0_label_frame)
+            align_rows_cols(self.xl0_xl0_frame)
 
-            self.align_rows_cols(self.initial_top_left_frame)
-            self.align_rows_cols(self.initial_top_right_frame)
-            self.align_rows_cols(self.initial_top_frame)
+            align_rows_cols(self.initial_top_left_frame)
+            align_rows_cols(self.initial_top_right_frame)
+            align_rows_cols(self.initial_top_frame)
 
-            self.align_rows_cols(self.yrl0_frame)
-            self.align_rows_cols(self.yrl0_label_frame)
-            self.align_rows_cols(self.yrl0_yrl0_frame)
+            align_rows_cols(self.yrl0_frame)
+            align_rows_cols(self.yrl0_label_frame)
+            align_rows_cols(self.yrl0_yrl0_frame)
 
-            self.align_rows_cols(self.initial_bot_frame)
+            align_rows_cols(self.initial_bot_frame)
 
-            self.align_rows_cols(self.initial_frame)
+            align_rows_cols(self.initial_frame)
 
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.root)
             #
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)
 
     def change_and_show_Lr0(self):
         try:

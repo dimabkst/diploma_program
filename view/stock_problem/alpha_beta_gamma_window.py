@@ -1,6 +1,7 @@
 from typing import Callable
 from tkinter import *
 from tkinter import ttk
+from view.utils import align_rows_cols
 
 ENTRY_WIDTH = 10
 
@@ -222,41 +223,41 @@ class alpha_beta_gamma_window:
             #
 
             # Align
-            self.align_rows_cols(self.mu_frame)
-            self.align_rows_cols(self.mu_label_frame)
-            self.align_rows_cols(self.mu_entry_frame)
+            align_rows_cols(self.mu_frame)
+            align_rows_cols(self.mu_label_frame)
+            align_rows_cols(self.mu_entry_frame)
 
-            self.align_rows_cols(self.sigma_frame)
-            self.align_rows_cols(self.sigma_label_frame)
-            self.align_rows_cols(self.sigma_entry_frame)
+            align_rows_cols(self.sigma_frame)
+            align_rows_cols(self.sigma_label_frame)
+            align_rows_cols(self.sigma_entry_frame)
 
-            self.align_rows_cols(self.b_frame)
-            self.align_rows_cols(self.b_label_frame)
-            self.align_rows_cols(self.b_entry_frame)
+            align_rows_cols(self.b_frame)
+            align_rows_cols(self.b_label_frame)
+            align_rows_cols(self.b_entry_frame)
 
-            self.align_rows_cols(self.c_frame)
-            self.align_rows_cols(self.c_label_frame)
-            self.align_rows_cols(self.c_entry_frame)
+            align_rows_cols(self.c_frame)
+            align_rows_cols(self.c_label_frame)
+            align_rows_cols(self.c_entry_frame)
 
-            self.align_rows_cols(self.input_frame)
+            align_rows_cols(self.input_frame)
 
-            self.align_rows_cols(self.solve_button_frame)
+            align_rows_cols(self.solve_button_frame)
 
-            self.align_rows_cols(self.alpha_frame)
-            self.align_rows_cols(self.alpha_label_frame)
-            self.align_rows_cols(self.alpha_entry_frame)
+            align_rows_cols(self.alpha_frame)
+            align_rows_cols(self.alpha_label_frame)
+            align_rows_cols(self.alpha_entry_frame)
 
-            self.align_rows_cols(self.beta_frame)
-            self.align_rows_cols(self.beta_label_frame)
-            self.align_rows_cols(self.beta_entry_frame)
+            align_rows_cols(self.beta_frame)
+            align_rows_cols(self.beta_label_frame)
+            align_rows_cols(self.beta_entry_frame)
 
-            self.align_rows_cols(self.gamma_frame)
-            self.align_rows_cols(self.gamma_label_frame)
-            self.align_rows_cols(self.gamma_entry_frame)
+            align_rows_cols(self.gamma_frame)
+            align_rows_cols(self.gamma_label_frame)
+            align_rows_cols(self.gamma_entry_frame)
 
-            self.align_rows_cols(self.output_frame)
+            align_rows_cols(self.output_frame)
 
-            self.align_rows_cols(self.window)
+            align_rows_cols(self.window)
             #
         except Exception as e:
             raise e
@@ -266,10 +267,3 @@ class alpha_beta_gamma_window:
             self.solve_button_command()
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)

@@ -2,6 +2,7 @@ from typing import Callable
 from tkinter import *
 from tkinter import ttk
 from view.stock_problem import alpha_beta_gamma_window, stock_problem_window
+from view.utils import align_rows_cols
 
 ENTRY_WIDTH = 10
 
@@ -51,9 +52,9 @@ class stock_problem_page:
                 column=0, row=0, sticky=(N, W, E, S))
 
             # Align
-            self.align_rows_cols(self.alpha_beta_gamma_button_frame)
-            self.align_rows_cols(self.stock_problem_button_frame)
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.alpha_beta_gamma_button_frame)
+            align_rows_cols(self.stock_problem_button_frame)
+            align_rows_cols(self.root)
         except Exception as e:
             raise e
 
@@ -69,10 +70,3 @@ class stock_problem_page:
             self.stock_problem_window.window.deiconify()
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)

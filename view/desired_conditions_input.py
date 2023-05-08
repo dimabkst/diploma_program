@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from view.utils import align_rows_cols
 
 ENTRY_WIDTH = 10
 
@@ -219,45 +220,38 @@ class desired_conditions_input:
                         row=i, column=j * 2 + 1, sticky=(N, W, E, S))
 
             # Align everything
-            self.align_rows_cols(self.I_label_frame)
-            self.align_rows_cols(self.I_entry_frame)
-            self.align_rows_cols(self.I_frame)
+            align_rows_cols(self.I_label_frame)
+            align_rows_cols(self.I_entry_frame)
+            align_rows_cols(self.I_frame)
 
-            self.align_rows_cols(self.Li_frame)
-            self.align_rows_cols(self.Li_label_frame)
-            self.align_rows_cols(self.Li_Li_frame)
+            align_rows_cols(self.Li_frame)
+            align_rows_cols(self.Li_label_frame)
+            align_rows_cols(self.Li_Li_frame)
 
-            self.align_rows_cols(self.Ji_label_frame)
-            self.align_rows_cols(self.Ji_Ji_frame)
-            self.align_rows_cols(self.Ji_frame)
+            align_rows_cols(self.Ji_label_frame)
+            align_rows_cols(self.Ji_Ji_frame)
+            align_rows_cols(self.Ji_frame)
 
-            self.align_rows_cols(self.sij_frame)
-            self.align_rows_cols(self.sij_label_frame)
-            self.align_rows_cols(self.sij_sij_frame)
+            align_rows_cols(self.sij_frame)
+            align_rows_cols(self.sij_label_frame)
+            align_rows_cols(self.sij_sij_frame)
 
-            self.align_rows_cols(self.desired_top_left_frame)
-            self.align_rows_cols(self.desired_top_right_frame)
-            self.align_rows_cols(self.desired_top_frame)
+            align_rows_cols(self.desired_top_left_frame)
+            align_rows_cols(self.desired_top_right_frame)
+            align_rows_cols(self.desired_top_frame)
 
-            self.align_rows_cols(self.yij_frame)
-            self.align_rows_cols(self.yij_label_frame)
-            self.align_rows_cols(self.yij_yij_frame)
+            align_rows_cols(self.yij_frame)
+            align_rows_cols(self.yij_label_frame)
+            align_rows_cols(self.yij_yij_frame)
 
-            self.align_rows_cols(self.desired_bot_frame)
+            align_rows_cols(self.desired_bot_frame)
 
-            self.align_rows_cols(self.desired_frame)
+            align_rows_cols(self.desired_frame)
 
-            self.align_rows_cols(self.root)
+            align_rows_cols(self.root)
             #
         except Exception as e:
             raise e
-
-    def align_rows_cols(self, frame):
-        cols_num, rows_num = frame.grid_size()
-        for i in range(rows_num):
-            frame.grid_rowconfigure(i, weight=1)
-        for j in range(cols_num):
-            frame.grid_columnconfigure(j, weight=1)
 
     def change_and_show_Li(self):
         try:
