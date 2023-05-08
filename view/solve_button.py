@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 from tkinter import ttk
 
 
@@ -43,12 +44,12 @@ class solve_button:
 
             self.plot_var = BooleanVar()
             self.plot_check_button = ttk.Checkbutton(
-                self.check_buttons_frame, text='Будувати графік', variable=self.plot_var, style='WhiteBg.TCheckbutton')
+                self.check_buttons_frame, text='Побудувати графік', variable=self.plot_var, style='WhiteBg.TCheckbutton', command=self.check_buttons_callback)
             self.plot_check_button.grid(column=0, row=0, sticky=(N, W, S))
 
             self.plot_stock_var = BooleanVar()
             self.plot_stock_check_button = ttk.Checkbutton(
-                self.check_buttons_frame, text='Будувати графік задачі акцій', variable=self.plot_stock_var, style='WhiteBg.TCheckbutton')
+                self.check_buttons_frame, text='Побудувати графік задачі акцій', variable=self.plot_stock_var, style='WhiteBg.TCheckbutton', command=self.check_buttons_callback)
             self.plot_stock_check_button.grid(
                 column=1, row=0, sticky=(N, W, S))
 
@@ -77,5 +78,13 @@ class solve_button:
         try:
             self.solve_button_command(
                 self.plot_var.get(), self.plot_stock_var.get())
+        except Exception as e:
+            raise e
+
+    def check_buttons_callback(self):
+        try:
+            if self.plot_var.get() and self.plot_stock_var.get():
+                messagebox.showinfo(
+                    'Вказівка', 'Якщо обрати обидві опції, для побудови другого графіку будуть використані дані першого, що може привести до не зовсім очікуваних меж осей.')
         except Exception as e:
             raise e
