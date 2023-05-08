@@ -40,9 +40,37 @@ def u_f(y_f: Callable, alpha: float, beta: float, gamma: float) -> Callable:
         raise e
 
 
-def discrete_y_f(tk: List[float], uk: List[float], gamma: float) -> List[float]:
+def discrete_u_f(y: float, t: float, gamma: float) -> float:
     try:
-        return [uk[k] / exp(gamma * tk[k]) for k in range(len(uk))]
+        return y * exp(gamma * t)
+    except Exception as e:
+        raise e
+
+
+def discrete_y_f(t: float, u: float, gamma: float) -> float:
+    try:
+        return u / exp(gamma * t)
+    except Exception as e:
+        raise e
+
+
+def discrete_ys_f(tk: List[float], uk: List[float], gamma: float) -> List[float]:
+    try:
+        return [discrete_y_f(tk[k], uk[k], gamma) for k in range(len(uk))]
+    except Exception as e:
+        raise e
+
+
+def x_f(z: float, tau: float, C: float, alpha: float) -> float:
+    try:
+        return exp(z - C * tau / alpha)
+    except Exception as e:
+        raise e
+
+
+def t_f(tau: float, alpha: float) -> float:
+    try:
+        return tau / alpha
     except Exception as e:
         raise e
 
@@ -105,7 +133,7 @@ def transform_stocks_problem(alpha: float, beta: float, gamma: float,
             'R0': '1',
             'L0': str(I),
             'Lr0_list': ['1*d[t,0]'],
-            'xl0_list': [str(el) for el in xi_list],
+            'xl0_list': [str(log(el)) for el in xi_list],
             'RG': '1',
             'LG': str(J),
             'LrG_list': ['1*d[x,0]'],
@@ -115,7 +143,7 @@ def transform_stocks_problem(alpha: float, beta: float, gamma: float,
             'Ji_list': [str(K)],
             'Li_list': ['1*d[x,0]'],
             'sij_list': [programm_s_(xk_list, tk_list, C, alpha)],
-            'Yij_list': [[str(el) for el in discrete_y_f(tk_list, uk_list, gamma)]]
+            'Yij_list': [[str(el) for el in discrete_ys_f(tk_list, uk_list, gamma)]]
         }
 
         return res

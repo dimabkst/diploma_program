@@ -36,7 +36,7 @@ class View:
             self.v_input = v_input(self.root)
             self.settings_input = settings_input(self.root)
             self.solve_button = solve_button(
-                self.root, lambda: self.solve_button_command(file_path))
+                self.root, lambda plot, plot_stock: self.solve_button_command(file_path, plot, plot_stock))
             self.results_output = results_output(self.root)
             self.console_output = console_output(self.root)
 
@@ -73,9 +73,9 @@ class View:
         for j in range(cols_num):
             frame.grid_columnconfigure(j, weight=1)
 
-    def solve_button_command(self, file_path: str):
+    def solve_button_command(self, file_path: str, plot: bool, plot_stock: bool):
         try:
-            control(self, file_path)
+            control(self, file_path, plot, plot_stock)
         except Exception as e:
             messagebox.showerror('Помилка', str(e))
             logging.error(e, exc_info=True)

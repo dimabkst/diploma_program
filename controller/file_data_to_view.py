@@ -17,6 +17,7 @@ def file_data_to_view(view, file_path: str) -> None:
         v_input = view.v_input
         settings_input = view.settings_input
         results_output = view.results_output
+        stock_problem_window = view.stock_problem_page.stock_problem_window
 
         # reading json file
         data = retrieve_data_from_file(file_path)
@@ -103,10 +104,48 @@ def file_data_to_view(view, file_path: str) -> None:
             solutions = data.get('solutions')
             for sol in solutions:
                 sol['solution_plot_data'] = {
-                    key: np.array(item) for key, item in sol['solution_plot_data'].items()}
+                    key: np.array(item) for key, item in sol['solution_plot_data'].items()} if sol.get('solution_plot_data') else None
                 sol['Yrl0'] = np.array(sol['Yrl0'])
+
+                sol['stock_problem_solution_plot_data'] = {
+                    key: np.array(item) for key, item in sol['stock_problem_solution_plot_data'].items()} if sol.get('stock_problem_solution_plot_data') else None
 
             results_output.receive_data_and_show_it(solutions)
 
+        # stock problem data if exists
+        if data.get('stock_problem'):
+            stock_problem_window.alpha_var.set(data['stock_problem']['alpha'])
+            stock_problem_window.beta_var.set(data['stock_problem']['beta'])
+            stock_problem_window.gamma_var.set(data['stock_problem']['gamma'])
+            stock_problem_window.a_var.set(data['stock_problem']['a'])
+            stock_problem_window.b_var.set(data['stock_problem']['b'])
+            stock_problem_window.T_var.set(data['stock_problem']['T'])
+
+            # initial conditions
+            stock_problem_window.I_var.set(data['stock_problem']['I'])
+            stock_problem_window.change_and_show_stock_problem()
+            for _ in range(len(data['stock_problem']['xi_list'])):
+                stock_problem_window.xi_vars[_].set(
+                    data['stock_problem']['xi_list'][_])
+
+            # boundary conditions
+            stock_problem_window.J_var.set(data['stock_problem']['J'])
+            stock_problem_window.change_and_show_stock_problem()
+            for _ in range(len(data['stock_problem']['tj_list'])):
+                stock_problem_window.tj_vars[_].set(
+                    data['stock_problem']['tj_list'][_])
+
+            # desired conditions
+            stock_problem_window.K_var.set(data['stock_problem']['K'])
+            stock_problem_window.change_and_show_stock_problem()
+            for _ in range(len(data['stock_problem']['xk_list'])):
+                stock_problem_window.xk_vars[_].set(
+                    data['stock_problem']['xk_list'][_])
+            for _ in range(len(data['stock_problem']['tk_list'])):
+                stock_problem_window.tk_vars[_].set(
+                    data['stock_problem']['tk_list'][_])
+            for _ in range(len(data['stock_problem']['uk_list'])):
+                stock_problem_window.uk_vars[_].set(
+                    data['stock_problem']['uk_list'][_])
     except Exception as e:
         raise e

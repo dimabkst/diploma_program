@@ -56,7 +56,7 @@ class stock_problem_window:
             self.alpha_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.alpha_var = StringVar()
-            self.alpha_var.set("1")
+            self.alpha_var.set("")
 
             ttk.Label(self.alpha_label_frame, text="alpha =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -80,7 +80,7 @@ class stock_problem_window:
             self.beta_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.beta_var = StringVar()
-            self.beta_var.set("1")
+            self.beta_var.set("")
 
             ttk.Label(self.beta_label_frame, text="beta =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -104,7 +104,7 @@ class stock_problem_window:
             self.gamma_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.gamma_var = StringVar()
-            self.gamma_var.set("1")
+            self.gamma_var.set("")
 
             ttk.Label(self.gamma_label_frame, text="gamma =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -128,7 +128,7 @@ class stock_problem_window:
             self.a_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.a_var = StringVar()
-            self.a_var.set("1")
+            self.a_var.set("")
 
             ttk.Label(self.a_label_frame, text="a =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -152,7 +152,7 @@ class stock_problem_window:
             self.b_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.b_var = StringVar()
-            self.b_var.set("2")
+            self.b_var.set("")
 
             ttk.Label(self.b_label_frame, text="b =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -176,7 +176,7 @@ class stock_problem_window:
             self.T_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.T_var = StringVar()
-            self.T_var.set("2")
+            self.T_var.set("")
 
             ttk.Label(self.T_label_frame, text="T =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -200,7 +200,7 @@ class stock_problem_window:
             self.I_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.I_var = StringVar()
-            self.I_var.set("1")
+            self.I_var.set("")
             self.I_var.trace("w", lambda name, index,
                              mode: self.change_and_show_stock_problem())
 
@@ -234,7 +234,7 @@ class stock_problem_window:
 
             for i in range(int(self.I_var.get() or 0)):
                 self.xi_vars.append(StringVar())
-                self.xi_vars[i].set("1")
+                self.xi_vars[i].set("")
 
                 self.xi_labels.append(
                     ttk.Label(self.xi_list_xi_frame, text=f"x{i + 1}", style="WhiteBg.TLabel"))
@@ -262,7 +262,7 @@ class stock_problem_window:
             self.J_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.J_var = StringVar()
-            self.J_var.set("1")
+            self.J_var.set("")
             self.J_var.trace("w", lambda name, index,
                              mode: self.change_and_show_stock_problem())
 
@@ -296,7 +296,7 @@ class stock_problem_window:
 
             for j in range(int(self.J_var.get() or 0)):
                 self.tj_vars.append(StringVar())
-                self.tj_vars[j].set("1")
+                self.tj_vars[j].set("")
 
                 self.tj_labels.append(
                     ttk.Label(self.tj_list_tj_frame, text=f"t{j + 1}", style="WhiteBg.TLabel"))
@@ -324,7 +324,7 @@ class stock_problem_window:
             self.K_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.K_var = StringVar()
-            self.K_var.set("1")
+            self.K_var.set("")
             self.K_var.trace("w", lambda name, index,
                              mode: self.change_and_show_stock_problem())
 
@@ -358,7 +358,7 @@ class stock_problem_window:
 
             for k in range(int(self.K_var.get() or 0)):
                 self.xk_vars.append(StringVar())
-                self.xk_vars[k].set("1")
+                self.xk_vars[k].set("")
 
                 self.xk_labels.append(
                     ttk.Label(self.xk_list_xk_frame, text=f"x{k + 1}", style="WhiteBg.TLabel"))
@@ -394,7 +394,7 @@ class stock_problem_window:
 
             for k in range(int(self.K_var.get() or 0)):
                 self.tk_vars.append(StringVar())
-                self.tk_vars[k].set("1")
+                self.tk_vars[k].set("")
 
                 self.tk_labels.append(
                     ttk.Label(self.tk_list_tk_frame, text=f"t{k + 1}", style="WhiteBg.TLabel"))
@@ -430,7 +430,7 @@ class stock_problem_window:
 
             for k in range(int(self.K_var.get() or 0)):
                 self.uk_vars.append(StringVar())
-                self.uk_vars[k].set("1")
+                self.uk_vars[k].set("")
 
                 self.uk_labels.append(
                     ttk.Label(self.uk_list_uk_frame, text=f"t{k + 1}", style="WhiteBg.TLabel"))
@@ -558,7 +558,7 @@ class stock_problem_window:
                                 ttk.Entry(self.xi_list_xi_frame, width=ENTRY_WIDTH,
                                           textvariable=self.xi_vars[i]))
 
-                            self.xi_vars[i].set("1")
+                            self.xi_vars[i].set("")
                             self.xi_labels[i].grid(
                                 row=0, column=i, sticky=(N, W, E, S))
                             self.xi_entries[i].grid(
@@ -591,7 +591,7 @@ class stock_problem_window:
                                 ttk.Entry(self.tj_list_tj_frame, width=ENTRY_WIDTH,
                                           textvariable=self.tj_vars[i]))
 
-                            self.tj_vars[i].set("1")
+                            self.tj_vars[i].set("")
                             self.tj_labels[i].grid(
                                 row=0, column=i, sticky=(N, W, E, S))
                             self.tj_entries[i].grid(
@@ -624,7 +624,7 @@ class stock_problem_window:
                                 ttk.Entry(self.xk_list_xk_frame, width=ENTRY_WIDTH,
                                           textvariable=self.xk_vars[i]))
 
-                            self.xk_vars[i].set("1")
+                            self.xk_vars[i].set("")
                             self.xk_labels[i].grid(
                                 row=0, column=i, sticky=(N, W, E, S))
                             self.xk_entries[i].grid(
@@ -657,7 +657,7 @@ class stock_problem_window:
                                 ttk.Entry(self.tk_list_tk_frame, width=ENTRY_WIDTH,
                                           textvariable=self.tk_vars[i]))
 
-                            self.tk_vars[i].set("1")
+                            self.tk_vars[i].set("")
                             self.tk_labels[i].grid(
                                 row=0, column=i, sticky=(N, W, E, S))
                             self.tk_entries[i].grid(
@@ -690,7 +690,7 @@ class stock_problem_window:
                                 ttk.Entry(self.uk_list_uk_frame, width=ENTRY_WIDTH,
                                           textvariable=self.uk_vars[i]))
 
-                            self.uk_vars[i].set("1")
+                            self.uk_vars[i].set("")
                             self.uk_labels[i].grid(
                                 row=0, column=i, sticky=(N, W, E, S))
                             self.uk_entries[i].grid(
