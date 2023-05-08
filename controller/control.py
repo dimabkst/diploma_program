@@ -1,7 +1,7 @@
 import logging
 from controller import view_data_to_file, retrieve_data_from_file, validate_input, validate_stock_problem_input
 from parsings import parse_data, parse_stock_problem
-from calculations import solve, calculate_for_plot, Yij, discrete_u_f, calculate_for_plot_stock_problem_transform
+from calculations import solve, calculate_for_plot, Yij, discrete_u_f, calculate_for_plot_stock_problem_transform, calculate_for_plot_stock_problem
 from utils import beep
 from datetime import datetime
 
@@ -15,10 +15,6 @@ def control(view, file_path: str, plot: bool, plot_stock: bool) -> None:
     :return: None
     """
     try:
-        if plot_stock and not plot:
-            raise Exception(
-                'For now you cannot plot stock problem without plot problem')
-
         start_time = datetime.now()
 
         view_data_to_file(view, file_path)
@@ -35,6 +31,7 @@ def control(view, file_path: str, plot: bool, plot_stock: bool) -> None:
                        parsed_data['integrals_precision'], parsed_data['plot_grid_dimension'],
                        parsed_data['X0'], parsed_data['X1'], parsed_data['T0'], parsed_data['T1'])
 
+        parsed_data['stock_problem'] = None
         if plot_stock:
             stock_problem_data_from_view = data_from_file['stock_problem']
 
@@ -51,7 +48,6 @@ def control(view, file_path: str, plot: bool, plot_stock: bool) -> None:
             parsed_data['stock_problem'] = stock_problem_parsed_data
 
         solutions = []
-
         for v_index in range(len(parsed_data['v0_list'])):
             solution, precision, Yrl0 = solve(parsed_data['G'], parsed_data['u'], parsed_data['S'], parsed_data['S0'], parsed_data['SG'], parsed_data['T'],
                                               parsed_data['Lr0_list'], parsed_data['xl0_list'],
@@ -62,8 +58,18 @@ def control(view, file_path: str, plot: bool, plot_stock: bool) -> None:
 
             solution_plot_data = calculate_for_plot(
                 solution, parsed_data['plot_grid_dimension'], parsed_data['X0'], parsed_data['X1'], parsed_data['T0'], parsed_data['T1']) if plot else None
-            stock_problem_solution_plot_data = calculate_for_plot_stock_problem_transform(
-                solution_plot_data, parsed_data['stock_problem']['alpha'], parsed_data['stock_problem']['beta'], parsed_data['stock_problem']['gamma']) if plot_stock else None
+
+            stock_problem_solution_plot_data = None
+            if plot_stock:
+                if plot:
+                    # Save time by not recalculating y
+                    stock_problem_solution_plot_data = calculate_for_plot_stock_problem_transform(
+                        solution_plot_data, parsed_data['stock_problem']['alpha'], parsed_data['stock_problem']['beta'], parsed_data['stock_problem']['gamma'])
+                else:
+                    stock_problem_solution_plot_data = calculate_for_plot_stock_problem(
+                        solution,
+                        parsed_data['plot_grid_dimension'], parsed_data['X0'], parsed_data['X1'], parsed_data['T0'], parsed_data['T1'],
+                        parsed_data['stock_problem']['alpha'], parsed_data['stock_problem']['beta'], parsed_data['stock_problem']['gamma'])
 
             solutions.append({"solution": solution, "solution_plot_data": solution_plot_data,
                               "precision": precision, "Yrl0": Yrl0, "stock_problem_solution_plot_data": stock_problem_solution_plot_data})

@@ -8,8 +8,8 @@ def calculate_for_plot(y_solution: Callable, count: int, X0: float, X1: float, T
 
     :param y_solution: function of two variables x, t to calculate for plot
     :param count: count of points where to calculate function on each axis 
-    :param A: start point on x axis
-    :param B: end point on x axis
+    :param X0: start point on x axis
+    :param Y0: end point on x axis
     :param T0: start point on t axis
     :param T: end point on t axis
     :return: dict of points on axes and values of function to plot

@@ -14,4 +14,4 @@ from .Yrl0 import Yrl0
 from .Yij import Yij
 from .solve import solve
 from .calculate_for_plot import calculate_for_plot
-from .stock_problem import alpha_beta_gamma, C_f, x_f, t_f, discrete_u_f, u_f, transform_stocks_problem, calculate_for_plot_stock_problem_transform
+from .stock_problem import alpha_beta_gamma, C_f, x_f, t_f, discrete_u_f, u_f, transform_stocks_problem, calculate_for_plot_stock_problem_transform, calculate_for_plot_stock_problem
