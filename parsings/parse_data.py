@@ -1,5 +1,5 @@
-from parsings import parse_number, parse_S_, parse_function, parse_operator, parse_slG, parse_sij
 import numpy as np
+from parsings import parse_number, parse_S_, parse_function, parse_operator, parse_slG, parse_sij
 
 
 def parse_data(data: dict) -> dict:

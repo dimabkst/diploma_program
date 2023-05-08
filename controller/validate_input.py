@@ -1,5 +1,5 @@
-from typing import Callable
 import numpy as np
+from typing import Callable
 
 
 def dim1PointInSet(point: float, pointSet: np.array) -> bool:

@@ -1,5 +1,5 @@
-from controller import retrieve_data_from_file
 import numpy as np
+from controller import retrieve_data_from_file
 
 
 def file_data_to_view(view, file_path: str) -> None:

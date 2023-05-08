@@ -1,7 +1,7 @@
+import logging
 from tkinter import *
 from tkinter import scrolledtext
 from tkinter import ttk
-import logging
 from .utils import TextHandler
 
 ENTRY_WIDTH = 10

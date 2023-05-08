@@ -1,6 +1,6 @@
+import re
 from typing import Callable
 from scipy.misc import derivative
-import re
 
 
 def atomic_differential_operator(constant: float, var: int = 0, der_order: int = 1) -> Callable:

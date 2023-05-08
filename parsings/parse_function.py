@@ -1,8 +1,8 @@
+import re
 from typing import Callable
 from sympy.parsing import parse_expr
 from sympy import lambdify
 from sympy.abc import x, t
-import re
 
 
 def heaviside_function(t_: float) -> float:

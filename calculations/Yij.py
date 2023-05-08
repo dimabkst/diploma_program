@@ -1,5 +1,5 @@
-from typing import Callable
 import numpy as np
+from typing import Callable
 
 
 def Yij(y: Callable, Li_list: np.array, sij_list: np.array) -> np.array:

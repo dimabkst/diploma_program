@@ -1,6 +1,6 @@
-from typing import Callable, Dict
 import numpy as np
 import inspect
+from typing import Callable, Dict
 
 
 def calculate_for_plot(y_solution: Callable, count: int, X0: float, X1: float, T0: float, T1: float) -> Dict[str, np.array]:

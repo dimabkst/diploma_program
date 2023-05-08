@@ -1,5 +1,5 @@
-from typing import Callable
 import numpy as np
+from typing import Callable
 
 
 def Yrl0(y: Callable, Lr0_list: np.array, xl0_list: np.array) -> np.array:

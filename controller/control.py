@@ -1,9 +1,9 @@
+import logging
 from controller import view_data_to_file, retrieve_data_from_file, validate_input, validate_stock_problem_input
 from parsings import parse_data, parse_stock_problem
 from calculations import solve, calculate_for_plot, Yij, discrete_u_f, calculate_for_plot_stock_problem_transform
 from utils import beep
 from datetime import datetime
-import logging
 
 
 def control(view, file_path: str, plot: bool, plot_stock: bool) -> None:

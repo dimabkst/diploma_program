@@ -1,5 +1,5 @@
-from controller import put_data_to_file
 import numpy as np
+from controller import put_data_to_file
 
 
 def view_data_to_file(view, file_path: str) -> None:
