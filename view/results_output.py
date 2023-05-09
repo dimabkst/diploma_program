@@ -80,7 +80,7 @@ class results_output:
                 ttk.Label(solution_step_frame, text=f"Розв'язок №{i + 1}", style="WhiteBg.TLabel") \
                     .grid(column=0, row=0, sticky=(N, W, E, S))
 
-                # Plot of solution
+                # Plot of solution if exists
                 if solution_plot_data:
                     # the figure that will contain the plot
                     step_fig = Figure(figsize=(5, 5), dpi=100)
@@ -91,6 +91,7 @@ class results_output:
                     # plotting the graph
                     step_plot.plot_surface(solution_plot_data['X'], solution_plot_data['T'], solution_plot_data['Y'],
                                            cmap='viridis', edgecolor='none')
+                    step_plot.set_title('Графік y(x,t)')
                     step_plot.set_xlabel('X')
                     step_plot.set_ylabel('T')
                     step_plot.set_zlabel('Y')
@@ -122,7 +123,7 @@ class results_output:
                 ttk.Label(Yrl0_step_frame, text=f"{Yrl0}", style="WhiteBg.TLabel") \
                     .grid(column=1, row=0, sticky=(N, W, E, S))
 
-                # Plot of solution
+                # Plot of stock solution if exists
                 if stock_problem_solution_plot_data:
                     # the figure that will contain the plot
                     stock_problem_step_fig = Figure(figsize=(5, 5), dpi=100)
@@ -134,6 +135,8 @@ class results_output:
                     # plotting the graph
                     stock_problem_step_plot.plot_surface(stock_problem_solution_plot_data['X'], stock_problem_solution_plot_data['T'], stock_problem_solution_plot_data['Y'],
                                                          cmap='viridis', edgecolor='none')
+                    stock_problem_step_plot.set_title(
+                        'Графік щільності акцій u(x,t)')
                     stock_problem_step_plot.set_xlabel('X')
                     stock_problem_step_plot.set_ylabel('T')
                     stock_problem_step_plot.set_zlabel('Y')
