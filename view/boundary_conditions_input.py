@@ -1,6 +1,6 @@
 from tkinter import N, E, W, S, StringVar, PhotoImage
 from tkinter.ttk import Style, Frame, Label, Entry
-from view.utils import align_rows_cols
+from view.utils import align_rows_cols, change_and_show_1dim, change_and_show_2dim
 
 ENTRY_WIDTH = 10
 
@@ -238,7 +238,9 @@ class boundary_conditions_input:
         except Exception as e:
             raise e
 
-    def change_and_show_LrG(self):
+
+<< << << < HEAD
+   def change_and_show_LrG(self):
         try:
             if self.RG_var.get() and int(self.RG_var.get()) > 0:
                 old_count = len(self.LrG_vars)
@@ -388,10 +390,32 @@ class boundary_conditions_input:
         except Exception as e:
             raise e
 
-    def change_and_show_boundary(self):
+== =====
+>>>>>> > 37dc41d (view refactor start)
+   def change_and_show_boundary(self):
         try:
-            self.change_and_show_LrG()
-            self.change_and_show_slG()
-            self.change_and_show_yrlG()
+            def new_vars_callback(name, index, mode):
+                self.change_and_show_boundary()
+
+            self.LrG_vars, self.LrG_labels, self.LrG_entries = change_and_show_1dim(self.RG_var,
+                                                                                    self.LrG_vars, new_vars_callback, "1*d[x,0]",
+                                                                                    self.LrG_labels, lambda i: f"L{i + 1}G(dx):", "WhiteBg.TLabel",
+                                                                                    self.LrG_entries, ENTRY_WIDTH,
+                                                                                    self.LrG_LrG_frame,
+                                                                                    isRow=True)
+
+            self.slG_vars, self.slG_labels, self.slG_entries = change_and_show_1dim(self.LG_var,
+                                                                                    self.slG_vars, new_vars_callback, "(0,0)",
+                                                                                    self.slG_labels, lambda i: f"s{i + 1}G", "WhiteBg.TLabel",
+                                                                                    self.slG_entries, ENTRY_WIDTH,
+                                                                                    self.slG_slG_frame,
+                                                                                    isRow=False)
+
+            self.yrlG_vars, self.yrlG_labels, self.yrlG_entries = change_and_show_2dim(self.RG_var, self.LG_var,
+                                                                                       self.yrlG_vars, "0",
+                                                                                       self.yrlG_labels, lambda i, j: f"L{i + 1}Gy(x,t)|(x,t)={self.slG_vars[j].get()} = Y{i + 1}{j + 1}G =", "WhiteBg.TLabel",
+                                                                                       self.yrlG_entries, ENTRY_WIDTH,
+                                                                                       self.yrlG_yrlG_frame,
+                                                                                       additional_conditions=all([el.get() for el in self.LrG_vars]) and all([el.get() for el in self.slG_vars]))
         except Exception as e:
             raise e
