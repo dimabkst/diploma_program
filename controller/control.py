@@ -1,7 +1,7 @@
 import logging
 from controller import view_data_to_file, retrieve_data_from_file, validate_input, validate_stock_problem_input
 from parsings import parse_data, parse_stock_problem
-from calculations import solve, calculate_for_plot, Yij, discrete_u_f, calculate_for_plot_stock_problem_transform, calculate_for_plot_stock_problem
+from calculations import solve, calculate_for_plot, calculate_for_desired_values_plot, Yij, discrete_u_f, calculate_for_plot_stock_problem_transform, calculate_for_plot_stock_problem, calculate_for_desired_values_plot_stock_problem
 from utils import beep
 from datetime import datetime
 
@@ -56,8 +56,13 @@ def control(view, file_path: str, plot: bool, plot_stock: bool) -> None:
                                               parsed_data['v0_list'][v_index], parsed_data['vG_list'][v_index],
                                               parsed_data['integrals_precision'])
 
-            solution_plot_data = calculate_for_plot(
-                solution, parsed_data['plot_grid_dimension'], parsed_data['X0'], parsed_data['X1'], parsed_data['T0'], parsed_data['T1']) if plot else None
+            solution_plot_data = None
+            if plot:
+                solution_plot_data = calculate_for_plot(
+                    solution, parsed_data['plot_grid_dimension'], parsed_data['X0'], parsed_data['X1'], parsed_data['T0'], parsed_data['T1'])
+
+                solution_plot_data['desired_values'] = calculate_for_desired_values_plot(
+                    parsed_data['sij_list'], parsed_data['Yij_list'])
 
             stock_problem_solution_plot_data = None
             if plot_stock:
@@ -70,6 +75,9 @@ def control(view, file_path: str, plot: bool, plot_stock: bool) -> None:
                         solution,
                         parsed_data['plot_grid_dimension'], parsed_data['X0'], parsed_data['X1'], parsed_data['T0'], parsed_data['T1'],
                         parsed_data['stock_problem']['alpha'], parsed_data['stock_problem']['beta'], parsed_data['stock_problem']['gamma'])
+
+                stock_problem_solution_plot_data['desired_values'] = calculate_for_desired_values_plot_stock_problem(
+                    parsed_data['stock_problem']['xk_list'], parsed_data['stock_problem']['tk_list'], parsed_data['stock_problem']['uk_list'])
 
             solutions.append({"solution": solution, "solution_plot_data": solution_plot_data,
                               "precision": precision, "Yrl0": Yrl0, "stock_problem_solution_plot_data": stock_problem_solution_plot_data})

@@ -96,6 +96,14 @@ class results_output:
                     step_plot.set_ylabel('T')
                     step_plot.set_zlabel('Y')
 
+                    solution_plot_data_desired_values = solution_plot_data.get(
+                        'desired_values')
+                    if solution_plot_data_desired_values:
+                        step_plot.scatter(
+                            solution_plot_data_desired_values['X'],
+                            solution_plot_data_desired_values['T'],
+                            solution_plot_data_desired_values['Y'], c='r', alpha=1)
+
                     # creating the Tkinter canvas containing the Matplotlib figure
                     step_canvas = FigureCanvasTkAgg(
                         step_fig, master=plot_step_frame)
@@ -140,6 +148,14 @@ class results_output:
                     stock_problem_step_plot.set_xlabel('X')
                     stock_problem_step_plot.set_ylabel('T')
                     stock_problem_step_plot.set_zlabel('Y')
+
+                    stock_problem_solution_plot_data_desired_values = stock_problem_solution_plot_data.get(
+                        'desired_values')
+                    if stock_problem_solution_plot_data_desired_values:
+                        stock_problem_step_plot.scatter(
+                            stock_problem_solution_plot_data_desired_values['X'],
+                            stock_problem_solution_plot_data_desired_values['T'],
+                            stock_problem_solution_plot_data_desired_values['Y'], c='r', alpha=1)
 
                     # creating the Tkinter canvas containing the Matplotlib figure
                     stock_problem_step_canvas = FigureCanvasTkAgg(

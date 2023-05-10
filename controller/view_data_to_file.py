@@ -2,6 +2,15 @@ import numpy as np
 from controller import put_data_to_file
 
 
+def transform_dict_with_np(data: dict):
+    for key, value in data.items():
+        if isinstance(value, np.ndarray):
+            data[key] = np.copy(value).tolist()
+        elif isinstance(value, dict):
+            transform_dict_with_np(value)
+    return data
+
+
 def view_data_to_file(view, file_path: str) -> None:
     """
 
@@ -110,11 +119,11 @@ def view_data_to_file(view, file_path: str) -> None:
             solutions = results_output.solutions
             for sol in solutions:
                 sol['solution'] = str(sol['solution'])
-                sol['solution_plot_data'] = {
-                    key: np.copy(item).tolist() for key, item in sol['solution_plot_data'].items()} if sol.get('solution_plot_data') else None
+                sol['solution_plot_data'] = transform_dict_with_np(
+                    sol['solution_plot_data']) if sol.get('solution_plot_data') else None
                 sol['Yrl0'] = np.copy(sol['Yrl0']).tolist()
-                sol['stock_problem_solution_plot_data'] = {
-                    key: np.copy(item).tolist() for key, item in sol['stock_problem_solution_plot_data'].items()} if sol.get('stock_problem_solution_plot_data') else None
+                sol['stock_problem_solution_plot_data'] = transform_dict_with_np(
+                    sol['stock_problem_solution_plot_data']) if sol.get('stock_problem_solution_plot_data') else None
 
             data['solutions'] = solutions
 

@@ -40,3 +40,16 @@ def calculate_for_plot(y_solution: Callable, count: int, X0: float, X1: float, T
 
     except Exception as e:
         raise e
+
+
+def calculate_for_desired_values_plot(s_values: np.array, y_values: np.array) -> Dict[str, np.array]:
+    """
+
+    :param s_values: np.array of np.arrays of s that is np.array of two float values x and t: [[[x00, t00], [x01, t01], ...], ...]
+    :param y_values: np.array of np.arrays of y that is float: [[Y11, Y12, ...], ...]
+    :return: dict of points on axes and values of dots to plot
+    """
+
+    return {'X': np.array([[s_values[i][j][0] for j in range(len(s_values[i]))] for i in range(len(s_values))], dtype='object').flatten(),
+            'T': np.array([[s_values[i][j][1] for j in range(len(s_values[i]))] for i in range(len(s_values))], dtype='object').flatten(),
+            'Y': y_values.flatten()}

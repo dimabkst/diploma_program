@@ -1,7 +1,7 @@
 import numpy as np
 import inspect
 from typing import Callable, Dict
-from calculations.stock_problem import C_f, x_f, t_f, u_f
+from calculations.stock_problem import C_f, x_f, t_f, u_f, discrete_u_f
 
 
 def calculate_for_plot_stock_problem(y_solution: Callable, count: int, Z0: float, Z1: float, TAU0: float, TAU1: float, alpha: float, beta: float, gamma: float) -> Dict[str, np.array]:
@@ -49,3 +49,33 @@ def calculate_for_plot_stock_problem(y_solution: Callable, count: int, Z0: float
 
     except Exception as e:
         raise e
+
+
+def calculate_for_plot_stock_problem_transform(data: Dict[str, np.array], alpha: float, beta: float, gamma: float) -> Dict[str, np.array]:
+    """
+
+    :param data: dict of points on axes and values of function to transform
+    :param alpha: float value 
+    :param beta: float value
+    :param gamma: float value
+    :return: transormed dict of points on axes and values of function to plot
+    """
+    try:
+        T_values = np.array([[t_f(data['T'][i][j], alpha) for j in range(
+            len(data['T'][i]))] for i in range(len(data['T']))])
+
+        X_values = np.array([[x_f(data['X'][i][j], data['T'][i][j], C_f(alpha, beta), alpha) for j in range(
+            len(data['X'][i]))] for i in range(len(data['X']))])
+
+        Y_values = np.array([[discrete_u_f(data['Y'][i][j], T_values[i][j], gamma) for j in range(
+            len(data['Y'][i]))] for i in range(len(data['Y']))])
+
+        return {'X': X_values, 'T': T_values, 'Y': Y_values}
+    except Exception as e:
+        raise e
+
+
+def calculate_for_desired_values_plot_stock_problem(x_values: np.array, t_values: np.array, y_values: np.array) -> Dict[str, np.array]:
+    return {'X': x_values,
+            'T': t_values,
+            'Y': y_values}
