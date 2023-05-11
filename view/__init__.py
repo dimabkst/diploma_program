@@ -1,4 +1,4 @@
-from .utils import TextHandler, align_rows_cols
+from .utils import TextHandler, align_rows_cols, create_plot
 from .problem_conditions_input import problem_conditions_input
 from .initial_conditions_input import initial_conditions_input
 from .boundary_conditions_input import boundary_conditions_input

@@ -1,9 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_tkagg import (
-    FigureCanvasTkAgg, NavigationToolbar2Tk)
-from view.utils import align_rows_cols
+from view.utils import align_rows_cols, create_plot
 
 
 class results_output:
@@ -75,51 +72,15 @@ class results_output:
                     solution_step_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
                 stock_problem_plot_step_frame.grid(
                     column=3, row=0, sticky=(N, W, E, S))
+                #
 
                 # Place data
                 ttk.Label(solution_step_frame, text=f"Розв'язок №{i + 1}", style="WhiteBg.TLabel") \
                     .grid(column=0, row=0, sticky=(N, W, E, S))
 
                 # Plot of solution if exists
-                if solution_plot_data:
-                    # the figure that will contain the plot
-                    step_fig = Figure(figsize=(5, 5), dpi=100)
-
-                    # adding the subplot
-                    step_plot = step_fig.add_subplot(111, projection="3d")
-
-                    # plotting the graph
-                    step_plot.plot_surface(solution_plot_data['X'], solution_plot_data['T'], solution_plot_data['Y'],
-                                           cmap='viridis', edgecolor='none')
-                    step_plot.set_title('Графік y(x,t)')
-                    step_plot.set_xlabel('X')
-                    step_plot.set_ylabel('T')
-                    step_plot.set_zlabel('Y')
-
-                    solution_plot_data_desired_values = solution_plot_data.get(
-                        'desired_values')
-                    if solution_plot_data_desired_values:
-                        step_plot.scatter(
-                            solution_plot_data_desired_values['X'],
-                            solution_plot_data_desired_values['T'],
-                            solution_plot_data_desired_values['Y'], c='r', alpha=1)
-
-                    # creating the Tkinter canvas containing the Matplotlib figure
-                    step_canvas = FigureCanvasTkAgg(
-                        step_fig, master=plot_step_frame)
-                    step_canvas.draw()
-
-                    # placing the canvas on the Tkinter window
-                    step_canvas.get_tk_widget().pack()
-
-                    # creating the Matplotlib toolbar
-                    step_toolbar = NavigationToolbar2Tk(
-                        step_canvas, plot_step_frame)
-                    step_toolbar.update()
-
-                    # placing the toolbar on the Tkinter window
-                    step_canvas.get_tk_widget().pack()
-                    #
+                create_plot(solution_plot_data,
+                            'Графік y(x,t)', plot_step_frame)
 
                 ttk.Label(precision_step_frame, text=f"Точність розв'язку №{i + 1} Ɛ²:", style="WhiteBg.TLabel") \
                     .grid(column=0, row=0, sticky=(N, W, E, S))
@@ -132,62 +93,19 @@ class results_output:
                     .grid(column=1, row=0, sticky=(N, W, E, S))
 
                 # Plot of stock solution if exists
-                if stock_problem_solution_plot_data:
-                    # the figure that will contain the plot
-                    stock_problem_step_fig = Figure(figsize=(5, 5), dpi=100)
-
-                    # adding the subplot
-                    stock_problem_step_plot = stock_problem_step_fig.add_subplot(
-                        111, projection="3d")
-
-                    # plotting the graph
-                    stock_problem_step_plot.plot_surface(stock_problem_solution_plot_data['X'], stock_problem_solution_plot_data['T'], stock_problem_solution_plot_data['Y'],
-                                                         cmap='viridis', edgecolor='none')
-                    stock_problem_step_plot.set_title(
-                        'Графік щільності акцій u(x,t)')
-                    stock_problem_step_plot.set_xlabel('X')
-                    stock_problem_step_plot.set_ylabel('T')
-                    stock_problem_step_plot.set_zlabel('Y')
-
-                    stock_problem_solution_plot_data_desired_values = stock_problem_solution_plot_data.get(
-                        'desired_values')
-                    if stock_problem_solution_plot_data_desired_values:
-                        stock_problem_step_plot.scatter(
-                            stock_problem_solution_plot_data_desired_values['X'],
-                            stock_problem_solution_plot_data_desired_values['T'],
-                            stock_problem_solution_plot_data_desired_values['Y'], c='r', alpha=1)
-
-                    # creating the Tkinter canvas containing the Matplotlib figure
-                    stock_problem_step_canvas = FigureCanvasTkAgg(
-                        stock_problem_step_fig, master=stock_problem_plot_step_frame)
-                    stock_problem_step_canvas.draw()
-
-                    # placing the canvas on the Tkinter window
-                    stock_problem_step_canvas.get_tk_widget().pack()
-
-                    # creating the Matplotlib toolbar
-                    stock_problem_step_toolbar = NavigationToolbar2Tk(
-                        stock_problem_step_canvas, stock_problem_plot_step_frame)
-                    stock_problem_step_toolbar.update()
-
-                    # placing the toolbar on the Tkinter window
-                    stock_problem_step_canvas.get_tk_widget().pack()
-                    #
+                create_plot(
+                    stock_problem_solution_plot_data, 'Графік щільності акцій u(x,t)', stock_problem_plot_step_frame)
 
                 # Align
                 align_rows_cols(solution_step_frame)
-
                 align_rows_cols(plot_step_frame)
-
                 align_rows_cols(precision_step_frame)
-
                 align_rows_cols(Yrl0_step_frame)
-
                 align_rows_cols(stock_problem_plot_step_frame)
-
                 align_rows_cols(step_frame)
 
             self.solutions = solutions
+
             align_rows_cols(self.results_output_frame)
             align_rows_cols(self.root)
 
