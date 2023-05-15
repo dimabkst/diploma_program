@@ -238,183 +238,29 @@ class boundary_conditions_input:
         except Exception as e:
             raise e
 
-
-<< << << < HEAD
-   def change_and_show_LrG(self):
-        try:
-            if self.RG_var.get() and int(self.RG_var.get()) > 0:
-                old_count = len(self.LrG_vars)
-                for i in range(max(old_count, int(self.RG_var.get() or 0))):
-                    if i >= min(old_count, int(self.RG_var.get() or 0)):
-                        if old_count > int(self.RG_var.get() or 0):
-                            self.LrG_vars = self.LrG_vars[0:i]
-
-                            for ii in range(i, old_count):
-                                self.LrG_labels[ii].destroy()
-                                self.LrG_entries[ii].destroy()
-
-                            self.LrG_labels = self.LrG_labels[0:i]
-                            self.LrG_entries = self.LrG_entries[0:i]
-                            break
-                        else:
-                            self.LrG_vars.append(StringVar())
-
-                            self.LrG_labels.append(
-                                Label(self.LrG_LrG_frame, text=f"L{i + 1}G(dx):", style="WhiteBg.TLabel"))
-                            self.LrG_entries.append(
-                                Entry(self.LrG_LrG_frame, width=ENTRY_WIDTH,
-                                      textvariable=self.LrG_vars[i]))
-
-                            self.LrG_vars[i].set("1*d[x,0]")
-                            self.LrG_vars[i].trace(
-                                "w", lambda name, index, mode: self.change_and_show_boundary())
-                            self.LrG_labels[i].grid(
-                                row=i, column=0, sticky=(N, W, E, S))
-                            self.LrG_entries[i].grid(
-                                row=i, column=1, sticky=(N, W, E, S))
-        except Exception as e:
-            raise e
-
-    def change_and_show_slG(self):
-        try:
-            if self.LG_var.get() and int(self.LG_var.get()) > 0:
-                old_count = len(self.slG_vars)
-                for i in range(max(old_count, int(self.LG_var.get() or 0))):
-                    if i >= min(old_count, int(self.LG_var.get() or 0)):
-                        if old_count > int(self.LG_var.get() or 0):
-                            self.slG_vars = self.slG_vars[0:i]
-
-                            for ii in range(i, old_count):
-                                self.slG_labels[ii].destroy()
-                                self.slG_entries[ii].destroy()
-
-                            self.slG_labels = self.slG_labels[0:i]
-                            self.slG_entries = self.slG_entries[0:i]
-                            break
-                        else:
-                            self.slG_vars.append(StringVar())
-
-                            self.slG_labels.append(
-                                Label(self.slG_slG_frame, text=f"s{i + 1}G", style="WhiteBg.TLabel"))
-                            self.slG_entries.append(
-                                Entry(self.slG_slG_frame, width=ENTRY_WIDTH, textvariable=self.slG_vars[i]))
-
-                            self.slG_vars[i].set("(0,0)")
-                            self.slG_vars[i].trace(
-                                "w", lambda name, index, mode: self.change_and_show_boundary())
-                            self.slG_labels[i].grid(
-                                row=0, column=i, sticky=(N, W, E, S))
-                            self.slG_entries[i].grid(
-                                row=1, column=i, sticky=(N, W, E, S))
-        except Exception as e:
-            raise e
-
-    def change_and_show_yrlG(self):
-        try:
-            if (self.LG_var.get() and int(self.LG_var.get()) > 0) and (
-                    self.RG_var.get() and int(self.RG_var.get()) > 0) \
-                    and all([el.get() for el in self.LrG_vars])\
-                    and all([el.get() for el in self.slG_vars]):
-
-                old_RG = len(self.yrlG_vars)
-                old_LG = len(self.yrlG_vars[0])
-
-                for i in range(max(old_RG, int(self.RG_var.get() or 0))):
-                    if i >= min(old_RG, int(self.RG_var.get() or 0)):
-                        if old_RG > int(self.RG_var.get() or 0):
-                            self.yrlG_vars = self.yrlG_vars[0:i]
-
-                            for ii in range(i, old_RG):
-                                for k in range(int(self.LG_var.get() or 0)):
-                                    self.yrlG_labels[ii][k].destroy()
-                                    self.yrlG_entries[ii][k].destroy()
-
-                            self.yrlG_labels = self.yrlG_labels[0:i]
-                            self.yrlG_entries = self.yrlG_entries[0:i]
-                            break
-                        else:
-                            self.yrlG_vars.append(
-                                [StringVar() for _ in range(int(self.LG_var.get() or 0))])
-
-                            self.yrlG_labels.append([
-                                Label(self.yrlG_yrlG_frame,
-                                      text=f"L{i + 1}Gy(x,t)|(x,t)={self.slG_vars[k].get()} "
-                                      f"= Y{i + 1}{k + 1}G =", style="WhiteBg.TLabel") for k in
-                                range(int(self.LG_var.get() or 0))])
-                            self.yrlG_entries.append([
-                                Entry(self.yrlG_yrlG_frame, width=ENTRY_WIDTH,
-                                      textvariable=self.yrlG_vars[i][k]) for k in
-                                range(int(self.LG_var.get() or 0))])
-
-                            for k in range(int(self.LG_var.get() or 0)):
-                                self.yrlG_vars[i][k].set("0")
-                                self.yrlG_labels[i][k].grid(
-                                    row=i, column=k * 2, sticky=(N, W, E, S))
-                                self.yrlG_entries[i][k].grid(
-                                    row=i, column=k * 2 + 1, sticky=(N, W, E, S))
-
-                    for j in range(max(old_LG, int(self.LG_var.get() or 0))):
-                        if j >= min(old_LG, int(self.LG_var.get() or 0)):
-                            if old_LG > int(self.LG_var.get() or 0):
-                                self.yrlG_vars[i] = self.yrlG_vars[i][0:j]
-                                for k in range(j, old_LG):
-                                    self.yrlG_labels[i][k].destroy()
-                                    self.yrlG_entries[i][k].destroy()
-                                self.yrlG_labels[i] = self.yrlG_labels[i][0:j]
-                                self.yrlG_entries[i] = self.yrlG_entries[i][0:j]
-                                break
-                            else:
-                                self.yrlG_vars[i].append(StringVar())
-                                self.yrlG_vars[i][j].set("0")
-
-                                self.yrlG_labels[i].append(
-                                    Label(self.yrlG_yrlG_frame,
-                                          text=f"L{i + 1}Gy(x,t)|(x,t)={self.slG_vars[j].get()} "
-                                          f"= Y{i + 1}{j + 1}G =", style="WhiteBg.TLabel"))
-                                self.yrlG_labels[i][j].grid(
-                                    row=i, column=j * 2, sticky=(N, W, E, S))
-
-                                self.yrlG_entries[i].append(
-                                    Entry(self.yrlG_yrlG_frame, width=ENTRY_WIDTH,
-                                          textvariable=self.yrlG_vars[i][j]))
-                                self.yrlG_entries[i][j].grid(
-                                    row=i, column=j * 2 + 1, sticky=(N, W, E, S))
-                        else:
-                            self.yrlG_labels[i][j].destroy()
-                            self.yrlG_labels[i][j] = Label(self.yrlG_yrlG_frame,
-                                                           text=f"L{i + 1}Gy(x,t)|(x,t)={self.slG_vars[j].get()} "
-                                                           f"= Y{i + 1}{j + 1}G =", style="WhiteBg.TLabel")
-                            self.yrlG_labels[i][j].grid(
-                                row=i, column=j * 2, sticky=(N, W, E, S))
-
-        except Exception as e:
-            raise e
-
-== =====
->>>>>> > 37dc41d (view refactor start)
-   def change_and_show_boundary(self):
+    def change_and_show_boundary(self):
         try:
             def new_vars_callback(name, index, mode):
                 self.change_and_show_boundary()
 
             self.LrG_vars, self.LrG_labels, self.LrG_entries = change_and_show_1dim(self.RG_var,
-                                                                                    self.LrG_vars, new_vars_callback, "1*d[x,0]",
+                                                                                    self.LrG_vars, new_vars_callback, lambda i: "1*d[x,0]",
                                                                                     self.LrG_labels, lambda i: f"L{i + 1}G(dx):", "WhiteBg.TLabel",
-                                                                                    self.LrG_entries, ENTRY_WIDTH,
+                                                                                    self.LrG_entries, ENTRY_WIDTH, "normal",
                                                                                     self.LrG_LrG_frame,
                                                                                     isRow=True)
 
             self.slG_vars, self.slG_labels, self.slG_entries = change_and_show_1dim(self.LG_var,
-                                                                                    self.slG_vars, new_vars_callback, "(0,0)",
+                                                                                    self.slG_vars, new_vars_callback, lambda i: "(0,0)",
                                                                                     self.slG_labels, lambda i: f"s{i + 1}G", "WhiteBg.TLabel",
-                                                                                    self.slG_entries, ENTRY_WIDTH,
+                                                                                    self.slG_entries, ENTRY_WIDTH, "normal",
                                                                                     self.slG_slG_frame,
                                                                                     isRow=False)
 
             self.yrlG_vars, self.yrlG_labels, self.yrlG_entries = change_and_show_2dim(self.RG_var, self.LG_var,
-                                                                                       self.yrlG_vars, "0",
+                                                                                       self.yrlG_vars, lambda i, j: "0",
                                                                                        self.yrlG_labels, lambda i, j: f"L{i + 1}Gy(x,t)|(x,t)={self.slG_vars[j].get()} = Y{i + 1}{j + 1}G =", "WhiteBg.TLabel",
-                                                                                       self.yrlG_entries, ENTRY_WIDTH,
+                                                                                       self.yrlG_entries, ENTRY_WIDTH, "normal",
                                                                                        self.yrlG_yrlG_frame,
                                                                                        additional_conditions=all([el.get() for el in self.LrG_vars]) and all([el.get() for el in self.slG_vars]))
         except Exception as e:
