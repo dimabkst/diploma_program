@@ -1,8 +1,8 @@
 import numpy as np
-from parsings import parse_number, parse_S_, parse_function, parse_operator, parse_slG, parse_sij
+from parsings import parse_number, parse_S_, parse_function, parse_operator, parse_slG, parse_sij, parse_stock_problem
 
 
-def parse_data(data: dict) -> dict:
+def _parse_data(data: dict) -> dict:
     """
 
     :param data: dict with data retrieved from file
@@ -106,6 +106,29 @@ def parse_data(data: dict) -> dict:
         parsed_data['X1'] = parse_number(data['X1'])
         parsed_data['T0'] = parse_number(data['T0'])
         parsed_data['T1'] = parse_number(data['T1'])
+
+        return parsed_data
+    except Exception as e:
+        raise e
+
+
+def parse_data(data: dict, stock_problem: bool):
+    """
+
+    :param data: dict with data retrieved from file
+    :return: dict with parsed data
+    """
+    try:
+        parsed_data = _parse_data(data)
+
+        parsed_data['stock_problem'] = None
+        if stock_problem:
+            stock_problem_data = data['stock_problem']
+
+            stock_problem_parsed_data = parse_stock_problem(
+                stock_problem_data)
+
+            parsed_data['stock_problem'] = stock_problem_parsed_data
 
         return parsed_data
     except Exception as e:
