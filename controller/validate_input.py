@@ -1,5 +1,6 @@
 import numpy as np
 from typing import Callable
+from controller.stock_problem import validate_stock_problem_input
 
 
 def dim1PointInSet(point: float, pointSet: np.array) -> bool:
@@ -65,13 +66,13 @@ def segments_intersect(segment1: np.array, segment2: np.array) -> bool:
     return intersect
 
 
-def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: float,
-                   Lr0_list: np.array, xl0_list: np.array,
-                   LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
-                   Li_list: np.array, sij_list: np.array, Yij_list: np.array,
-                   v0_list: list, vG_list: list,
-                   integrals_precision: float, plot_grid_dimension: int,
-                   X0: float, X1: float, T0: float, T1: float) -> None:
+def _validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: float,
+                    Lr0_list: np.array, xl0_list: np.array,
+                    LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
+                    Li_list: np.array, sij_list: np.array, Yij_list: np.array,
+                    v0_list: list, vG_list: list,
+                    integrals_precision: float, plot_grid_dimension: int,
+                    X0: float, X1: float, T0: float, T1: float) -> None:
     """
 
     :param G: function of two variables x, t - Green's function
@@ -173,6 +174,33 @@ def validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.a
             raise Exception('T1 should be greater than T0')
 
         # There also should be validation of G but it is very hard to implement
+
+    except Exception as e:
+        raise e
+
+
+def validate_input(data: dict) -> None:
+    """
+
+    :param data: data to validate
+    :return: None
+    """
+    try:
+        _validate_input(data['G'], data['u'], data['S'], data['S0'], data['SG'], data['T'],
+                        data['Lr0_list'], data['xl0_list'],
+                        data['LrG_list'], data['slG_list'], data['YrlG_list'],
+                        data['Li_list'], data['sij_list'], data['Yij_list'],
+                        data['v0_list'], data['vG_list'],
+                        data['integrals_precision'], data['plot_grid_dimension'],
+                        data['X0'], data['X1'], data['T0'], data['T1'])
+
+        if data['stock_problem']:
+            validate_stock_problem_input(
+                data['stock_problem']['alpha'], data['stock_problem']['beta'], data['stock_problem']['gamma'],
+                data['stock_problem']['a'], data['stock_problem']['b'], data['stock_problem']['T'],
+                data['stock_problem']['I'], data['stock_problem']['xi_list'],
+                data['stock_problem']['J'], data['stock_problem']['tj_list'],
+                data['stock_problem']['K'], data['stock_problem']['xk_list'], data['stock_problem']['tk_list'], data['stock_problem']['uk_list'])
 
     except Exception as e:
         raise e
