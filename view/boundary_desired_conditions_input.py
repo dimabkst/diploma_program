@@ -4,8 +4,6 @@ from .boundary_conditions_input import boundary_conditions_input
 from .desired_conditions_input import desired_conditions_input
 from view.utils import align_rows_cols
 
-ENTRY_WIDTH = 10
-
 
 class boundary_desired_conditions_input:
 

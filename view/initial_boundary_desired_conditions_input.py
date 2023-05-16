@@ -3,9 +3,7 @@ from tkinter.ttk import Frame, Label, Entry, Scrollbar
 from .initial_conditions_input import initial_conditions_input
 from .boundary_conditions_input import boundary_conditions_input
 from .desired_conditions_input import desired_conditions_input
-from view.utils import align_rows_cols
-
-ENTRY_WIDTH = 10
+from view.utils import ENTRY_WIDTH, align_rows_cols
 
 
 class initial_boundary_desired_conditions_input:

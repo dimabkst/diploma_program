@@ -1,8 +1,6 @@
 from tkinter import N, E, W, S, StringVar, HORIZONTAL
 from tkinter.ttk import Frame, Label, Entry, Scrollbar
-from view.utils import align_rows_cols, create_frame_label_entrie_frames, create_label_entrie_frames
-
-ENTRY_WIDTH = 10
+from view.utils import ENTRY_WIDTH, align_rows_cols, create_frame_label_entrie_frames, create_label_entrie_frames
 
 
 class settings_input:

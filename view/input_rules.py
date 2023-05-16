@@ -2,8 +2,6 @@ from tkinter import N, E, W, S, PhotoImage
 from tkinter.ttk import Frame, Label
 from view.utils import align_rows_cols
 
-ENTRY_WIDTH = 10
-
 
 class input_rules:
 
