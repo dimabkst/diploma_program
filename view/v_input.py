@@ -1,5 +1,5 @@
-from tkinter import *
-from tkinter import ttk
+from tkinter import N, E, W, S, StringVar
+from tkinter.ttk import Style, Frame, Label, Entry
 from view.utils import align_rows_cols
 
 ENTRY_WIDTH = 10
@@ -9,7 +9,7 @@ class v_input:
 
     def __init__(self, root):
         try:
-            s = ttk.Style()
+            s = Style()
             s.configure("TopWhiteBg.TFrame", background="white",
                         borderwidth=5, relief='raised')
             s.configure("VectorWhiteBg.TFrame", background="white",
@@ -18,24 +18,24 @@ class v_input:
             s.configure("WhiteBg.TLabel", background="white")
 
             # Frames
-            self.root = ttk.Frame(
+            self.root = Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.root.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.count_frame = ttk.Frame(
+            self.count_frame = Frame(
                 self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.count_frame.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.v_frame = ttk.Frame(
+            self.v_frame = Frame(
                 self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.v_frame.grid(column=0, row=1, sticky=(N, W, E, S))
             #
 
             # Count input
-            self.count_label_frame = ttk.Frame(
+            self.count_label_frame = Frame(
                 self.count_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
             self.count_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.count_entry_frame = ttk.Frame(
+            self.count_entry_frame = Frame(
                 self.count_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
             self.count_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
@@ -44,19 +44,19 @@ class v_input:
             self.count_var.trace("w", lambda name, index,
                                  mode: self.change_and_show_v())
 
-            ttk.Label(self.count_label_frame, text="Кількість векторів v(x,t) -", style="WhiteBg.TLabel") \
+            Label(self.count_label_frame, text="Кількість векторів v(x,t) -", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
 
-            self.count_entry = ttk.Entry(
+            self.count_entry = Entry(
                 self.count_entry_frame, width=ENTRY_WIDTH, textvariable=self.count_var)
             self.count_entry.grid(column=0, row=0, sticky=(N, E, W, S))
             #
 
             # v input
-            self.v_label_frame = ttk.Frame(
+            self.v_label_frame = Frame(
                 self.v_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
             self.v_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.v_v_frame = ttk.Frame(
+            self.v_v_frame = Frame(
                 self.v_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
             self.v_v_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
@@ -72,14 +72,14 @@ class v_input:
                 self.vG_vars[i].set("0")
 
                 self.v0_entries.append(
-                    ttk.Entry(self.v_v_frame, width=ENTRY_WIDTH, textvariable=self.v0_vars[i]))
+                    Entry(self.v_v_frame, width=ENTRY_WIDTH, textvariable=self.v0_vars[i]))
                 self.v0_entries[i].grid(row=0, column=i, sticky=(N, W, E, S))
 
                 self.vG_entries.append(
-                    ttk.Entry(self.v_v_frame, width=ENTRY_WIDTH, textvariable=self.vG_vars[i]))
+                    Entry(self.v_v_frame, width=ENTRY_WIDTH, textvariable=self.vG_vars[i]))
                 self.vG_entries[i].grid(row=1, column=i, sticky=(N, W, E, S))
 
-            ttk.Label(self.v_label_frame, text="Вектори v(x,t):", style="WhiteBg.TLabel") \
+            Label(self.v_label_frame, text="Вектори v(x,t):", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
             #
 
@@ -119,11 +119,11 @@ class v_input:
                             self.vG_vars.append(StringVar())
 
                             self.v0_entries.append(
-                                ttk.Entry(self.v_v_frame, width=ENTRY_WIDTH,
-                                          textvariable=self.v0_vars[i]))
+                                Entry(self.v_v_frame, width=ENTRY_WIDTH,
+                                      textvariable=self.v0_vars[i]))
                             self.vG_entries.append(
-                                ttk.Entry(self.v_v_frame, width=ENTRY_WIDTH,
-                                          textvariable=self.vG_vars[i]))
+                                Entry(self.v_v_frame, width=ENTRY_WIDTH,
+                                      textvariable=self.vG_vars[i]))
 
                             self.v0_vars[i].set("0")
                             self.v0_entries[i].grid(

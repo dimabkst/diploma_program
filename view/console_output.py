@@ -1,7 +1,6 @@
 import logging
-from tkinter import *
-from tkinter import scrolledtext
-from tkinter import ttk
+from tkinter import N, E, W, S, scrolledtext
+from tkinter.ttk import Style, Frame
 from .utils import TextHandler, align_rows_cols
 
 ENTRY_WIDTH = 10
@@ -11,17 +10,17 @@ class console_output:
 
     def __init__(self, root):
         try:
-            s = ttk.Style()
+            s = Style()
             s.configure("TopWhiteBg.TFrame", background="white",
                         borderwidth=5, relief='raised')
             s.configure("WhiteBg.TFrame", background="white")
 
             # Frames
-            self.root = ttk.Frame(
+            self.root = Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.root.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.console_frame = ttk.Frame(
+            self.console_frame = Frame(
                 self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
             self.console_frame.grid(column=0, row=0, sticky=(N, W, E, S))
 

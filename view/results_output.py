@@ -1,5 +1,5 @@
-from tkinter import *
-from tkinter import ttk
+from tkinter import N, E, W, S
+from tkinter.ttk import Style, Frame, Label
 from view.utils import align_rows_cols, create_plot
 
 
@@ -9,18 +9,18 @@ class results_output:
         try:
             self.solutions = None
 
-            s = ttk.Style()
+            s = Style()
             s.configure("TopWhiteBg.TFrame", background="white",
                         borderwidth=5, relief='raised')
             s.configure("WhiteBg.TFrame", background="white")
             s.configure("WhiteBg.TLabel", background="white")
 
             # Frames
-            self.root = ttk.Frame(
+            self.root = Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.root.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.results_output_frame = ttk.Frame(
+            self.results_output_frame = Frame(
                 self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
             self.results_output_frame.grid(
                 column=0, row=0, sticky=(N, W, E, S))
@@ -48,48 +48,48 @@ class results_output:
                     "stock_problem_solution_plot_data")
 
                 # Frames
-                step_frame = ttk.Frame(
+                step_frame = Frame(
                     self.results_output_frame, style="TopWhiteBg.TFrame", padding="3 3 12 12")
                 step_frame.grid(column=0, row=i, sticky=(N, W, E, S))
 
-                solution_step_frame = ttk.Frame(
+                solution_step_frame = Frame(
                     step_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
                 solution_step_frame.grid(column=0, row=0, sticky=(N, W, E, S))
 
-                plot_step_frame = ttk.Frame(
+                plot_step_frame = Frame(
                     solution_step_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
                 plot_step_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
-                precision_step_frame = ttk.Frame(
+                precision_step_frame = Frame(
                     step_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
                 precision_step_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
-                Yrl0_step_frame = ttk.Frame(
+                Yrl0_step_frame = Frame(
                     step_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
                 Yrl0_step_frame.grid(column=2, row=0, sticky=(N, W, E, S))
 
-                stock_problem_plot_step_frame = ttk.Frame(
+                stock_problem_plot_step_frame = Frame(
                     solution_step_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
                 stock_problem_plot_step_frame.grid(
                     column=3, row=0, sticky=(N, W, E, S))
                 #
 
                 # Place data
-                ttk.Label(solution_step_frame, text=f"Розв'язок №{i + 1}", style="WhiteBg.TLabel") \
+                Label(solution_step_frame, text=f"Розв'язок №{i + 1}", style="WhiteBg.TLabel") \
                     .grid(column=0, row=0, sticky=(N, W, E, S))
 
                 # Plot of solution if exists
                 create_plot(solution_plot_data,
                             'Графік y(x,t)', plot_step_frame)
 
-                ttk.Label(precision_step_frame, text=f"Точність розв'язку №{i + 1} Ɛ²:", style="WhiteBg.TLabel") \
+                Label(precision_step_frame, text=f"Точність розв'язку №{i + 1} Ɛ²:", style="WhiteBg.TLabel") \
                     .grid(column=0, row=0, sticky=(N, W, E, S))
-                ttk.Label(precision_step_frame, text=f"{precision}", style="WhiteBg.TLabel") \
+                Label(precision_step_frame, text=f"{precision}", style="WhiteBg.TLabel") \
                     .grid(column=1, row=0, sticky=(N, W, E, S))
 
-                ttk.Label(Yrl0_step_frame, text=f"Керуючі Yrl0 ≡ phi №{i + 1}:", style="WhiteBg.TLabel") \
+                Label(Yrl0_step_frame, text=f"Керуючі Yrl0 ≡ phi №{i + 1}:", style="WhiteBg.TLabel") \
                     .grid(column=0, row=0, sticky=(N, W, E, S))
-                ttk.Label(Yrl0_step_frame, text=f"{Yrl0}", style="WhiteBg.TLabel") \
+                Label(Yrl0_step_frame, text=f"{Yrl0}", style="WhiteBg.TLabel") \
                     .grid(column=1, row=0, sticky=(N, W, E, S))
 
                 # Plot of stock solution if exists

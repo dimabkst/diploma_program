@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Frame
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)

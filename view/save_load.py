@@ -1,7 +1,7 @@
 import fnmatch
 import os
-from tkinter import *
-from tkinter import ttk
+from tkinter import N, E, W, S
+from tkinter.ttk import Style, Frame, Button
 from view.utils import align_rows_cols
 
 
@@ -24,7 +24,7 @@ class save_load:
             self.save_file_path = self.save_file_prefix + \
                 str(self.current_save_number) + self.save_file_suffix
 
-            s = ttk.Style()
+            s = Style()
             s.configure("TopWhiteBg.TFrame", background="white",
                         borderwidth=5, relief='raised')
             s.configure("VectorWhiteBg.TFrame", background="white",
@@ -33,22 +33,22 @@ class save_load:
             s.configure("WhiteBg.TLabel", background="white")
 
             # Frames
-            self.root = ttk.Frame(
+            self.root = Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.root.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.save_frame = ttk.Frame(
+            self.save_frame = Frame(
                 self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.save_frame.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.load_frame = ttk.Frame(
+            self.load_frame = Frame(
                 self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.load_frame.grid(column=1, row=0, sticky=(N, W, E, S))
             #
 
             # Save button
-            self.save_button = ttk.Button(self.save_frame, text="Зберегти введені дані",
-                                          command=self.changed_save_command)
+            self.save_button = Button(self.save_frame, text="Зберегти введені дані",
+                                      command=self.changed_save_command)
             self.save_button.grid(column=0, row=0, sticky=(N, W, E, S))
             #
 
@@ -56,13 +56,13 @@ class save_load:
             self.load_buttons = []
             self.delete_buttons = []
             for i in range(self.current_save_number):
-                load_button = ttk.Button(self.load_frame, text=f'Збереження №{i + 1}',
-                                         command=lambda i=i: self.load_command(
-                                             self.save_file_prefix + str(i + 1) + self.save_file_suffix))
+                load_button = Button(self.load_frame, text=f'Збереження №{i + 1}',
+                                     command=lambda i=i: self.load_command(
+                                         self.save_file_prefix + str(i + 1) + self.save_file_suffix))
                 load_button.grid(column=0, row=i, sticky=(N, W, E, S))
 
-                delete_button = ttk.Button(self.load_frame, text=f'Видалити збереження №{i + 1}',
-                                           command=lambda i=i: self.delete_save(i + 1))
+                delete_button = Button(self.load_frame, text=f'Видалити збереження №{i + 1}',
+                                       command=lambda i=i: self.delete_save(i + 1))
                 delete_button.grid(column=1, row=i, sticky=(N, W, E, S))
 
                 self.load_buttons.append(load_button)
@@ -105,15 +105,15 @@ class save_load:
 
     def change_and_show_load(self):
         try:
-            load_button = ttk.Button(self.load_frame, text=f'Збереження №{self.current_save_number}',
-                                     command=lambda i=self.current_save_number: self.load_command(
-                                         self.save_file_prefix + str(i) + self.save_file_suffix))
+            load_button = Button(self.load_frame, text=f'Збереження №{self.current_save_number}',
+                                 command=lambda i=self.current_save_number: self.load_command(
+                                     self.save_file_prefix + str(i) + self.save_file_suffix))
             load_button.grid(
                 column=0, row=self.current_save_number - 1, sticky=(N, W, E, S))
             self.load_buttons.append(load_button)
 
-            delete_button = ttk.Button(self.load_frame, text=f'Видалити збереження №{self.current_save_number}',
-                                       command=lambda i=self.current_save_number: self.delete_save(i))
+            delete_button = Button(self.load_frame, text=f'Видалити збереження №{self.current_save_number}',
+                                   command=lambda i=self.current_save_number: self.delete_save(i))
             delete_button.grid(
                 column=1, row=self.current_save_number - 1, sticky=(N, W, E, S))
             self.delete_buttons.append(delete_button)

@@ -1,6 +1,6 @@
 from typing import Callable
-from tkinter import *
-from tkinter import ttk
+from tkinter import N, E, W, S
+from tkinter.ttk import Style, Frame, Button
 from view.stock_problem import alpha_beta_gamma_window, stock_problem_window
 from view.utils import align_rows_cols
 
@@ -11,22 +11,22 @@ class stock_problem_page:
 
     def __init__(self, root, alpha_beta_gamma_solve_button_command: Callable, stock_problem_solve_button_command: Callable):
         try:
-            s = ttk.Style()
+            s = Style()
             s.configure("TopWhiteBg.TFrame", background="white",
                         borderwidth=5, relief='raised')
             s.configure("WhiteBg.TFrame", background="white")
 
             # Frames
-            self.root = ttk.Frame(
+            self.root = Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.root.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.alpha_beta_gamma_button_frame = ttk.Frame(
+            self.alpha_beta_gamma_button_frame = Frame(
                 self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
             self.alpha_beta_gamma_button_frame.grid(
                 column=0, row=0, sticky=(N, W, E, S))
 
-            self.stock_problem_button_frame = ttk.Frame(
+            self.stock_problem_button_frame = Frame(
                 self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
             self.stock_problem_button_frame.grid(
                 column=1, row=0, sticky=(N, W, E, S))
@@ -40,14 +40,14 @@ class stock_problem_page:
                 self.root, self.stock_problem_solve_button_command)
 
             # alpha_beta_gamma button
-            self.alpha_beta_gamma_button = ttk.Button(self.alpha_beta_gamma_button_frame, text="Знайти альфа, бета, гамма",
-                                                      command=self.alpha_beta_gamma_button_callback)
+            self.alpha_beta_gamma_button = Button(self.alpha_beta_gamma_button_frame, text="Знайти альфа, бета, гамма",
+                                                  command=self.alpha_beta_gamma_button_callback)
             self.alpha_beta_gamma_button.grid(
                 column=0, row=0, sticky=(N, W, E, S))
 
             # stock_problem button
-            self.stock_problem_button = ttk.Button(self.stock_problem_button_frame, text="Привести задачу керування динамікою щільності акцій",
-                                                   command=self.stock_problem_button_callback)
+            self.stock_problem_button = Button(self.stock_problem_button_frame, text="Привести задачу керування динамікою щільності акцій",
+                                               command=self.stock_problem_button_callback)
             self.stock_problem_button.grid(
                 column=0, row=0, sticky=(N, W, E, S))
 
