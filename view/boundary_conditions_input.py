@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from view.utils import align_rows_cols, change_and_show_1dim, change_and_show_2dim
+from view.utils import align_rows_cols, change_and_show_1dim, change_and_show_2dim, create_frame_label_entrie_frames
 
 ENTRY_WIDTH = 10
 
@@ -45,15 +45,8 @@ class boundary_conditions_input:
                 column=1, row=0, sticky=(N, W, E, S))
 
             # RG input
-            self.RG_frame = ttk.Frame(
-                self.boundary_top_left_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.RG_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.RG_label_frame = ttk.Frame(
-                self.RG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.RG_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.RG_entry_frame = ttk.Frame(
-                self.RG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.RG_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.RG_frame, self.RG_label_frame, self.RG_entry_frame = create_frame_label_entrie_frames(
+                root=self.boundary_top_left_frame, column=0, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.RG_var = StringVar()
             self.RG_var.set("1")
@@ -69,15 +62,8 @@ class boundary_conditions_input:
             #
 
             # LrG input
-            self.LrG_frame = ttk.Frame(
-                self.boundary_top_left_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.LrG_frame.grid(column=0, row=1, sticky=(N, W, E, S))
-            self.LrG_label_frame = ttk.Frame(
-                self.LrG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.LrG_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.LrG_LrG_frame = ttk.Frame(
-                self.LrG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.LrG_LrG_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.LrG_frame, self.LrG_label_frame, self.LrG_LrG_frame = create_frame_label_entrie_frames(
+                root=self.boundary_top_left_frame, column=0, row=1, isRow=False, style="WhiteBg.TFrame")
 
             self.LrG_labels = []
             self.LrG_vars = []
@@ -102,15 +88,8 @@ class boundary_conditions_input:
             #
 
             # LG input
-            self.LG_frame = ttk.Frame(
-                self.boundary_top_right_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.LG_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.LG_label_frame = ttk.Frame(
-                self.LG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.LG_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.LG_entry_frame = ttk.Frame(
-                self.LG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.LG_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.LG_frame, self.LG_label_frame, self.LG_entry_frame = create_frame_label_entrie_frames(
+                root=self.boundary_top_right_frame, column=0, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.LG_var = StringVar()
             self.LG_var.set("1")
@@ -126,15 +105,8 @@ class boundary_conditions_input:
             #
 
             # slG input
-            self.slG_frame = ttk.Frame(
-                self.boundary_top_right_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.slG_frame.grid(column=0, row=1, sticky=(N, W, E, S))
-            self.slG_label_frame = ttk.Frame(
-                self.slG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.slG_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.slG_slG_frame = ttk.Frame(
-                self.slG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.slG_slG_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.slG_frame, self.slG_label_frame, self.slG_slG_frame = create_frame_label_entrie_frames(
+                root=self.boundary_top_right_frame, column=0, row=1, isRow=False, style="WhiteBg.TFrame")
 
             self.slG_labels = []
             self.slG_vars = []
@@ -164,15 +136,8 @@ class boundary_conditions_input:
             #
 
             # YrlG input
-            self.yrlG_frame = ttk.Frame(
-                self.boundary_bot_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.yrlG_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.yrlG_label_frame = ttk.Frame(
-                self.yrlG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.yrlG_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.yrlG_yrlG_frame = ttk.Frame(
-                self.yrlG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.yrlG_yrlG_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.yrlG_frame, self.yrlG_label_frame, self.yrlG_yrlG_frame = create_frame_label_entrie_frames(
+                root=self.boundary_bot_frame, column=0, row=0, isRow=False, style="WhiteBg.TFrame")
 
             ttk.Label(self.yrlG_label_frame, text="Крайові спостереження YrlG процесу:", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))

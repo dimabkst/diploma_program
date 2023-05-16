@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from view.utils import align_rows_cols, change_and_show_1dim, change_and_show_2dim
+from view.utils import align_rows_cols, change_and_show_1dim, change_and_show_2dim, create_frame_label_entrie_frames
 
 ENTRY_WIDTH = 10
 
@@ -45,15 +45,8 @@ class initial_conditions_input:
                 column=1, row=0, sticky=(N, W, E, S))
 
             # R0 input
-            self.R0_frame = ttk.Frame(
-                self.initial_top_left_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.R0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.R0_label_frame = ttk.Frame(
-                self.R0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.R0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.R0_entry_frame = ttk.Frame(
-                self.R0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.R0_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.R0_frame, self.R0_label_frame, self.R0_entry_frame = create_frame_label_entrie_frames(
+                root=self.initial_top_left_frame, column=0, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.R0_var = StringVar()
             self.R0_var.set("1")
@@ -69,15 +62,8 @@ class initial_conditions_input:
             #
 
             # Lr0 input
-            self.Lr0_frame = ttk.Frame(
-                self.initial_top_left_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.Lr0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
-            self.Lr0_label_frame = ttk.Frame(
-                self.Lr0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.Lr0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.Lr0_Lr0_frame = ttk.Frame(
-                self.Lr0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.Lr0_Lr0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.Lr0_frame, self.Lr0_label_frame, self.Lr0_Lr0_frame = create_frame_label_entrie_frames(
+                root=self.initial_top_left_frame, column=0, row=1, isRow=False, style="WhiteBg.TFrame")
 
             self.Lr0_labels = []
             self.Lr0_vars = []
@@ -102,15 +88,8 @@ class initial_conditions_input:
             #
 
             # L0 input
-            self.L0_frame = ttk.Frame(
-                self.initial_top_right_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.L0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.L0_label_frame = ttk.Frame(
-                self.L0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.L0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.L0_entry_frame = ttk.Frame(
-                self.L0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.L0_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.L0_frame, self.L0_label_frame, self.L0_entry_frame = create_frame_label_entrie_frames(
+                root=self.initial_top_right_frame, column=0, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.L0_var = StringVar()
             self.L0_var.set("1")
@@ -126,15 +105,8 @@ class initial_conditions_input:
             #
 
             # xl0 input
-            self.xl0_frame = ttk.Frame(
-                self.initial_top_right_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.xl0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
-            self.xl0_label_frame = ttk.Frame(
-                self.xl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.xl0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.xl0_xl0_frame = ttk.Frame(
-                self.xl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.xl0_xl0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.xl0_frame, self.xl0_label_frame, self.xl0_xl0_frame = create_frame_label_entrie_frames(
+                root=self.initial_top_right_frame, column=0, row=1, isRow=False, style="WhiteBg.TFrame")
 
             self.xl0_labels = []
             self.xl0_vars = []
@@ -159,15 +131,8 @@ class initial_conditions_input:
             #
 
             # Yrl0 input
-            self.yrl0_frame = ttk.Frame(
-                self.initial_bot_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.yrl0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.yrl0_label_frame = ttk.Frame(
-                self.yrl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.yrl0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.yrl0_yrl0_frame = ttk.Frame(
-                self.yrl0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.yrl0_yrl0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.yrl0_frame, self.yrl0_label_frame, self.yrl0_yrl0_frame = create_frame_label_entrie_frames(
+                root=self.initial_bot_frame, column=0, row=0, isRow=False, style="WhiteBg.TFrame")
 
             ttk.Label(self.yrl0_label_frame, text="Початкові спостереження Yrl0 процесу:", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))

@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from view.utils import align_rows_cols
+from view.utils import align_rows_cols, create_frame_label_entrie_frames
 
 ENTRY_WIDTH = 10
 
@@ -15,46 +15,13 @@ class problem_conditions_input:
             s.configure("WhiteBg.TFrame", background="white")
             s.configure("WhiteBg.TLabel", background="white")
 
-            # Frames
             self.root = ttk.Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.root.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.S_frame = ttk.Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.S_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-
-            self.S0_frame = ttk.Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.S0_frame.grid(column=0, row=1, sticky=(N, W, E, S))
-
-            self.SG_frame = ttk.Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.SG_frame.grid(column=0, row=2, sticky=(N, W, E, S))
-
-            self.T_frame = ttk.Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.T_frame.grid(column=0, row=3, sticky=(N, W, E, S))
-
-            self.L_frame = ttk.Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.L_frame.grid(column=0, row=4, sticky=(N, W, E, S))
-
-            self.u_frame = ttk.Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.u_frame.grid(column=0, row=5, sticky=(N, W, E, S))
-
-            self.G_frame = ttk.Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.G_frame.grid(column=0, row=6, sticky=(N, W, E, S))
-
             # S_input
-            self.S_label_frame = ttk.Frame(
-                self.S_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.S_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.S_entry_frame = ttk.Frame(
-                self.S_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.S_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.S_frame, self.S_label_frame, self.S_entry_frame = create_frame_label_entrie_frames(
+                root=self.root, column=0, row=0, isRow=True, style="TopWhiteBg.TFrame")
 
             self.S_var = StringVar()
             self.S_var.set("[0, 1]")
@@ -72,6 +39,9 @@ class problem_conditions_input:
             #
 
             # S0_input
+            self.S0_frame, self.S0_label_frame, self.S0_entry_frame = create_frame_label_entrie_frames(
+                root=self.root, column=0, row=1, isRow=True, style="TopWhiteBg.TFrame")
+
             self.S0_label_frame = ttk.Frame(
                 self.S0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
             self.S0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
@@ -95,12 +65,8 @@ class problem_conditions_input:
             #
 
             # SG_input
-            self.SG_label_frame = ttk.Frame(
-                self.SG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.SG_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.SG_entry_frame = ttk.Frame(
-                self.SG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.SG_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.SG_frame, self.SG_label_frame, self.SG_entry_frame = create_frame_label_entrie_frames(
+                root=self.root, column=0, row=2, isRow=True, style="TopWhiteBg.TFrame")
 
             self.SG_var = StringVar()
             self.SG_var.set("[0, 1]")
@@ -118,12 +84,8 @@ class problem_conditions_input:
             #
 
             # T_input
-            self.T_label_frame = ttk.Frame(
-                self.T_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.T_entry_frame = ttk.Frame(
-                self.T_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.T_frame, self.T_label_frame, self.T_entry_frame = create_frame_label_entrie_frames(
+                root=self.root, column=0, row=3, isRow=True, style="TopWhiteBg.TFrame")
 
             self.T_var = StringVar()
             self.T_var.set("5")
@@ -137,13 +99,9 @@ class problem_conditions_input:
             #
 
             # L_input
-            self.L_label_frame = ttk.Frame(
-                self.L_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.L_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.L_frame, self.L_label_frame, self.L_entry_frame = create_frame_label_entrie_frames(
+                root=self.root, column=0, row=4, isRow=True, style="TopWhiteBg.TFrame")
 
-            self.L_entry_frame = ttk.Frame(
-                self.L_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.L_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
             self.L_format_frame = ttk.Frame(
                 self.L_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
             self.L_format_frame.grid(column=1, row=1, sticky=(N, W, E, S))
@@ -169,12 +127,8 @@ class problem_conditions_input:
             #
 
             # u_input
-            self.u_label_frame = ttk.Frame(
-                self.u_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.u_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.u_entry_frame = ttk.Frame(
-                self.u_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.u_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.u_frame, self.u_label_frame, self.u_entry_frame = create_frame_label_entrie_frames(
+                root=self.root, column=0, row=5, isRow=True, style="TopWhiteBg.TFrame")
 
             self.u_var = StringVar()
             self.u_var.set("0")
@@ -188,12 +142,8 @@ class problem_conditions_input:
             #
 
             # G_input
-            self.G_label_frame = ttk.Frame(
-                self.G_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.G_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.G_entry_frame = ttk.Frame(
-                self.G_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.G_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.G_frame, self.G_label_frame, self.G_entry_frame = create_frame_label_entrie_frames(
+                root=self.root, column=0, row=6, isRow=True, style="TopWhiteBg.TFrame")
 
             self.G_var = StringVar()
             self.G_var.set("Heaviside(t)*exp(-x^2/(4*t)) / sqrt(4 * pi * t)")
