@@ -1,6 +1,6 @@
 from tkinter import N, E, W, S, StringVar, HORIZONTAL
 from tkinter.ttk import Frame, Label, Entry, Scrollbar
-from view.utils import ENTRY_WIDTH, align_rows_cols, create_frame_label_entrie_frames, create_label_entrie_frames
+from view.utils import ENTRY_WIDTH, create_frame_label_entrie_frames, create_label_entrie_frames
 
 
 class settings_input:
@@ -190,40 +190,6 @@ class settings_input:
                 self.T_entry_frame, width=ENTRY_WIDTH, textvariable=self.T_var, state="readonly")
             self.T_entry.grid(column=0, row=0, sticky=(N, E, W, S))
 
-            # Align everything
-            align_rows_cols(self.integrals_precision_frame)
-            align_rows_cols(self.integrals_precision_label_frame)
-            align_rows_cols(self.integrals_precision_entry_frame)
-
-            align_rows_cols(self.plot_grid_dimension_frame)
-            align_rows_cols(self.plot_grid_dimension_label_frame)
-            align_rows_cols(self.plot_grid_dimension_entry_frame)
-
-            align_rows_cols(self.plot_limits_frame)
-            align_rows_cols(self.X0_label_frame)
-            align_rows_cols(self.X0_entry_frame)
-            align_rows_cols(self.X1_label_frame)
-            align_rows_cols(self.X1_entry_frame)
-            align_rows_cols(self.T0_label_frame)
-            align_rows_cols(self.T0_entry_frame)
-            align_rows_cols(self.T1_label_frame)
-            align_rows_cols(self.T1_entry_frame)
-
-            align_rows_cols(self.S_entry_frame)
-            align_rows_cols(self.S_label_frame)
-            align_rows_cols(self.S_frame)
-            align_rows_cols(self.S0_entry_frame)
-            align_rows_cols(self.S0_label_frame)
-            align_rows_cols(self.S0_frame)
-            align_rows_cols(self.SG_entry_frame)
-            align_rows_cols(self.SG_label_frame)
-            align_rows_cols(self.SG_frame)
-            align_rows_cols(self.T_entry_frame)
-            align_rows_cols(self.T_label_frame)
-            align_rows_cols(self.T_frame)
-            align_rows_cols(self.S_S0_SG_T_frame)
-
-            align_rows_cols(self.root)
         except Exception as e:
             raise e
 

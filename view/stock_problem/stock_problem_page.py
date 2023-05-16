@@ -2,7 +2,6 @@ from typing import Callable
 from tkinter import N, E, W, S
 from tkinter.ttk import Frame, Button
 from view.stock_problem import alpha_beta_gamma_window, stock_problem_window
-from view.utils import align_rows_cols
 
 
 class stock_problem_page:
@@ -43,11 +42,6 @@ class stock_problem_page:
                                                command=self.stock_problem_button_callback)
             self.stock_problem_button.grid(
                 column=0, row=0, sticky=(N, W, E, S))
-
-            # Align
-            align_rows_cols(self.alpha_beta_gamma_button_frame)
-            align_rows_cols(self.stock_problem_button_frame)
-            align_rows_cols(self.root)
         except Exception as e:
             raise e
 

@@ -65,7 +65,6 @@ class View:
             self.notebook.bind("<<NotebookTabChanged>>",
                                func=self.notebook_tab_changed_callback)
 
-            align_rows_cols(self.notebook)
             align_rows_cols(self.root)
 
             self.root.protocol("WM_DELETE_WINDOW", self.close_root_callback)

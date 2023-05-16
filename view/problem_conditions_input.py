@@ -1,6 +1,6 @@
 from tkinter import N, E, W, S, StringVar, Scrollbar, HORIZONTAL, PhotoImage
 from tkinter.ttk import Frame, Label, Entry
-from view.utils import ENTRY_WIDTH, align_rows_cols, create_frame_label_entrie_frames
+from view.utils import ENTRY_WIDTH, create_frame_label_entrie_frames
 
 
 class problem_conditions_input:
@@ -151,36 +151,5 @@ class problem_conditions_input:
             self.G_entry_hsb.grid(column=0, row=1, sticky=(E, W))
             self.G_entry.grid(column=0, row=0, sticky=(N, E, W, S))
             #
-
-            # Align everything
-            align_rows_cols(self.S_label_frame)
-            align_rows_cols(self.S_entry_frame)
-            align_rows_cols(self.S_frame)
-
-            align_rows_cols(self.S0_label_frame)
-            align_rows_cols(self.S0_entry_frame)
-            align_rows_cols(self.S0_frame)
-
-            align_rows_cols(self.SG_label_frame)
-            align_rows_cols(self.SG_entry_frame)
-            align_rows_cols(self.SG_frame)
-
-            align_rows_cols(self.T_label_frame)
-            align_rows_cols(self.T_entry_frame)
-            align_rows_cols(self.T_frame)
-
-            align_rows_cols(self.L_label_frame)
-            align_rows_cols(self.L_entry_frame)
-            align_rows_cols(self.L_frame)
-
-            align_rows_cols(self.u_label_frame)
-            align_rows_cols(self.u_entry_frame)
-            align_rows_cols(self.u_frame)
-
-            align_rows_cols(self.G_label_frame)
-            align_rows_cols(self.G_entry_frame)
-            align_rows_cols(self.G_frame)
-
-            align_rows_cols(self.root)
         except Exception as e:
             raise e

@@ -60,13 +60,6 @@ class save_load:
                 self.load_buttons.append(load_button)
                 self.delete_buttons.append(delete_button)
             #
-
-            # Align
-            align_rows_cols(self.save_frame)
-            align_rows_cols(self.load_frame)
-
-            align_rows_cols(self.root)
-            #
         except Exception as e:
             raise e
 

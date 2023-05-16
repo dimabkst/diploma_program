@@ -1,7 +1,7 @@
 import logging
 from tkinter import N, E, W, S, scrolledtext
 from tkinter.ttk import Frame
-from .utils import TextHandler, align_rows_cols
+from .utils import TextHandler
 
 
 class console_output:
@@ -31,9 +31,5 @@ class console_output:
             # Add the handler to logger
             logger = logging.getLogger()
             logger.addHandler(text_handler)
-
-            # Align
-            align_rows_cols(self.console_frame)
-            align_rows_cols(self.root)
         except Exception as e:
             raise e

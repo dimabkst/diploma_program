@@ -19,11 +19,6 @@ class results_output:
             self.results_output_frame.grid(
                 column=0, row=0, sticky=(N, W, E, S))
             #
-
-            # Align
-            align_rows_cols(self.results_output_frame)
-            align_rows_cols(self.root)
-            #
         except Exception as e:
             raise e
 
@@ -91,17 +86,9 @@ class results_output:
                     stock_problem_solution_plot_data, 'Графік щільності акцій u(x,t)', stock_problem_plot_step_frame)
 
                 # Align
-                align_rows_cols(solution_step_frame)
-                align_rows_cols(plot_step_frame)
-                align_rows_cols(precision_step_frame)
-                align_rows_cols(Yrl0_step_frame)
-                align_rows_cols(stock_problem_plot_step_frame)
-                align_rows_cols(step_frame)
+                align_rows_cols(self.results_output_frame)
 
             self.solutions = solutions
-
-            align_rows_cols(self.results_output_frame)
-            align_rows_cols(self.root)
 
         except Exception as e:
             raise e

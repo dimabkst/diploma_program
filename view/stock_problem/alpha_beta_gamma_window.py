@@ -220,43 +220,7 @@ class alpha_beta_gamma_window:
             #
             #
 
-            # Align
-            align_rows_cols(self.mu_frame)
-            align_rows_cols(self.mu_label_frame)
-            align_rows_cols(self.mu_entry_frame)
-
-            align_rows_cols(self.sigma_frame)
-            align_rows_cols(self.sigma_label_frame)
-            align_rows_cols(self.sigma_entry_frame)
-
-            align_rows_cols(self.b_frame)
-            align_rows_cols(self.b_label_frame)
-            align_rows_cols(self.b_entry_frame)
-
-            align_rows_cols(self.c_frame)
-            align_rows_cols(self.c_label_frame)
-            align_rows_cols(self.c_entry_frame)
-
-            align_rows_cols(self.input_frame)
-
-            align_rows_cols(self.solve_button_frame)
-
-            align_rows_cols(self.alpha_frame)
-            align_rows_cols(self.alpha_label_frame)
-            align_rows_cols(self.alpha_entry_frame)
-
-            align_rows_cols(self.beta_frame)
-            align_rows_cols(self.beta_label_frame)
-            align_rows_cols(self.beta_entry_frame)
-
-            align_rows_cols(self.gamma_frame)
-            align_rows_cols(self.gamma_label_frame)
-            align_rows_cols(self.gamma_entry_frame)
-
-            align_rows_cols(self.output_frame)
-
             align_rows_cols(self.window)
-            #
         except Exception as e:
             raise e
 

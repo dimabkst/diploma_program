@@ -1,6 +1,6 @@
 from tkinter import N, E, W, S, StringVar, PhotoImage
 from tkinter.ttk import Frame, Label, Entry
-from view.utils import ENTRY_WIDTH, align_rows_cols, change_and_show_1dim, change_and_show_2dim, create_frame_label_entrie_frames
+from view.utils import ENTRY_WIDTH, change_and_show_1dim, change_and_show_2dim, create_frame_label_entrie_frames
 
 
 class boundary_conditions_input:
@@ -159,38 +159,6 @@ class boundary_conditions_input:
                                                       textvariable=self.yrlG_vars[r][l]))
                     self.yrlG_entries[r][l].grid(
                         row=r, column=l * 2 + 1, sticky=(N, W, E, S))
-            #
-
-            # Align everything
-            align_rows_cols(self.RG_label_frame)
-            align_rows_cols(self.RG_entry_frame)
-            align_rows_cols(self.RG_frame)
-
-            align_rows_cols(self.LrG_frame)
-            align_rows_cols(self.LrG_label_frame)
-            align_rows_cols(self.LrG_LrG_frame)
-
-            align_rows_cols(self.LG_label_frame)
-            align_rows_cols(self.LG_entry_frame)
-            align_rows_cols(self.LG_frame)
-
-            align_rows_cols(self.slG_frame)
-            align_rows_cols(self.slG_label_frame)
-            align_rows_cols(self.slG_slG_frame)
-
-            align_rows_cols(self.boundary_top_left_frame)
-            align_rows_cols(self.boundary_top_right_frame)
-            align_rows_cols(self.boundary_top_frame)
-
-            align_rows_cols(self.yrlG_frame)
-            align_rows_cols(self.yrlG_label_frame)
-            align_rows_cols(self.yrlG_yrlG_frame)
-
-            align_rows_cols(self.boundary_bot_frame)
-
-            align_rows_cols(self.boundary_frame)
-
-            align_rows_cols(self.root)
             #
         except Exception as e:
             raise e

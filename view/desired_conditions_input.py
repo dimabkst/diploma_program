@@ -1,6 +1,6 @@
 from tkinter import N, E, W, S, StringVar, PhotoImage
 from tkinter.ttk import Frame, Label, Entry
-from view.utils import ENTRY_WIDTH, align_rows_cols, change_and_show_1dim, change_and_show_2dim_desired, create_frame_label_entrie_frames
+from view.utils import ENTRY_WIDTH, change_and_show_1dim, change_and_show_2dim_desired, create_frame_label_entrie_frames
 
 
 class desired_conditions_input:
@@ -176,37 +176,6 @@ class desired_conditions_input:
                     self.yij_entries[i][j].grid(
                         row=i, column=j * 2 + 1, sticky=(N, W, E, S))
 
-            # Align everything
-            align_rows_cols(self.I_label_frame)
-            align_rows_cols(self.I_entry_frame)
-            align_rows_cols(self.I_frame)
-
-            align_rows_cols(self.Li_frame)
-            align_rows_cols(self.Li_label_frame)
-            align_rows_cols(self.Li_Li_frame)
-
-            align_rows_cols(self.Ji_label_frame)
-            align_rows_cols(self.Ji_Ji_frame)
-            align_rows_cols(self.Ji_frame)
-
-            align_rows_cols(self.sij_frame)
-            align_rows_cols(self.sij_label_frame)
-            align_rows_cols(self.sij_sij_frame)
-
-            align_rows_cols(self.desired_top_left_frame)
-            align_rows_cols(self.desired_top_right_frame)
-            align_rows_cols(self.desired_top_frame)
-
-            align_rows_cols(self.yij_frame)
-            align_rows_cols(self.yij_label_frame)
-            align_rows_cols(self.yij_yij_frame)
-
-            align_rows_cols(self.desired_bot_frame)
-
-            align_rows_cols(self.desired_frame)
-
-            align_rows_cols(self.root)
-            #
         except Exception as e:
             raise e
 

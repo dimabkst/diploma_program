@@ -1,6 +1,5 @@
 from tkinter import N, E, W, S, PhotoImage
 from tkinter.ttk import Frame, Label
-from view.utils import align_rows_cols
 
 
 class input_rules:
@@ -83,13 +82,5 @@ class input_rules:
                   font=font,
                   style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
-
-            # Align
-            align_rows_cols(self.sets)
-            align_rows_cols(self.numbers)
-            align_rows_cols(self.points)
-            align_rows_cols(self.operators)
-            align_rows_cols(self.functions)
-            align_rows_cols(self.root)
         except Exception as e:
             raise e

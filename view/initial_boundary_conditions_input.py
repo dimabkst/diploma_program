@@ -2,7 +2,6 @@ from tkinter import N, E, W, S
 from tkinter.ttk import Frame
 from .initial_conditions_input import initial_conditions_input
 from .boundary_conditions_input import boundary_conditions_input
-from view.utils import align_rows_cols
 
 
 class initial_boundary_conditions_input:
@@ -26,9 +25,5 @@ class initial_boundary_conditions_input:
                 self.initial_frame)
             self.boundary_conditions_input = boundary_conditions_input(
                 self.boundary_frame)
-
-            align_rows_cols(self.initial_frame)
-            align_rows_cols(self.boundary_frame)
-            align_rows_cols(self.root)
         except Exception as e:
             raise e

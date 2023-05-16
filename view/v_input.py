@@ -1,6 +1,6 @@
 from tkinter import N, E, W, S, StringVar
 from tkinter.ttk import Frame, Label, Entry
-from view.utils import ENTRY_WIDTH, align_rows_cols, create_frame_label_entrie_frames
+from view.utils import ENTRY_WIDTH,  create_frame_label_entrie_frames
 
 
 class v_input:
@@ -53,18 +53,6 @@ class v_input:
 
             Label(self.v_label_frame, text="Вектори v(x,t):", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
-            #
-
-            # Align
-            align_rows_cols(self.count_label_frame)
-            align_rows_cols(self.count_entry_frame)
-            align_rows_cols(self.count_frame)
-
-            align_rows_cols(self.v_label_frame)
-            align_rows_cols(self.v_v_frame)
-            align_rows_cols(self.v_frame)
-
-            align_rows_cols(self.root)
             #
         except Exception as e:
             raise e
