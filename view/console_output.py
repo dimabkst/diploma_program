@@ -3,8 +3,6 @@ from tkinter import N, E, W, S, scrolledtext
 from tkinter.ttk import Frame
 from .utils import TextHandler, align_rows_cols
 
-ENTRY_WIDTH = 10
-
 
 class console_output:
 

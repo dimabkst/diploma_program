@@ -4,8 +4,6 @@ from tkinter.ttk import Frame, Button
 from view.stock_problem import alpha_beta_gamma_window, stock_problem_window
 from view.utils import align_rows_cols
 
-ENTRY_WIDTH = 10
-
 
 class stock_problem_page:
 

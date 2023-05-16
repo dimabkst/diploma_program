@@ -1,9 +1,7 @@
 from typing import Callable
 from tkinter import N, E, W, S, Toplevel, StringVar
 from tkinter.ttk import Frame, Label, Entry, Button
-from view.utils import align_rows_cols
-
-ENTRY_WIDTH = 10
+from view.utils import ENTRY_WIDTH, align_rows_cols
 
 
 class alpha_beta_gamma_window:
