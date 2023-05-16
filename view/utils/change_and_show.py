@@ -1,5 +1,5 @@
-from tkinter import *
-from tkinter import ttk
+from tkinter import N, E, W, S, StringVar
+from tkinter.ttk import Label, Entry
 
 
 def change_and_show_1dim(var_to_watch,
@@ -27,10 +27,10 @@ def change_and_show_1dim(var_to_watch,
                         vars_to_cas.append(StringVar())
 
                         labels_to_cas.append(
-                            ttk.Label(frame_to_cas, text=labels_to_cas_text_function(i), style=labels_to_cas_style))
+                            Label(frame_to_cas, text=labels_to_cas_text_function(i), style=labels_to_cas_style))
                         entries_to_cas.append(
-                            ttk.Entry(frame_to_cas, width=entries_to_cas_width,
-                                      textvariable=vars_to_cas[i], state=entries_state))
+                            Entry(frame_to_cas, width=entries_to_cas_width,
+                                  textvariable=vars_to_cas[i], state=entries_state))
 
                         vars_to_cas[i].set(vars_to_cas_new_value_function(i))
                         vars_to_cas[i].trace(
@@ -77,12 +77,12 @@ def change_and_show_2dim(row_var_to_watch, col_var_to_watch,
                             [StringVar() for _ in range(int(col_var_to_watch.get() or 0))])
 
                         labels_to_cas.append([
-                            ttk.Label(frame_to_cas,
-                                      text=labels_to_cas_text_function(i, k), style=labels_to_cas_style) for k in
+                            Label(frame_to_cas,
+                                  text=labels_to_cas_text_function(i, k), style=labels_to_cas_style) for k in
                             range(int(col_var_to_watch.get() or 0))])
                         entries_to_cas.append([
-                            ttk.Entry(frame_to_cas, width=entries_to_cas_width,
-                                      textvariable=vars_to_cas[i][k], state=entries_state) for k in
+                            Entry(frame_to_cas, width=entries_to_cas_width,
+                                  textvariable=vars_to_cas[i][k], state=entries_state) for k in
                             range(int(col_var_to_watch.get() or 0))])
 
                         for k in range(int(col_var_to_watch.get() or 0)):
@@ -109,20 +109,20 @@ def change_and_show_2dim(row_var_to_watch, col_var_to_watch,
                                 vars_to_cas_new_value_function(i, j))
 
                             labels_to_cas[i].append(
-                                ttk.Label(frame_to_cas,
-                                          text=labels_to_cas_text_function(i, j), style=labels_to_cas_style))
+                                Label(frame_to_cas,
+                                      text=labels_to_cas_text_function(i, j), style=labels_to_cas_style))
                             labels_to_cas[i][j].grid(
                                 row=i, column=j * 2, sticky=(N, W, E, S))
 
                             entries_to_cas[i].append(
-                                ttk.Entry(frame_to_cas, width=entries_to_cas_width,
-                                          textvariable=vars_to_cas[i][j], state=entries_state))
+                                Entry(frame_to_cas, width=entries_to_cas_width,
+                                      textvariable=vars_to_cas[i][j], state=entries_state))
                             entries_to_cas[i][j].grid(
                                 row=i, column=j * 2 + 1, sticky=(N, W, E, S))
                     else:
                         labels_to_cas[i][j].destroy()
-                        labels_to_cas[i][j] = ttk.Label(frame_to_cas,
-                                                        text=labels_to_cas_text_function(i, j), style=labels_to_cas_style)
+                        labels_to_cas[i][j] = Label(frame_to_cas,
+                                                    text=labels_to_cas_text_function(i, j), style=labels_to_cas_style)
                         labels_to_cas[i][j].grid(
                             row=i, column=j * 2, sticky=(N, W, E, S))
 
@@ -167,12 +167,12 @@ def change_and_show_2dim_desired(row_var_to_watch, col_vars_to_watch,
                             [StringVar() for _ in range(int(col_vars_to_watch[i].get() or 0))])
 
                         labels_to_cas.append([
-                            ttk.Label(frame_to_cas,
-                                      text=labels_to_cas_text_function(i, k), style=labels_to_cas_style) for k in
+                            Label(frame_to_cas,
+                                  text=labels_to_cas_text_function(i, k), style=labels_to_cas_style) for k in
                             range(int(col_vars_to_watch[i].get() or 0))])
                         entries_to_cas.append([
-                            ttk.Entry(frame_to_cas, width=entries_to_cas_width,
-                                      textvariable=vars_to_cas[i][k], state=entries_state) for k in
+                            Entry(frame_to_cas, width=entries_to_cas_width,
+                                  textvariable=vars_to_cas[i][k], state=entries_state) for k in
                             range(int(col_vars_to_watch[i].get() or 0))])
 
                         for k in range(int(col_vars_to_watch[i].get() or 0)):
@@ -208,20 +208,20 @@ def change_and_show_2dim_desired(row_var_to_watch, col_vars_to_watch,
                                 "w", lambda name, index, mode: vars_to_cas_callback(name, index, mode))
 
                             labels_to_cas[i].append(
-                                ttk.Label(frame_to_cas,
-                                          text=labels_to_cas_text_function(i, j), style=labels_to_cas_style))
+                                Label(frame_to_cas,
+                                      text=labels_to_cas_text_function(i, j), style=labels_to_cas_style))
                             labels_to_cas[i][j].grid(
                                 row=i, column=j * 2, sticky=(N, W, E, S))
 
                             entries_to_cas[i].append(
-                                ttk.Entry(frame_to_cas, width=entries_to_cas_width,
-                                          textvariable=vars_to_cas[i][j], state=entries_state))
+                                Entry(frame_to_cas, width=entries_to_cas_width,
+                                      textvariable=vars_to_cas[i][j], state=entries_state))
                             entries_to_cas[i][j].grid(
                                 row=i, column=j * 2 + 1, sticky=(N, W, E, S))
                     else:
                         labels_to_cas[i][j].destroy()
-                        labels_to_cas[i][j] = ttk.Label(frame_to_cas,
-                                                        text=labels_to_cas_text_function(i, j), style=labels_to_cas_style)
+                        labels_to_cas[i][j] = Label(frame_to_cas,
+                                                    text=labels_to_cas_text_function(i, j), style=labels_to_cas_style)
                         labels_to_cas[i][j].grid(
                             row=i, column=j * 2, sticky=(N, W, E, S))
 
