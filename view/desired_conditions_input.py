@@ -1,6 +1,6 @@
 from tkinter import N, E, W, S, StringVar, PhotoImage
 from tkinter.ttk import Style, Frame, Label, Entry
-from view.utils import align_rows_cols, change_and_show_1dim, change_and_show_2dim_desired
+from view.utils import align_rows_cols, change_and_show_1dim, change_and_show_2dim_desired, create_frame_label_entrie_frames
 
 ENTRY_WIDTH = 10
 
@@ -45,15 +45,8 @@ class desired_conditions_input:
                 column=1, row=0, sticky=(N, W, E, S))
 
             # I input
-            self.I_frame = Frame(
-                self.desired_top_left_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.I_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.I_label_frame = Frame(
-                self.I_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.I_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.I_entry_frame = Frame(
-                self.I_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.I_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.I_frame, self.I_label_frame, self.I_entry_frame = create_frame_label_entrie_frames(
+                root=self.desired_top_left_frame, column=0, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.I_var = StringVar()
             self.I_var.set("1")
@@ -69,15 +62,8 @@ class desired_conditions_input:
             #
 
             # Li input
-            self.Li_frame = Frame(
-                self.desired_top_left_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.Li_frame.grid(column=0, row=1, sticky=(N, W, E, S))
-            self.Li_label_frame = Frame(
-                self.Li_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.Li_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.Li_Li_frame = Frame(
-                self.Li_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.Li_Li_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.Li_frame, self.Li_label_frame, self.Li_Li_frame = create_frame_label_entrie_frames(
+                root=self.desired_top_left_frame, column=0, row=1, isRow=False, style="WhiteBg.TFrame")
 
             self.Li_labels = []
             self.Li_vars = []
@@ -102,15 +88,8 @@ class desired_conditions_input:
             #
 
             # Ji input
-            self.Ji_frame = Frame(
-                self.desired_top_right_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.Ji_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.Ji_label_frame = Frame(
-                self.Ji_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.Ji_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.Ji_Ji_frame = Frame(
-                self.Ji_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.Ji_Ji_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.Ji_frame, self.Ji_label_frame, self.Ji_Ji_frame = create_frame_label_entrie_frames(
+                root=self.desired_top_right_frame, column=0, row=0, isRow=False, style="WhiteBg.TFrame")
 
             self.Ji_labels = []
             self.Ji_vars = []
@@ -135,15 +114,8 @@ class desired_conditions_input:
             #
 
             # sij input
-            self.sij_frame = Frame(
-                self.desired_top_right_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.sij_frame.grid(column=0, row=1, sticky=(N, W, E, S))
-            self.sij_label_frame = Frame(
-                self.sij_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.sij_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.sij_sij_frame = Frame(
-                self.sij_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.sij_sij_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.sij_frame, self.sij_label_frame, self.sij_sij_frame = create_frame_label_entrie_frames(
+                root=self.desired_top_right_frame, column=0, row=1, isRow=False, style="WhiteBg.TFrame")
 
             Label(self.sij_label_frame, text="Дискретні точки спостережень Li(dx, dt), sij є SG x [0, T] у форматі:", style="WhiteBg.TLabel")\
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -180,15 +152,8 @@ class desired_conditions_input:
             #
 
             # Yij input
-            self.yij_frame = Frame(
-                self.desired_bot_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.yij_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.yij_label_frame = Frame(
-                self.yij_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.yij_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.yij_yij_frame = Frame(
-                self.yij_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.yij_yij_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.yij_frame, self.yij_label_frame, self.yij_yij_frame = create_frame_label_entrie_frames(
+                root=self.desired_bot_frame, column=0, row=0, isRow=False, style="WhiteBg.TFrame")
 
             Label(self.yij_label_frame, text="Бажані спостереження Yij процесу:", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))

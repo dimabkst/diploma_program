@@ -1,6 +1,6 @@
 from tkinter import N, E, W, S, StringVar, HORIZONTAL
 from tkinter.ttk import Style, Frame, Label, Entry, Scrollbar
-from view.utils import align_rows_cols
+from view.utils import align_rows_cols, create_frame_label_entrie_frames, create_label_entrie_frames
 
 ENTRY_WIDTH = 10
 
@@ -20,16 +20,6 @@ class settings_input:
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.root.grid(column=0, row=0, sticky=(N, W, E, S))
 
-            self.integrals_precision_frame = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.integrals_precision_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.plot_grid_dimension_frame = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.plot_grid_dimension_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
-
             self.plot_limits_frame = Frame(
                 self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.plot_limits_frame.grid(
@@ -40,15 +30,8 @@ class settings_input:
             self.S_S0_SG_T_frame.grid(column=1, row=1, sticky=(N, W, E, S))
 
             # integrals_precision_input
-            self.integrals_precision_label_frame = Frame(
-                self.integrals_precision_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.integrals_precision_label_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.integrals_precision_entry_frame = Frame(
-                self.integrals_precision_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.integrals_precision_entry_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
+            self.integrals_precision_frame, self.integrals_precision_label_frame, self.integrals_precision_entry_frame = create_frame_label_entrie_frames(
+                root=self.root, column=0, row=0, isRow=True, style="TopWhiteBg.TFrame")
 
             Label(self.integrals_precision_label_frame, text="Точність обчислення інтегралів - ", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -63,15 +46,8 @@ class settings_input:
             #
 
             # plot_grid_dimension_input
-            self.plot_grid_dimension_label_frame = Frame(
-                self.plot_grid_dimension_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.plot_grid_dimension_label_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.plot_grid_dimension_entry_frame = Frame(
-                self.plot_grid_dimension_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.plot_grid_dimension_entry_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
+            self.plot_grid_dimension_frame, self.plot_grid_dimension_label_frame, self.plot_grid_dimension_entry_frame = create_frame_label_entrie_frames(
+                root=self.root, column=1, row=0, isRow=True, style="TopWhiteBg.TFrame")
 
             Label(self.plot_grid_dimension_label_frame, text="Розмірність сітки графіка - ", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -87,15 +63,9 @@ class settings_input:
 
             # plot_limits_input
             # X0
-            self.X0_label_frame = Frame(
-                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.X0_label_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.X0_entry_frame = Frame(
-                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.X0_entry_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
+            self.X0_label_frame, self.X0_entry_frame = create_label_entrie_frames(root=self.plot_limits_frame,
+                                                                                  label_frame_column=0, label_frame_row=0,
+                                                                                  entry_frame_column=1, entry_frame_row=0)
 
             Label(self.X0_label_frame, text="Крайня ліва межа осі X - X0  =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -109,15 +79,9 @@ class settings_input:
                 column=0, row=0, sticky=(N, E, W, S))
 
             # X1
-            self.X1_label_frame = Frame(
-                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.X1_label_frame.grid(
-                column=2, row=0, sticky=(N, W, E, S))
-
-            self.X1_entry_frame = Frame(
-                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.X1_entry_frame.grid(
-                column=3, row=0, sticky=(N, W, E, S))
+            self.X1_label_frame, self.X1_entry_frame = create_label_entrie_frames(root=self.plot_limits_frame,
+                                                                                  label_frame_column=2, label_frame_row=0,
+                                                                                  entry_frame_column=3, entry_frame_row=0)
 
             Label(self.X1_label_frame, text="Крайня права межа осі X - X1 =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -132,15 +96,9 @@ class settings_input:
             #
 
             # T0
-            self.T0_label_frame = Frame(
-                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T0_label_frame.grid(
-                column=0, row=1, sticky=(N, W, E, S))
-
-            self.T0_entry_frame = Frame(
-                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T0_entry_frame.grid(
-                column=1, row=1, sticky=(N, W, E, S))
+            self.T0_label_frame, self.T0_entry_frame = create_label_entrie_frames(root=self.plot_limits_frame,
+                                                                                  label_frame_column=0, label_frame_row=1,
+                                                                                  entry_frame_column=1, entry_frame_row=1)
 
             Label(self.T0_label_frame, text="Крайня ліва межа осі T - T0 =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -155,15 +113,9 @@ class settings_input:
             #
 
             # T1
-            self.T1_label_frame = Frame(
-                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T1_label_frame.grid(
-                column=2, row=1, sticky=(N, W, E, S))
-
-            self.T1_entry_frame = Frame(
-                self.plot_limits_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T1_entry_frame.grid(
-                column=3, row=1, sticky=(N, W, E, S))
+            self.T1_label_frame, self.T1_entry_frame = create_label_entrie_frames(root=self.plot_limits_frame,
+                                                                                  label_frame_column=2, label_frame_row=1,
+                                                                                  entry_frame_column=3, entry_frame_row=1)
 
             Label(self.T1_label_frame, text="Крайня права межа осі T - T1 =", style="WhiteBg.TLabel") \
                 .grid(column=0, row=0, sticky=(N, E, W, S))
@@ -179,16 +131,8 @@ class settings_input:
 
             # S,S0,SG,T info
             # S
-            self.S_frame = Frame(
-                self.S_S0_SG_T_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.S_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-
-            self.S_label_frame = Frame(
-                self.S_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.S_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.S_entry_frame = Frame(
-                self.S_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.S_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.S_frame, self.S_label_frame, self.S_entry_frame = create_frame_label_entrie_frames(
+                root=self.S_S0_SG_T_frame, column=0, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.S_var = StringVar()
             self.S_var.set("[0, 1]")
@@ -205,16 +149,8 @@ class settings_input:
             self.S_entry.grid(column=0, row=0, sticky=(N, E, W, S))
 
             # S0
-            self.S0_frame = Frame(
-                self.S_S0_SG_T_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.S0_frame.grid(column=1, row=0, sticky=(N, W, E, S))
-
-            self.S0_label_frame = Frame(
-                self.S0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.S0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.S0_entry_frame = Frame(
-                self.S0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.S0_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.S0_frame, self.S0_label_frame, self.S0_entry_frame = create_frame_label_entrie_frames(
+                root=self.S_S0_SG_T_frame, column=1, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.S0_var = StringVar()
             self.S0_var.set("[0, 1]")
@@ -231,16 +167,8 @@ class settings_input:
             self.S0_entry.grid(column=0, row=0, sticky=(N, E, W, S))
 
             # SG
-            self.SG_frame = Frame(
-                self.S_S0_SG_T_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.SG_frame.grid(column=0, row=1, sticky=(N, W, E, S))
-
-            self.SG_label_frame = Frame(
-                self.SG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.SG_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.SG_entry_frame = Frame(
-                self.SG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.SG_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.SG_frame, self.SG_label_frame, self.SG_entry_frame = create_frame_label_entrie_frames(
+                root=self.S_S0_SG_T_frame, column=0, row=1, isRow=True, style="WhiteBg.TFrame")
 
             self.SG_var = StringVar()
             self.SG_var.set("[0, 1]")
@@ -257,16 +185,8 @@ class settings_input:
             self.SG_entry.grid(column=0, row=0, sticky=(N, E, W, S))
 
             # T
-            self.T_frame = Frame(
-                self.S_S0_SG_T_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.T_frame.grid(column=1, row=1, sticky=(N, W, E, S))
-
-            self.T_label_frame = Frame(
-                self.T_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.T_entry_frame = Frame(
-                self.T_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.T_frame, self.T_label_frame, self.T_entry_frame = create_frame_label_entrie_frames(
+                root=self.S_S0_SG_T_frame, column=1, row=1, isRow=True, style="WhiteBg.TFrame")
 
             self.T_var = StringVar()
             self.T_var.set("1")
