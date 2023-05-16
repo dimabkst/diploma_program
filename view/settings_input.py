@@ -1,5 +1,5 @@
 from tkinter import N, E, W, S, StringVar, HORIZONTAL
-from tkinter.ttk import Style, Frame, Label, Entry, Scrollbar
+from tkinter.ttk import Frame, Label, Entry, Scrollbar
 from view.utils import align_rows_cols, create_frame_label_entrie_frames, create_label_entrie_frames
 
 ENTRY_WIDTH = 10
@@ -9,12 +9,6 @@ class settings_input:
 
     def __init__(self, root):
         try:
-            s = Style()
-            s.configure("TopWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief='raised')
-            s.configure("WhiteBg.TFrame", background="white")
-            s.configure("WhiteBg.TLabel", background="white")
-
             # Frames
             self.root = Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")

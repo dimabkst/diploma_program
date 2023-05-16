@@ -1,6 +1,6 @@
 import logging
 from tkinter import Tk, N, E, W, S, messagebox
-from tkinter.ttk import Notebook
+from tkinter.ttk import Notebook, Style
 from view.utils import align_rows_cols
 from view import problem_conditions_input, initial_boundary_desired_conditions_input, solve_button, v_input, save_load, results_output, input_rules, settings_input, console_output, stock_problem_page
 from controller import control, view_data_to_file, file_data_to_view, control_alpha_beta_gamma, control_stock_problem
@@ -17,6 +17,14 @@ class View:
             self.root = Tk()
             self.root.configure(bg="white")
             self.root.title("Керування просторово-часовим процесом")
+
+            self.style = Style()
+            self.style.configure("TopWhiteBg.TFrame", background="white",
+                                 borderwidth=5, relief='raised')
+            self.style.configure("WhiteBg.TFrame", background="white")
+            self.style.configure("WhiteBg.TLabel", background="white")
+            self.style.configure(
+                'WhiteBg.TCheckbutton', background='white')
 
             self.notebook = Notebook(self.root)
             self.notebook.grid(column=0, row=0, sticky=(N, E, W, S))

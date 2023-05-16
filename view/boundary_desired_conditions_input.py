@@ -1,5 +1,5 @@
 from tkinter import N, E, W, S
-from tkinter.ttk import Style, Frame
+from tkinter.ttk import Frame
 from .boundary_conditions_input import boundary_conditions_input
 from .desired_conditions_input import desired_conditions_input
 from view.utils import align_rows_cols
@@ -11,11 +11,6 @@ class boundary_desired_conditions_input:
 
     def __init__(self, root):
         try:
-            s = Style()
-            s.configure("TopWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief='raised')
-            s.configure("WhiteBg.TFrame", background="white")
-
             # Frames
             self.root = Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")

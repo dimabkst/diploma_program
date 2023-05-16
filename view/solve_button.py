@@ -1,5 +1,5 @@
 from tkinter import N, E, W, S, messagebox, BooleanVar
-from tkinter.ttk import Style, Frame, Button, Checkbutton
+from tkinter.ttk import Frame, Button, Checkbutton
 from view.utils import align_rows_cols
 
 
@@ -7,14 +7,6 @@ class solve_button:
 
     def __init__(self, root, command):
         try:
-            s = Style()
-            s.configure("TopWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief='raised')
-            s.configure("VectorWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief="solid")
-            s.configure("WhiteBg.TFrame", background="white")
-            s.configure("WhiteBg.TLabel", background="white")
-
             self.solve_button_command = command
 
             # Frames
@@ -38,10 +30,6 @@ class solve_button:
             #
 
             # Check buttons
-            checkbutton_style = Style()
-            checkbutton_style.configure(
-                'WhiteBg.TCheckbutton', background='white')
-
             self.plot_var = BooleanVar()
             self.plot_check_button = Checkbutton(
                 self.check_buttons_frame, text='Побудувати графік', variable=self.plot_var, style='WhiteBg.TCheckbutton', command=self.check_buttons_callback)

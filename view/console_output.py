@@ -1,6 +1,6 @@
 import logging
 from tkinter import N, E, W, S, scrolledtext
-from tkinter.ttk import Style, Frame
+from tkinter.ttk import Frame
 from .utils import TextHandler, align_rows_cols
 
 ENTRY_WIDTH = 10
@@ -10,11 +10,6 @@ class console_output:
 
     def __init__(self, root):
         try:
-            s = Style()
-            s.configure("TopWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief='raised')
-            s.configure("WhiteBg.TFrame", background="white")
-
             # Frames
             self.root = Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")

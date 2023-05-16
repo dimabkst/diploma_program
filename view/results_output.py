@@ -1,5 +1,5 @@
 from tkinter import N, E, W, S
-from tkinter.ttk import Style, Frame, Label
+from tkinter.ttk import Frame, Label
 from view.utils import align_rows_cols, create_plot
 
 
@@ -8,12 +8,6 @@ class results_output:
     def __init__(self, root):
         try:
             self.solutions = None
-
-            s = Style()
-            s.configure("TopWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief='raised')
-            s.configure("WhiteBg.TFrame", background="white")
-            s.configure("WhiteBg.TLabel", background="white")
 
             # Frames
             self.root = Frame(
