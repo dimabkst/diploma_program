@@ -1,7 +1,7 @@
 import fnmatch
 import os
 from tkinter import N, E, W, S
-from tkinter.ttk import Style, Frame, Button
+from tkinter.ttk import Frame, Button
 from view.utils import align_rows_cols
 
 
@@ -23,14 +23,6 @@ class save_load:
 
             self.save_file_path = self.save_file_prefix + \
                 str(self.current_save_number) + self.save_file_suffix
-
-            s = Style()
-            s.configure("TopWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief='raised')
-            s.configure("VectorWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief="solid")
-            s.configure("WhiteBg.TFrame", background="white")
-            s.configure("WhiteBg.TLabel", background="white")
 
             # Frames
             self.root = Frame(

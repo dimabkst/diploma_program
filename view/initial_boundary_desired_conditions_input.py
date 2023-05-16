@@ -1,5 +1,5 @@
 from tkinter import N, E, W, S, StringVar, HORIZONTAL
-from tkinter.ttk import Style, Frame, Label, Entry, Scrollbar
+from tkinter.ttk import Frame, Label, Entry, Scrollbar
 from .initial_conditions_input import initial_conditions_input
 from .boundary_conditions_input import boundary_conditions_input
 from .desired_conditions_input import desired_conditions_input
@@ -12,11 +12,6 @@ class initial_boundary_desired_conditions_input:
 
     def __init__(self, root):
         try:
-            s = Style()
-            s.configure("TopWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief='raised')
-            s.configure("WhiteBg.TFrame", background="white")
-
             # Frames
             self.root = Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")

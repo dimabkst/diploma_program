@@ -1,6 +1,6 @@
 from typing import Callable
 from tkinter import N, E, W, S
-from tkinter.ttk import Style, Frame, Button
+from tkinter.ttk import Frame, Button
 from view.stock_problem import alpha_beta_gamma_window, stock_problem_window
 from view.utils import align_rows_cols
 
@@ -11,11 +11,6 @@ class stock_problem_page:
 
     def __init__(self, root, alpha_beta_gamma_solve_button_command: Callable, stock_problem_solve_button_command: Callable):
         try:
-            s = Style()
-            s.configure("TopWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief='raised')
-            s.configure("WhiteBg.TFrame", background="white")
-
             # Frames
             self.root = Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")

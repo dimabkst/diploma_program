@@ -1,5 +1,5 @@
 from tkinter import N, E, W, S, PhotoImage
-from tkinter.ttk import Style, Frame, Label
+from tkinter.ttk import Frame, Label
 from view.utils import align_rows_cols
 
 ENTRY_WIDTH = 10
@@ -9,10 +9,6 @@ class input_rules:
 
     def __init__(self, root):
         try:
-            s = Style()
-            s.configure("TopWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief='raised')
-            s.configure("WhiteBg.TFrame", background="white")
             font = ("Arial", 14)
 
             # Frames

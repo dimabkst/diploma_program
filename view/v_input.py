@@ -1,5 +1,5 @@
 from tkinter import N, E, W, S, StringVar
-from tkinter.ttk import Style, Frame, Label, Entry
+from tkinter.ttk import Frame, Label, Entry
 from view.utils import align_rows_cols, create_frame_label_entrie_frames
 
 ENTRY_WIDTH = 10
@@ -9,14 +9,6 @@ class v_input:
 
     def __init__(self, root):
         try:
-            s = Style()
-            s.configure("TopWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief='raised')
-            s.configure("VectorWhiteBg.TFrame", background="white",
-                        borderwidth=5, relief="solid")
-            s.configure("WhiteBg.TFrame", background="white")
-            s.configure("WhiteBg.TLabel", background="white")
-
             self.root = Frame(
                 root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
             self.root.grid(column=0, row=0, sticky=(N, W, E, S))
