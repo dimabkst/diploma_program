@@ -3,7 +3,7 @@ from tkinter.ttk import Frame, Label, Entry, Scrollbar
 from .initial_conditions_input import initial_conditions_input
 from .boundary_conditions_input import boundary_conditions_input
 from .desired_conditions_input import desired_conditions_input
-from view.utils import ENTRY_WIDTH, align_rows_cols
+from view.utils import ENTRY_WIDTH
 
 
 class initial_boundary_desired_conditions_input:
@@ -113,26 +113,6 @@ class initial_boundary_desired_conditions_input:
             self.T_entry = Entry(
                 self.T_entry_frame, width=ENTRY_WIDTH, textvariable=self.T_var, state="readonly")
             self.T_entry.grid(column=0, row=0, sticky=(N, E, W, S))
-
-            # Align
-            align_rows_cols(self.initial_frame)
-
-            align_rows_cols(self.boundary_frame)
-
-            align_rows_cols(self.desired_frame)
-
-            align_rows_cols(self.S0_entry_frame)
-            align_rows_cols(self.S0_label_frame)
-            align_rows_cols(self.S0_frame)
-            align_rows_cols(self.SG_entry_frame)
-            align_rows_cols(self.SG_label_frame)
-            align_rows_cols(self.SG_frame)
-            align_rows_cols(self.T_entry_frame)
-            align_rows_cols(self.T_label_frame)
-            align_rows_cols(self.T_frame)
-            align_rows_cols(self.S0_SG_T_frame)
-
-            align_rows_cols(self.root)
         except Exception as e:
             raise e
 

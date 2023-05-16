@@ -1,6 +1,6 @@
 from tkinter import N, E, W, S, StringVar
 from tkinter.ttk import Frame, Label, Entry
-from view.utils import ENTRY_WIDTH, align_rows_cols, change_and_show_1dim, change_and_show_2dim, create_frame_label_entrie_frames
+from view.utils import ENTRY_WIDTH, change_and_show_1dim, change_and_show_2dim, create_frame_label_entrie_frames
 
 
 class initial_conditions_input:
@@ -154,38 +154,6 @@ class initial_conditions_input:
                                                       textvariable=self.yrl0_vars[r][l], state="readonly"))
                     self.yrl0_entries[r][l].grid(
                         row=r, column=l * 2 + 1, sticky=(N, W, E, S))
-            #
-
-            # Align everything
-            align_rows_cols(self.R0_label_frame)
-            align_rows_cols(self.R0_entry_frame)
-            align_rows_cols(self.R0_frame)
-
-            align_rows_cols(self.Lr0_frame)
-            align_rows_cols(self.Lr0_label_frame)
-            align_rows_cols(self.Lr0_Lr0_frame)
-
-            align_rows_cols(self.L0_label_frame)
-            align_rows_cols(self.L0_entry_frame)
-            align_rows_cols(self.L0_frame)
-
-            align_rows_cols(self.xl0_frame)
-            align_rows_cols(self.xl0_label_frame)
-            align_rows_cols(self.xl0_xl0_frame)
-
-            align_rows_cols(self.initial_top_left_frame)
-            align_rows_cols(self.initial_top_right_frame)
-            align_rows_cols(self.initial_top_frame)
-
-            align_rows_cols(self.yrl0_frame)
-            align_rows_cols(self.yrl0_label_frame)
-            align_rows_cols(self.yrl0_yrl0_frame)
-
-            align_rows_cols(self.initial_bot_frame)
-
-            align_rows_cols(self.initial_frame)
-
-            align_rows_cols(self.root)
             #
         except Exception as e:
             raise e

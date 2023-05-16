@@ -1,7 +1,7 @@
 from typing import Callable
 from tkinter import N, E, W, S, Toplevel, StringVar
 from tkinter.ttk import Frame, Label, Entry, Button
-from view.utils import ENTRY_WIDTH, align_rows_cols
+from view.utils import ENTRY_WIDTH
 
 
 class stock_problem_window:
@@ -447,70 +447,6 @@ class stock_problem_window:
             self.solve_button = Button(self.solve_button_frame, text="Привести задачу",
                                        command=self.solve_button_callback)
             self.solve_button.grid(column=0, row=0, sticky=(N, W, E, S))
-            #
-
-            # Align
-            align_rows_cols(self.alpha_frame)
-            align_rows_cols(self.alpha_label_frame)
-            align_rows_cols(self.alpha_entry_frame)
-
-            align_rows_cols(self.beta_frame)
-            align_rows_cols(self.beta_label_frame)
-            align_rows_cols(self.beta_entry_frame)
-
-            align_rows_cols(self.gamma_frame)
-            align_rows_cols(self.gamma_label_frame)
-            align_rows_cols(self.gamma_entry_frame)
-
-            align_rows_cols(self.a_frame)
-            align_rows_cols(self.a_label_frame)
-            align_rows_cols(self.a_entry_frame)
-
-            align_rows_cols(self.b_frame)
-            align_rows_cols(self.b_label_frame)
-            align_rows_cols(self.b_entry_frame)
-
-            align_rows_cols(self.T_frame)
-            align_rows_cols(self.T_label_frame)
-            align_rows_cols(self.T_entry_frame)
-
-            align_rows_cols(self.I_frame)
-            align_rows_cols(self.I_label_frame)
-            align_rows_cols(self.I_entry_frame)
-
-            align_rows_cols(self.xi_list_frame)
-            align_rows_cols(self.xi_list_label_frame)
-            align_rows_cols(self.xi_list_xi_frame)
-
-            align_rows_cols(self.J_frame)
-            align_rows_cols(self.J_label_frame)
-            align_rows_cols(self.J_entry_frame)
-
-            align_rows_cols(self.tj_list_frame)
-            align_rows_cols(self.tj_list_label_frame)
-            align_rows_cols(self.tj_list_tj_frame)
-
-            align_rows_cols(self.K_frame)
-            align_rows_cols(self.K_label_frame)
-            align_rows_cols(self.K_entry_frame)
-
-            align_rows_cols(self.xk_list_frame)
-            align_rows_cols(self.xk_list_label_frame)
-            align_rows_cols(self.xk_list_xk_frame)
-
-            align_rows_cols(self.tk_list_frame)
-            align_rows_cols(self.tk_list_label_frame)
-            align_rows_cols(self.tk_list_tk_frame)
-
-            align_rows_cols(self.uk_list_frame)
-            align_rows_cols(self.uk_list_label_frame)
-            align_rows_cols(self.uk_list_uk_frame)
-
-            align_rows_cols(self.input_frame)
-
-            align_rows_cols(self.solve_button_frame)
-
-            align_rows_cols(self.window)
             #
 
             self.window.protocol("WM_DELETE_WINDOW",
