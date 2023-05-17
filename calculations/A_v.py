@@ -1,9 +1,9 @@
-import numpy as np
+from numpy import array
 from typing import Callable
 from scipy.integrate import dblquad
 
 
-def A_v(A_matrix: np.array, v_0: Callable, v_G: Callable, S0: np.array, SG: np.array, T: float, integrals_precision: float) -> np.array:
+def A_v(A_matrix: array, v_0: Callable, v_G: Callable, S0: array, SG: array, T: float, integrals_precision: float) -> array:
     """
 
     :param A_matrix: np.array with elements A21, A22, A31, A32
@@ -79,4 +79,4 @@ def A_v(A_matrix: np.array, v_0: Callable, v_G: Callable, S0: np.array, SG: np.a
     for ij in range(A31.size):
         A_v.append([A_vG[ij]])
 
-    return np.array(A_v)
+    return array(A_v)

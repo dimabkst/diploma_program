@@ -1,9 +1,9 @@
-import numpy as np
+from numpy import array
 from typing import Callable
 from scipy.integrate import dblquad
 
 
-def y_0(G: Callable, S0: np.array, T: float, u_0: Callable, integrals_precision: float) -> Callable:
+def y_0(G: Callable, S0: array, T: float, u_0: Callable, integrals_precision: float) -> Callable:
     """
 
     :param G: function of two variables x, t - Green's function

@@ -1,9 +1,9 @@
-import numpy as np
+from numpy import array
 from typing import Callable
 from scipy.integrate import dblquad
 
 
-def y_infinity(G: Callable, u: Callable, S: np.array, T: float, integrals_precision: float) -> Callable:
+def y_infinity(G: Callable, u: Callable, S: array, T: float, integrals_precision: float) -> Callable:
     """
 
     :param G: function of two variables x, t - Green's function

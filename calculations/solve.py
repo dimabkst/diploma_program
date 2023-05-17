@@ -1,14 +1,14 @@
-import numpy as np
+from numpy import array
 from typing import Callable, Tuple
 from calculations import y_infinity, A, Y_slash, A_v, P, u_0G, y_0, y_G, y, precision, Yrl0
 
 
-def solve(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: float,
-          Lr0_list: np.array, xl0_list: np.array,
-          LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
-          Li_list: np.array, sij_list: np.array, Yij_list: np.array,
+def solve(G: Callable, u: Callable, S: array, S0: array, SG: array, T: float,
+          Lr0_list: array, xl0_list: array,
+          LrG_list: array, slG_list: array, YrlG_list: array,
+          Li_list: array, sij_list: array, Yij_list: array,
           v_0: Callable, v_G: Callable,
-          integrals_precision: float) -> Tuple[Callable, float, np.array]:
+          integrals_precision: float) -> Tuple[Callable, float, array]:
     """
 
     :param G: function of two variables x, t - Green's function

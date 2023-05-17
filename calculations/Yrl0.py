@@ -1,8 +1,8 @@
-import numpy as np
+from numpy import array
 from typing import Callable
 
 
-def Yrl0(y: Callable, Lr0_list: np.array, xl0_list: np.array) -> np.array:
+def Yrl0(y: Callable, Lr0_list: array, xl0_list: array) -> array:
     """
 
     :param y: function of two variables x, t
@@ -21,7 +21,7 @@ def Yrl0(y: Callable, Lr0_list: np.array, xl0_list: np.array) -> np.array:
             for l in range(L0):
                 res[-1].append(Lr0_list[r](y)(xl0_list[l], 0))
 
-        res = np.array(res)
+        res = array(res)
 
         return res
     except Exception as e:

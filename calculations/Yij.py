@@ -1,8 +1,8 @@
-import numpy as np
+from numpy import array
 from typing import Callable
 
 
-def Yij(y: Callable, Li_list: np.array, sij_list: np.array) -> np.array:
+def Yij(y: Callable, Li_list: array, sij_list: array) -> array:
     """
 
     :param y: function of two variables x, t
@@ -20,7 +20,7 @@ def Yij(y: Callable, Li_list: np.array, sij_list: np.array) -> np.array:
             for sij in sij_list[i]:
                 res[-1].append(Li_list[i](y)(sij[0], sij[1]))
 
-        res = np.array(res, dtype=object)
+        res = array(res, dtype=object)
 
         return res
     except Exception as e:

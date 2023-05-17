@@ -1,9 +1,9 @@
-import numpy as np
+from numpy import array, block
 from typing import Callable
 from scipy.integrate import dblquad
 
 
-def P(A_matrix: np.array, S0: np.array, SG: np.array, T: float, integrals_precision: float) -> np.array:
+def P(A_matrix: array, S0: array, SG: array, T: float, integrals_precision: float) -> array:
     """
 
     :param A_matrix: np.array with elements A21, A22, A31, A32
@@ -20,10 +20,10 @@ def P(A_matrix: np.array, S0: np.array, SG: np.array, T: float, integrals_precis
 
     P_parts = []
 
-    def calculate_matrix(matrix: np.array, x: float, t: float) -> np.array:
+    def calculate_matrix(matrix: array, x: float, t: float) -> array:
         res = [[matrix[row_][col_](x, t) for col_ in range(
             len(matrix[row_]))] for row_ in range(len(matrix))]
-        return np.array(res)
+        return array(res)
 
     for n in range(2):  # n is n-2 in file due to original n be from 2 to 3
         for m in range(2):  # m is m-1 in file
@@ -72,9 +72,9 @@ def P(A_matrix: np.array, S0: np.array, SG: np.array, T: float, integrals_precis
                     P_parts[-1][row][col] = integral
 
     for i in range(len(P_parts)):
-        P_parts[i] = np.array(P_parts[i])
+        P_parts[i] = array(P_parts[i])
 
-    return np.block([
+    return block([
         [P_parts[0], P_parts[1]],
         [P_parts[2], P_parts[3]]
     ])

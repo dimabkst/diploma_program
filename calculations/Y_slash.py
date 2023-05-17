@@ -1,9 +1,9 @@
-import numpy as np
+from numpy import array
 from typing import Callable
 
 
-def Y_slash(y_infinity: Callable, LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
-            Li_list: np.array, sij_list: np.array, Yij_list: np.array, ) -> np.array:
+def Y_slash(y_infinity: Callable, LrG_list: array, slG_list: array, YrlG_list: array,
+            Li_list: array, sij_list: array, Yij_list: array, ) -> array:
     """
     :param y_infinity: function of two variables x, t
     :param LrG_list: np.array of LrG differential operators that look like: L(f) -> scipy.derivative(f) + ...
@@ -40,4 +40,4 @@ def Y_slash(y_infinity: Callable, LrG_list: np.array, slG_list: np.array, YrlG_l
     for ij in range(sum(Ji)):
         result.append([Ystar[ij]])
 
-    return np.array(result)
+    return array(result)
