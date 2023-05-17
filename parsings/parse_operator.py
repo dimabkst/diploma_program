@@ -1,4 +1,4 @@
-import re
+from re import compile
 from typing import Callable
 from scipy.misc import derivative
 
@@ -29,7 +29,7 @@ def parse_operator(operator_string: str) -> Callable:
     try:
         op_str = operator_string.replace(' ', '')  # Remove all spaces
         atomic_op_regex = r"[+-]?[0-9]+([.][0-9]+)?\*[d]\[(x|t)[,](0|[1-9][0-9]*)\]"
-        atomic_op_regex_obj = re.compile(atomic_op_regex)
+        atomic_op_regex_obj = compile(atomic_op_regex)
 
         atomic_ops_str_iterator = atomic_op_regex_obj.finditer(op_str)
 

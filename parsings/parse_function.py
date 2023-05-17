@@ -1,4 +1,4 @@
-import re
+from re import search
 from typing import Callable
 from sympy.parsing import parse_expr
 from sympy import lambdify
@@ -23,11 +23,11 @@ def parse_function(function_string: str) -> Callable:
         heaviside_t_function_regex = r"Heaviside\(t\)"
         heaviside_x_function_regex = r"Heaviside\(x\)"
 
-        heaviside = re.search(
+        heaviside = search(
             heaviside_function_regex, function_string)
-        heaviside_t = re.search(
+        heaviside_t = search(
             heaviside_t_function_regex, function_string)
-        heaviside_x = re.search(
+        heaviside_x = search(
             heaviside_x_function_regex, function_string)
         heaviside_t_or_x = heaviside_t or heaviside_x
 

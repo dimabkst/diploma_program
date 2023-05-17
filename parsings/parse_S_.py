@@ -1,8 +1,8 @@
-import numpy as np
-import re
+from numpy import array
+from re import compile
 
 
-def parse_S_(S_string: str) -> np.array:
+def parse_S_(S_string: str) -> array:
     """
 
     :param S_string: S_ string to be parsed in format: [a0,b0] v [a1,b1] v ... v [a_last, b_last]
@@ -11,7 +11,7 @@ def parse_S_(S_string: str) -> np.array:
     try:
         S_str = S_string.replace(' ', '')  # Remove all spaces
         atomic_S_regex = r"\[[+-]?[0-9]+([.][0-9]+)?[,][+-]?[0-9]+([.][0-9]+)?\]"
-        atomic_S_regex_obj = re.compile(atomic_S_regex)
+        atomic_S_regex_obj = compile(atomic_S_regex)
 
         atomic_Ss_str_iterator = atomic_S_regex_obj.finditer(S_str)
 
@@ -47,6 +47,6 @@ def parse_S_(S_string: str) -> np.array:
 
             atomic_S_s.append([atomic_S_constant1, atomic_S_constant2])
 
-        return np.array(atomic_S_s)
+        return array(atomic_S_s)
     except Exception as e:
         raise e
