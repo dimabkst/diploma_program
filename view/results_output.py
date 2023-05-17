@@ -85,16 +85,21 @@ class results_output:
                 create_plot(
                     stock_problem_solution_plot_data, 'Графік щільності акцій u(x,t)', stock_problem_plot_step_frame)
 
-                # Align
-                align_rows_cols(self.results_output_frame)
-
             self.solutions = solutions
+
+            align_rows_cols(self.root)
 
         except Exception as e:
             raise e
 
     def clear(self):
         self.solutions = None
-        for child in self.results_output_frame.winfo_children():
-            for grandchild in child.winfo_children():
-                grandchild.destroy()
+        _clear_for_parent(self.results_output_frame)
+
+
+def _clear_for_parent(parent):
+    for child in parent.winfo_children():
+        if len(child.winfo_children()):
+            _clear_for_parent(child)
+
+        child.destroy()
