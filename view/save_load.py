@@ -1,5 +1,5 @@
-import fnmatch
-import os
+from fnmatch import filter
+from os import path, listdir, remove, rename
 from tkinter import N, E, W, S
 from tkinter.ttk import Frame, Button
 from view.utils import align_rows_cols
@@ -15,11 +15,11 @@ class save_load:
             self.file_path = file_path
             self.save_file_prefix = "./saves/save"
             self.save_file_suffix = "." + file_path.split('.')[-1]
-            self.saves_absolute_path = os.path.abspath(
+            self.saves_absolute_path = path.abspath(
                 f'{"/".join(self.save_file_prefix.split("/")[:-1])}')
             self.current_save_number = \
-                len(fnmatch.filter(os.listdir(self.saves_absolute_path),
-                                   f'{self.save_file_prefix.split("/")[-1]}*{self.save_file_suffix}'))
+                len(filter(listdir(self.saves_absolute_path),
+                           f'{self.save_file_prefix.split("/")[-1]}*{self.save_file_suffix}'))
 
             self.save_file_path = self.save_file_prefix + \
                 str(self.current_save_number) + self.save_file_suffix
@@ -114,13 +114,13 @@ class save_load:
                 raise Exception("There is no such save file")
 
             # Delete wanted save file
-            os.remove(self.save_file_prefix +
-                      str(save_number) + self.save_file_suffix)
+            remove(self.save_file_prefix +
+                   str(save_number) + self.save_file_suffix)
 
             # Decrement numbers in names of save files that go after deleted one
             for i in range(save_number, len(self.load_buttons)):
-                os.rename(self.save_file_prefix + str(i + 1) + self.save_file_suffix,
-                          self.save_file_prefix + str(i) + self.save_file_suffix)
+                rename(self.save_file_prefix + str(i + 1) + self.save_file_suffix,
+                       self.save_file_prefix + str(i) + self.save_file_suffix)
 
             # Delete last load and delete buttons, because there won't be such save file after previous decrementing
             self.load_buttons[-1].destroy()
