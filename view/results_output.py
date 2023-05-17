@@ -87,7 +87,7 @@ class results_output:
 
             self.solutions = solutions
 
-            align_rows_cols(self.root)
+            align_rows_cols(self.results_output_frame)
 
         except Exception as e:
             raise e
