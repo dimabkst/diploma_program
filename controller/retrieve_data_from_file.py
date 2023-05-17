@@ -1,4 +1,4 @@
-import json
+from json import load
 
 
 def retrieve_data_from_file(file_path: str) -> dict:
@@ -9,7 +9,7 @@ def retrieve_data_from_file(file_path: str) -> dict:
     """
     try:
         with open(file_path, "r") as read_file:
-            data = json.load(read_file)
+            data = load(read_file)
 
         return data
     except Exception as e:

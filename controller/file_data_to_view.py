@@ -1,11 +1,11 @@
-import numpy as np
+from numpy import array
 from controller import retrieve_data_from_file
 
 
 def transform_dict_with_np(data: dict):
     for key, value in data.items():
         if isinstance(value, list):
-            data[key] = np.array(value)
+            data[key] = array(value)
         elif isinstance(value, dict):
             transform_dict_with_np(value)
     return data
@@ -114,7 +114,7 @@ def file_data_to_view(view, file_path: str) -> None:
             for sol in solutions:
                 sol['solution_plot_data'] = transform_dict_with_np(
                     sol['solution_plot_data']) if sol.get('solution_plot_data') else None
-                sol['Yrl0'] = np.array(sol['Yrl0'])
+                sol['Yrl0'] = array(sol['Yrl0'])
 
                 sol['stock_problem_solution_plot_data'] = transform_dict_with_np(
                     sol['stock_problem_solution_plot_data']) if sol.get('stock_problem_solution_plot_data') else None

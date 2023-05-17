@@ -1,9 +1,9 @@
-import numpy as np
+from numpy import array
 from typing import Callable
 from controller.stock_problem import validate_stock_problem_input
 
 
-def dim1PointInSet(point: float, pointSet: np.array) -> bool:
+def dim1PointInSet(point: float, pointSet: array) -> bool:
     """
 
     :param point: 1 dimension point with next form: coord1 as float
@@ -25,7 +25,7 @@ def dim1PointInSet(point: float, pointSet: np.array) -> bool:
     return pointInSet
 
 
-def dim2PointInSet(point: np.array, firstCoordSet: np.array, secondCoordSet: np.array) -> bool:
+def dim2PointInSet(point: array, firstCoordSet: array, secondCoordSet: array) -> bool:
     """
 
     :param point: 2 dimension point with next form: np.array([coord1, coord2])
@@ -56,7 +56,7 @@ def dim2PointInSet(point: np.array, firstCoordSet: np.array, secondCoordSet: np.
 
 # Do not let segments intersect even in in boundaries,
 # because do not know if integrals would be calculated correctly
-def segments_intersect(segment1: np.array, segment2: np.array) -> bool:
+def segments_intersect(segment1: array, segment2: array) -> bool:
     a1, b1 = segment1[0], segment1[1]
     a2, b2 = segment2[0], segment2[1]
 
@@ -66,10 +66,10 @@ def segments_intersect(segment1: np.array, segment2: np.array) -> bool:
     return intersect
 
 
-def _validate_input(G: Callable, u: Callable, S: np.array, S0: np.array, SG: np.array, T: float,
-                    Lr0_list: np.array, xl0_list: np.array,
-                    LrG_list: np.array, slG_list: np.array, YrlG_list: np.array,
-                    Li_list: np.array, sij_list: np.array, Yij_list: np.array,
+def _validate_input(G: Callable, u: Callable, S: array, S0: array, SG: array, T: float,
+                    Lr0_list: array, xl0_list: array,
+                    LrG_list: array, slG_list: array, YrlG_list: array,
+                    Li_list: array, sij_list: array, Yij_list: array,
                     v0_list: list, vG_list: list,
                     integrals_precision: float, plot_grid_dimension: int,
                     X0: float, X1: float, T0: float, T1: float) -> None:

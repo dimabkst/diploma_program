@@ -1,4 +1,4 @@
-import json
+from json import dump
 
 
 def put_data_to_file(file_path: str, data: dict) -> None:
@@ -10,7 +10,7 @@ def put_data_to_file(file_path: str, data: dict) -> None:
     """
     try:
         with open(file_path, "w") as write_file:
-            json.dump(data, write_file)
+            dump(data, write_file)
 
     except Exception as e:
         raise e

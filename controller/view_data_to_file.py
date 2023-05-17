@@ -1,11 +1,11 @@
-import numpy as np
+from numpy import ndarray, copy
 from controller import put_data_to_file
 
 
 def transform_dict_with_np(data: dict):
     for key, value in data.items():
-        if isinstance(value, np.ndarray):
-            data[key] = np.copy(value).tolist()
+        if isinstance(value, ndarray):
+            data[key] = copy(value).tolist()
         elif isinstance(value, dict):
             transform_dict_with_np(value)
     return data
@@ -121,7 +121,7 @@ def view_data_to_file(view, file_path: str) -> None:
                 sol['solution'] = str(sol['solution'])
                 sol['solution_plot_data'] = transform_dict_with_np(
                     sol['solution_plot_data']) if sol.get('solution_plot_data') else None
-                sol['Yrl0'] = np.copy(sol['Yrl0']).tolist()
+                sol['Yrl0'] = copy(sol['Yrl0']).tolist()
                 sol['stock_problem_solution_plot_data'] = transform_dict_with_np(
                     sol['stock_problem_solution_plot_data']) if sol.get('stock_problem_solution_plot_data') else None
 
