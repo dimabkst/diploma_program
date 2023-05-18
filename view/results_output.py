@@ -43,14 +43,14 @@ class results_output:
                 plot_step_frame = create_grid_frame(
                     root=solution_step_frame, column=1, row=0, style="WhiteBg.TFrame")
 
+                stock_problem_plot_step_frame = create_grid_frame(
+                    root=solution_step_frame, column=2, row=0, style="WhiteBg.TFrame")
+
                 precision_step_frame = create_grid_frame(
                     root=step_frame, column=1, row=0, style="WhiteBg.TFrame")
 
                 Yrl0_step_frame = create_grid_frame(
                     root=step_frame, column=2, row=0, style="WhiteBg.TFrame")
-
-                stock_problem_plot_step_frame = create_grid_frame(
-                    root=solution_step_frame, column=3, row=0, style="WhiteBg.TFrame")
                 #
 
                 # Place data

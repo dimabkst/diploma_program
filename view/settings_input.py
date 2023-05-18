@@ -11,12 +11,6 @@ class settings_input:
             self.root = create_grid_frame(
                 root=root, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.plot_limits_frame = create_grid_frame(
-                root=self.root, column=0, row=1, style="TopWhiteBg.TFrame")
-
-            self.S_S0_SG_T_frame = create_grid_frame(
-                root=self.root, column=1, row=1, style="TopWhiteBg.TFrame")
-
             # integrals_precision_input
             self.integrals_precision_frame, self.integrals_precision_label_frame, self.integrals_precision_entry_frame = create_frame_label_entrie_frames(
                 root=self.root, column=0, row=0, isRow=True, style="TopWhiteBg.TFrame")
@@ -50,6 +44,9 @@ class settings_input:
             #
 
             # plot_limits_input
+            self.plot_limits_frame = create_grid_frame(
+                root=self.root, column=0, row=1, style="TopWhiteBg.TFrame")
+
             # X0
             self.X0_label_frame, self.X0_entry_frame = create_label_entrie_frames(root=self.plot_limits_frame,
                                                                                   label_frame_column=0, label_frame_row=0,
@@ -118,6 +115,9 @@ class settings_input:
             #
 
             # S,S0,SG,T info
+            self.S_S0_SG_T_frame = create_grid_frame(
+                root=self.root, column=1, row=1, style="TopWhiteBg.TFrame")
+
             # S
             self.S_frame, self.S_label_frame, self.S_entry_frame = create_frame_label_entrie_frames(
                 root=self.S_S0_SG_T_frame, column=0, row=0, isRow=True, style="WhiteBg.TFrame")
