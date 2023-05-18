@@ -1,5 +1,6 @@
 from tkinter import N, E, W, S, messagebox, BooleanVar
-from tkinter.ttk import Frame, Button, Checkbutton
+from tkinter.ttk import Button, Checkbutton
+from view.utils import create_grid_frame
 
 
 class solve_button:
@@ -9,17 +10,14 @@ class solve_button:
             self.solve_button_command = command
 
             # Frames
-            self.root = Frame(
-                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.root.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.root = create_grid_frame(
+                root=root, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.solve_button_frame = Frame(
-                self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.solve_button_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.solve_button_frame = create_grid_frame(
+                root=self.root, column=0, row=0, style="WhiteBg.TFrame")
 
-            self.check_buttons_frame = Frame(
-                self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.check_buttons_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.check_buttons_frame = create_grid_frame(
+                root=self.root, column=1, row=0, style="WhiteBg.TFrame")
             #
 
             # Solve button

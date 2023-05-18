@@ -1,8 +1,8 @@
 from fnmatch import filter
 from os import path, listdir, remove, rename
 from tkinter import N, E, W, S
-from tkinter.ttk import Frame, Button
-from view.utils import align_rows_cols
+from tkinter.ttk import Button
+from view.utils import align_rows_cols, create_grid_frame
 
 
 class save_load:
@@ -25,17 +25,14 @@ class save_load:
                 str(self.current_save_number) + self.save_file_suffix
 
             # Frames
-            self.root = Frame(
-                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.root.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.root = create_grid_frame(
+                root=root, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.save_frame = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.save_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.save_frame = create_grid_frame(
+                root=self.root, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.load_frame = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.load_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.load_frame = create_grid_frame(
+                root=self.root, column=1, row=0, style="TopWhiteBg.TFrame")
             #
 
             # Save button

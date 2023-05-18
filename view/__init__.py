@@ -1,4 +1,4 @@
-from .utils import ENTRY_WIDTH, TextHandler, align_rows_cols, create_plot, change_and_show_1dim, change_and_show_2dim, change_and_show_2dim_desired, create_frame_label_entrie_frames, create_label_entrie_frames
+from .utils import ENTRY_WIDTH, TextHandler, align_rows_cols, create_plot, change_and_show_1dim, change_and_show_2dim, change_and_show_2dim_desired, create_grid_frame, create_frame_label_entrie_frames, create_label_entrie_frames
 from .problem_conditions_input import problem_conditions_input
 from .initial_conditions_input import initial_conditions_input
 from .boundary_conditions_input import boundary_conditions_input

@@ -1,6 +1,6 @@
 from tkinter import N, E, W, S, StringVar, HORIZONTAL
-from tkinter.ttk import Frame, Label, Entry, Scrollbar
-from view.utils import ENTRY_WIDTH, create_frame_label_entrie_frames, create_label_entrie_frames
+from tkinter.ttk import Label, Entry, Scrollbar
+from view.utils import ENTRY_WIDTH, create_grid_frame, create_frame_label_entrie_frames, create_label_entrie_frames
 
 
 class settings_input:
@@ -8,18 +8,14 @@ class settings_input:
     def __init__(self, root):
         try:
             # Frames
-            self.root = Frame(
-                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.root.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.root = create_grid_frame(
+                root=root, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.plot_limits_frame = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.plot_limits_frame.grid(
-                column=0, row=1, sticky=(N, W, E, S))
+            self.plot_limits_frame = create_grid_frame(
+                root=self.root, column=0, row=1, style="TopWhiteBg.TFrame")
 
-            self.S_S0_SG_T_frame = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.S_S0_SG_T_frame.grid(column=1, row=1, sticky=(N, W, E, S))
+            self.S_S0_SG_T_frame = create_grid_frame(
+                root=self.root, column=1, row=1, style="TopWhiteBg.TFrame")
 
             # integrals_precision_input
             self.integrals_precision_frame, self.integrals_precision_label_frame, self.integrals_precision_entry_frame = create_frame_label_entrie_frames(

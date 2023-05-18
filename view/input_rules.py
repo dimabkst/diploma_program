@@ -1,5 +1,6 @@
 from tkinter import N, E, W, S, PhotoImage
-from tkinter.ttk import Frame, Label
+from tkinter.ttk import Label
+from view.utils import create_grid_frame
 
 
 class input_rules:
@@ -9,33 +10,26 @@ class input_rules:
             font = ("Arial", 14)
 
             # Frames
-            self.root = Frame(
-                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.root.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.root = create_grid_frame(
+                root=root, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.sets = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.sets.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.sets = create_grid_frame(
+                root=self.root, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.numbers = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.numbers.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.numbers = create_grid_frame(
+                root=self.root, column=0, row=1, style="TopWhiteBg.TFrame")
 
-            self.points = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.points.grid(column=1, row=1, sticky=(N, W, E, S))
+            self.points = create_grid_frame(
+                root=self.root, column=1, row=1, style="TopWhiteBg.TFrame")
 
-            self.operators = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.operators.grid(column=0, row=2, sticky=(N, W, E, S))
+            self.operators = create_grid_frame(
+                root=self.root, column=0, row=2, style="TopWhiteBg.TFrame")
 
-            self.derivatives = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.derivatives.grid(column=1, row=2, sticky=(N, W, E, S))
+            self.derivatives = create_grid_frame(
+                root=self.root, column=1, row=2, style="TopWhiteBg.TFrame")
 
-            self.functions = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.functions.grid(column=0, row=3, sticky=(N, W, E, S))
+            self.functions = create_grid_frame(
+                root=self.root, column=0, row=3, style="TopWhiteBg.TFrame")
 
             # Labels and image
             Label(self.sets,

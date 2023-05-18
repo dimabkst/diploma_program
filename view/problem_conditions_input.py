@@ -1,15 +1,14 @@
 from tkinter import N, E, W, S, StringVar, Scrollbar, HORIZONTAL, PhotoImage
-from tkinter.ttk import Frame, Label, Entry
-from view.utils import ENTRY_WIDTH, create_frame_label_entrie_frames
+from tkinter.ttk import Label, Entry
+from view.utils import ENTRY_WIDTH, create_grid_frame, create_frame_label_entrie_frames
 
 
 class problem_conditions_input:
 
     def __init__(self, root):
         try:
-            self.root = Frame(
-                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.root.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.root = create_grid_frame(
+                root=root, column=0, row=0, style="TopWhiteBg.TFrame")
 
             # S_input
             self.S_frame, self.S_label_frame, self.S_entry_frame = create_frame_label_entrie_frames(
@@ -33,13 +32,6 @@ class problem_conditions_input:
             # S0_input
             self.S0_frame, self.S0_label_frame, self.S0_entry_frame = create_frame_label_entrie_frames(
                 root=self.root, column=0, row=1, isRow=True, style="TopWhiteBg.TFrame")
-
-            self.S0_label_frame = Frame(
-                self.S0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.S0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.S0_entry_frame = Frame(
-                self.S0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.S0_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
 
             self.S0_var = StringVar()
             self.S0_var.set("[0, 1]")
@@ -94,9 +86,8 @@ class problem_conditions_input:
             self.L_frame, self.L_label_frame, self.L_entry_frame = create_frame_label_entrie_frames(
                 root=self.root, column=0, row=4, isRow=True, style="TopWhiteBg.TFrame")
 
-            self.L_format_frame = Frame(
-                self.L_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.L_format_frame.grid(column=1, row=1, sticky=(N, W, E, S))
+            self.L_format_frame = create_grid_frame(
+                root=self.L_frame, column=1, row=1, style="WhiteBg.TFrame")
 
             self.L_var = StringVar()
             self.L_var.set("1*d[t,1]-1*d[x,2]")

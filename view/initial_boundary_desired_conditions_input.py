@@ -1,9 +1,9 @@
 from tkinter import N, E, W, S, StringVar, HORIZONTAL
-from tkinter.ttk import Frame, Label, Entry, Scrollbar
+from tkinter.ttk import Label, Entry, Scrollbar
 from .initial_conditions_input import initial_conditions_input
 from .boundary_conditions_input import boundary_conditions_input
 from .desired_conditions_input import desired_conditions_input
-from view.utils import ENTRY_WIDTH
+from view.utils import ENTRY_WIDTH, create_grid_frame
 
 
 class initial_boundary_desired_conditions_input:
@@ -11,25 +11,20 @@ class initial_boundary_desired_conditions_input:
     def __init__(self, root):
         try:
             # Frames
-            self.root = Frame(
-                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.root.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.root = create_grid_frame(
+                root=root, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.initial_frame = Frame(
-                self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.initial_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.initial_frame = create_grid_frame(
+                root=self.root, column=0, row=0, style="WhiteBg.TFrame")
 
-            self.boundary_frame = Frame(
-                self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.boundary_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.boundary_frame = create_grid_frame(
+                root=self.root, column=0, row=1, style="WhiteBg.TFrame")
 
-            self.desired_frame = Frame(
-                self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.desired_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.desired_frame = create_grid_frame(
+                root=self.root, column=1, row=0, style="WhiteBg.TFrame")
 
-            self.S0_SG_T_frame = Frame(
-                self.root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.S0_SG_T_frame.grid(column=1, row=1, sticky=(N, W, E, S))
+            self.S0_SG_T_frame = create_grid_frame(
+                root=self.root, column=1, row=1, style="TopWhiteBg.TFrame")
 
             # Conditions input
             self.initial_conditions_input = initial_conditions_input(
@@ -41,16 +36,13 @@ class initial_boundary_desired_conditions_input:
 
             # S0,SG,T info
             # S0
-            self.S0_frame = Frame(
-                self.S0_SG_T_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.S0_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.S0_frame = create_grid_frame(
+                root=self.S0_SG_T_frame, column=0, row=0, style="WhiteBg.TFrame")
 
-            self.S0_label_frame = Frame(
-                self.S0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.S0_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.S0_entry_frame = Frame(
-                self.S0_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.S0_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.S0_label_frame = create_grid_frame(
+                root=self.S0_frame, column=0, row=0, style="WhiteBg.TFrame")
+            self.S0_entry_frame = create_grid_frame(
+                root=self.S0_frame, column=1, row=0, style="WhiteBg.TFrame")
 
             self.S0_var = StringVar()
             self.S0_var.set("[0, 1]")
@@ -67,16 +59,13 @@ class initial_boundary_desired_conditions_input:
             self.S0_entry.grid(column=0, row=0, sticky=(N, E, W, S))
 
             # SG
-            self.SG_frame = Frame(
-                self.S0_SG_T_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.SG_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.SG_frame = create_grid_frame(
+                root=self.S0_SG_T_frame, column=0, row=1, style="WhiteBg.TFrame")
 
-            self.SG_label_frame = Frame(
-                self.SG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.SG_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.SG_entry_frame = Frame(
-                self.SG_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.SG_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.SG_label_frame = create_grid_frame(
+                root=self.SG_frame, column=0, row=0, style="WhiteBg.TFrame")
+            self.SG_entry_frame = create_grid_frame(
+                root=self.SG_frame, column=1, row=0, style="WhiteBg.TFrame")
 
             self.SG_var = StringVar()
             self.SG_var.set("[0, 1]")
@@ -93,16 +82,13 @@ class initial_boundary_desired_conditions_input:
             self.SG_entry.grid(column=0, row=0, sticky=(N, E, W, S))
 
             # T
-            self.T_frame = Frame(
-                self.S0_SG_T_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.T_frame.grid(column=0, row=2, sticky=(N, W, E, S))
+            self.T_frame = create_grid_frame(
+                root=self.S0_SG_T_frame, column=0, row=2, style="WhiteBg.TFrame")
 
-            self.T_label_frame = Frame(
-                self.T_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.T_entry_frame = Frame(
-                self.T_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.T_label_frame = create_grid_frame(
+                root=self.T_frame, column=0, row=0, style="WhiteBg.TFrame")
+            self.T_entry_frame = create_grid_frame(
+                root=self.T_frame, column=1, row=0, style="WhiteBg.TFrame")
 
             self.T_var = StringVar()
             self.T_var.set("1")

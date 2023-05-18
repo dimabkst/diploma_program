@@ -1,6 +1,6 @@
 from tkinter import N, E, W, S, StringVar
-from tkinter.ttk import Frame, Label, Entry
-from view.utils import ENTRY_WIDTH, change_and_show_1dim, change_and_show_2dim, create_frame_label_entrie_frames
+from tkinter.ttk import Label, Entry
+from view.utils import ENTRY_WIDTH, change_and_show_1dim, change_and_show_2dim, create_grid_frame, create_frame_label_entrie_frames
 
 
 class initial_conditions_input:
@@ -8,33 +8,25 @@ class initial_conditions_input:
     def __init__(self, root):
         try:
             # Frames
-            self.root = Frame(
-                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.root.grid()
+            self.root = create_grid_frame(
+                root=root, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.initial_frame = Frame(
-                self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.initial_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.initial_frame = create_grid_frame(
+                root=self.root, column=0, row=0, style="WhiteBg.TFrame")
             #
 
             # Initial conditions
-            self.initial_top_frame = Frame(
-                self.initial_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.initial_top_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.initial_top_frame = create_grid_frame(
+                root=self.initial_frame, column=0, row=0, style="WhiteBg.TFrame")
 
-            self.initial_bot_frame = Frame(
-                self.initial_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.initial_bot_frame.grid(column=0, row=1, sticky=(N, W, E, S))
+            self.initial_bot_frame = create_grid_frame(
+                root=self.initial_frame, column=0, row=1, style="WhiteBg.TFrame")
 
-            self.initial_top_left_frame = Frame(
-                self.initial_top_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.initial_top_left_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
+            self.initial_top_left_frame = create_grid_frame(
+                root=self.initial_top_frame, column=0, row=0, style="WhiteBg.TFrame")
 
-            self.initial_top_right_frame = Frame(
-                self.initial_top_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.initial_top_right_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
+            self.initial_top_right_frame = create_grid_frame(
+                root=self.initial_top_frame, column=1, row=0, style="WhiteBg.TFrame")
 
             # R0 input
             self.R0_frame, self.R0_label_frame, self.R0_entry_frame = create_frame_label_entrie_frames(

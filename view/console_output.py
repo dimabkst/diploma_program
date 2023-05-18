@@ -1,7 +1,6 @@
 import logging
 from tkinter import N, E, W, S, scrolledtext
-from tkinter.ttk import Frame
-from .utils import TextHandler
+from .utils import TextHandler, create_grid_frame
 
 
 class console_output:
@@ -9,13 +8,11 @@ class console_output:
     def __init__(self, root):
         try:
             # Frames
-            self.root = Frame(
-                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.root.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.root = create_grid_frame(
+                root=root, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.console_frame = Frame(
-                self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.console_frame.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.console_frame = create_grid_frame(
+                root=self.root, column=0, row=0, style="WhiteBg.TFrame")
 
             # Console ScrolledText widget
             self.console_widget = scrolledtext.ScrolledText(

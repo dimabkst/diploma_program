@@ -1,15 +1,14 @@
 from tkinter import N, E, W, S, StringVar
-from tkinter.ttk import Frame, Label, Entry
-from view.utils import ENTRY_WIDTH,  create_frame_label_entrie_frames
+from tkinter.ttk import Label, Entry
+from view.utils import ENTRY_WIDTH,  create_grid_frame, create_frame_label_entrie_frames
 
 
 class v_input:
 
     def __init__(self, root):
         try:
-            self.root = Frame(
-                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.root.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.root = create_grid_frame(
+                root=root, column=0, row=0, style="TopWhiteBg.TFrame")
 
             # Count input
             self.count_frame, self.count_label_frame, self.count_entry_frame = create_frame_label_entrie_frames(
