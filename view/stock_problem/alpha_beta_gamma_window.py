@@ -1,7 +1,7 @@
 from typing import Callable
 from tkinter import N, E, W, S, Toplevel, StringVar
-from tkinter.ttk import Frame, Label, Entry, Button
-from view.utils import ENTRY_WIDTH, align_rows_cols
+from tkinter.ttk import Label, Entry, Button
+from view.utils import ENTRY_WIDTH, align_rows_cols, create_grid_frame, create_frame_label_entrie_frames
 
 
 class alpha_beta_gamma_window:
@@ -15,25 +15,17 @@ class alpha_beta_gamma_window:
             self.solve_button_command = solve_button_command
 
             # Frames
-            self.input_rules_frame = Frame(
-                self.window, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.input_rules_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
+            self.input_rules_frame = create_grid_frame(
+                root=self.window, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.input_frame = Frame(
-                self.window, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.input_frame.grid(
-                column=0, row=1, sticky=(N, W, E, S))
+            self.input_frame = create_grid_frame(
+                root=self.window, column=0, row=1, style="WhiteBg.TFrame")
 
-            self.solve_button_frame = Frame(
-                self.window, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.solve_button_frame.grid(
-                column=0, row=2, sticky=(N, W, E, S))
+            self.solve_button_frame = create_grid_frame(
+                root=self.window, column=0, row=2, style="WhiteBg.TFrame")
 
-            self.output_frame = Frame(
-                self.window, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.output_frame.grid(
-                column=0, row=3, sticky=(N, W, E, S))
+            self.output_frame = create_grid_frame(
+                root=self.window, column=0, row=3, style="WhiteBg.TFrame")
 
             # Input rules
             font = ("Arial", 14)
@@ -46,17 +38,8 @@ class alpha_beta_gamma_window:
 
             # Input
             # mu input
-            self.mu_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.mu_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.mu_label_frame = Frame(
-                self.mu_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.mu_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.mu_entry_frame = Frame(
-                self.mu_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.mu_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.mu_frame, self.mu_label_frame, self.mu_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=0, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.mu_var = StringVar()
             self.mu_var.set("0")
@@ -70,17 +53,8 @@ class alpha_beta_gamma_window:
             #
 
             # sigma input
-            self.sigma_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.sigma_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
-
-            self.sigma_label_frame = Frame(
-                self.sigma_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.sigma_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.sigma_entry_frame = Frame(
-                self.sigma_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.sigma_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.sigma_frame, self.sigma_label_frame, self.sigma_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=1, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.sigma_var = StringVar()
             self.sigma_var.set("0")
@@ -94,17 +68,8 @@ class alpha_beta_gamma_window:
             #
 
             # b input
-            self.b_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.b_frame.grid(
-                column=0, row=1, sticky=(N, W, E, S))
-
-            self.b_label_frame = Frame(
-                self.b_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.b_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.b_entry_frame = Frame(
-                self.b_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.b_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.b_frame, self.b_label_frame, self.b_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=0, row=1, isRow=True, style="WhiteBg.TFrame")
 
             self.b_var = StringVar()
             self.b_var.set("0")
@@ -118,17 +83,8 @@ class alpha_beta_gamma_window:
             #
 
             # c input
-            self.c_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.c_frame.grid(
-                column=1, row=1, sticky=(N, W, E, S))
-
-            self.c_label_frame = Frame(
-                self.c_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.c_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.c_entry_frame = Frame(
-                self.c_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.c_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.c_frame, self.c_label_frame, self.c_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=1, row=1, isRow=True, style="WhiteBg.TFrame")
 
             self.c_var = StringVar()
             self.c_var.set("0")
@@ -148,17 +104,8 @@ class alpha_beta_gamma_window:
             #
 
             # alpha output
-            self.alpha_frame = Frame(
-                self.output_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.alpha_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.alpha_label_frame = Frame(
-                self.alpha_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.alpha_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.alpha_entry_frame = Frame(
-                self.alpha_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.alpha_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.alpha_frame, self.alpha_label_frame, self.alpha_entry_frame = create_frame_label_entrie_frames(
+                root=self.output_frame, column=0, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.alpha_var = StringVar()
 
@@ -172,17 +119,8 @@ class alpha_beta_gamma_window:
             #
 
             # beta output
-            self.beta_frame = Frame(
-                self.output_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.beta_frame.grid(
-                column=0, row=1, sticky=(N, W, E, S))
-
-            self.beta_label_frame = Frame(
-                self.beta_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.beta_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.beta_entry_frame = Frame(
-                self.beta_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.beta_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.beta_frame, self.beta_label_frame, self.beta_entry_frame = create_frame_label_entrie_frames(
+                root=self.output_frame, column=0, row=1, isRow=True, style="WhiteBg.TFrame")
 
             self.beta_var = StringVar()
 
@@ -196,17 +134,8 @@ class alpha_beta_gamma_window:
             #
 
             # gamma output
-            self.gamma_frame = Frame(
-                self.output_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.gamma_frame.grid(
-                column=0, row=2, sticky=(N, W, E, S))
-
-            self.gamma_label_frame = Frame(
-                self.gamma_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.gamma_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.gamma_entry_frame = Frame(
-                self.gamma_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.gamma_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.gamma_frame, self.gamma_label_frame, self.gamma_entry_frame = create_frame_label_entrie_frames(
+                root=self.output_frame, column=0, row=2, isRow=True, style="WhiteBg.TFrame")
 
             self.gamma_var = StringVar()
 

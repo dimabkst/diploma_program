@@ -1,7 +1,8 @@
 from typing import Callable
 from tkinter import N, E, W, S
-from tkinter.ttk import Frame, Button
+from tkinter.ttk import Button
 from view.stock_problem import alpha_beta_gamma_window, stock_problem_window
+from view.utils import align_rows_cols, create_grid_frame
 
 
 class stock_problem_page:
@@ -9,19 +10,14 @@ class stock_problem_page:
     def __init__(self, root, alpha_beta_gamma_solve_button_command: Callable, stock_problem_solve_button_command: Callable):
         try:
             # Frames
-            self.root = Frame(
-                root, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.root.grid(column=0, row=0, sticky=(N, W, E, S))
+            self.root = create_grid_frame(
+                root=root, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.alpha_beta_gamma_button_frame = Frame(
-                self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.alpha_beta_gamma_button_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
+            self.alpha_beta_gamma_button_frame = create_grid_frame(
+                root=self.root, column=0, row=0, style="WhiteBg.TFrame")
 
-            self.stock_problem_button_frame = Frame(
-                self.root, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.stock_problem_button_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
+            self.stock_problem_button_frame = create_grid_frame(
+                root=self.root, column=1, row=0, style="WhiteBg.TFrame")
 
             # Winbdows
             self.alpha_beta_gamma_solve_button_command = alpha_beta_gamma_solve_button_command
@@ -42,6 +38,8 @@ class stock_problem_page:
                                                command=self.stock_problem_button_callback)
             self.stock_problem_button.grid(
                 column=0, row=0, sticky=(N, W, E, S))
+
+            align_rows_cols(self.root)
         except Exception as e:
             raise e
 

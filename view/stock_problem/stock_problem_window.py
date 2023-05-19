@@ -1,7 +1,7 @@
 from typing import Callable
 from tkinter import N, E, W, S, Toplevel, StringVar
-from tkinter.ttk import Frame, Label, Entry, Button
-from view.utils import ENTRY_WIDTH
+from tkinter.ttk import Label, Entry, Button
+from view.utils import ENTRY_WIDTH, align_rows_cols, create_grid_frame, create_frame_label_entrie_frames
 
 
 class stock_problem_window:
@@ -16,20 +16,14 @@ class stock_problem_window:
             self.solve_button_command = solve_button_command
 
             # Frames
-            self.input_rules_frame = Frame(
-                self.window, style="TopWhiteBg.TFrame", padding="3 3 12 12")
-            self.input_rules_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
+            self.input_rules_frame = create_grid_frame(
+                root=self.window, column=0, row=0, style="TopWhiteBg.TFrame")
 
-            self.input_frame = Frame(
-                self.window, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.input_frame.grid(
-                column=0, row=1, sticky=(N, W, E, S))
+            self.input_frame = create_grid_frame(
+                root=self.window, column=0, row=1, style="WhiteBg.TFrame")
 
-            self.solve_button_frame = Frame(
-                self.window, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.solve_button_frame.grid(
-                column=0, row=2, sticky=(N, W, E, S))
+            self.solve_button_frame = create_grid_frame(
+                root=self.window, column=0, row=2, style="WhiteBg.TFrame")
 
             # Input rules
             font = ("Arial", 14)
@@ -42,17 +36,8 @@ class stock_problem_window:
 
             # Input
             # alpha input
-            self.alpha_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.alpha_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.alpha_label_frame = Frame(
-                self.alpha_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.alpha_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.alpha_entry_frame = Frame(
-                self.alpha_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.alpha_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.alpha_frame, self.alpha_label_frame, self.alpha_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=0, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.alpha_var = StringVar()
             self.alpha_var.set("")
@@ -66,17 +51,8 @@ class stock_problem_window:
             #
 
             # beta input
-            self.beta_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.beta_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
-
-            self.beta_label_frame = Frame(
-                self.beta_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.beta_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.beta_entry_frame = Frame(
-                self.beta_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.beta_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.beta_frame, self.beta_label_frame, self.beta_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=1, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.beta_var = StringVar()
             self.beta_var.set("")
@@ -90,17 +66,8 @@ class stock_problem_window:
             #
 
             # gamma input
-            self.gamma_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.gamma_frame.grid(
-                column=2, row=0, sticky=(N, W, E, S))
-
-            self.gamma_label_frame = Frame(
-                self.gamma_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.gamma_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.gamma_entry_frame = Frame(
-                self.gamma_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.gamma_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.gamma_frame, self.gamma_label_frame, self.gamma_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=2, row=0, isRow=True, style="WhiteBg.TFrame")
 
             self.gamma_var = StringVar()
             self.gamma_var.set("")
@@ -114,17 +81,8 @@ class stock_problem_window:
             #
 
             # a input
-            self.a_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.a_frame.grid(
-                column=0, row=1, sticky=(N, W, E, S))
-
-            self.a_label_frame = Frame(
-                self.a_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.a_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.a_entry_frame = Frame(
-                self.a_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.a_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.a_frame, self.a_label_frame, self.a_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=0, row=1, isRow=True, style="WhiteBg.TFrame")
 
             self.a_var = StringVar()
             self.a_var.set("")
@@ -138,17 +96,8 @@ class stock_problem_window:
             #
 
             # b input
-            self.b_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.b_frame.grid(
-                column=1, row=1, sticky=(N, W, E, S))
-
-            self.b_label_frame = Frame(
-                self.b_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.b_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.b_entry_frame = Frame(
-                self.b_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.b_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.b_frame, self.b_label_frame, self.b_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=1, row=1, isRow=True, style="WhiteBg.TFrame")
 
             self.b_var = StringVar()
             self.b_var.set("")
@@ -162,17 +111,8 @@ class stock_problem_window:
             #
 
             # T input
-            self.T_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.T_frame.grid(
-                column=2, row=1, sticky=(N, W, E, S))
-
-            self.T_label_frame = Frame(
-                self.T_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.T_entry_frame = Frame(
-                self.T_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.T_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.T_frame, self.T_label_frame, self.T_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=2, row=1, isRow=True, style="WhiteBg.TFrame")
 
             self.T_var = StringVar()
             self.T_var.set("")
@@ -186,17 +126,8 @@ class stock_problem_window:
             #
 
             # I input
-            self.I_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.I_frame.grid(
-                column=0, row=2, sticky=(N, W, E, S))
-
-            self.I_label_frame = Frame(
-                self.I_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.I_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.I_entry_frame = Frame(
-                self.I_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.I_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.I_frame, self.I_label_frame, self.I_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=0, row=2, isRow=True, style="WhiteBg.TFrame")
 
             self.I_var = StringVar()
             self.I_var.set("")
@@ -212,20 +143,8 @@ class stock_problem_window:
             #
 
             # xi_list input
-            self.xi_list_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.xi_list_frame.grid(
-                column=1, row=2, sticky=(N, W, E, S))
-
-            self.xi_list_label_frame = Frame(
-                self.xi_list_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.xi_list_label_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.xi_list_xi_frame = Frame(
-                self.xi_list_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.xi_list_xi_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
+            self.xi_list_frame, self.xi_list_label_frame, self.xi_list_xi_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=1, row=2, isRow=True, style="WhiteBg.TFrame")
 
             self.xi_labels = []
             self.xi_vars = []
@@ -248,17 +167,8 @@ class stock_problem_window:
             #
 
             # J input
-            self.J_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.J_frame.grid(
-                column=0, row=3, sticky=(N, W, E, S))
-
-            self.J_label_frame = Frame(
-                self.J_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.J_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.J_entry_frame = Frame(
-                self.J_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.J_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.J_frame, self.J_label_frame, self.J_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=0, row=3, isRow=True, style="WhiteBg.TFrame")
 
             self.J_var = StringVar()
             self.J_var.set("")
@@ -274,20 +184,8 @@ class stock_problem_window:
             #
 
             # tj_list input
-            self.tj_list_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.tj_list_frame.grid(
-                column=1, row=3, sticky=(N, W, E, S))
-
-            self.tj_list_label_frame = Frame(
-                self.tj_list_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.tj_list_label_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.tj_list_tj_frame = Frame(
-                self.tj_list_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.tj_list_tj_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
+            self.tj_list_frame, self.tj_list_label_frame, self.tj_list_tj_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=1, row=3, isRow=True, style="WhiteBg.TFrame")
 
             self.tj_labels = []
             self.tj_vars = []
@@ -310,17 +208,8 @@ class stock_problem_window:
             #
 
             # K input
-            self.K_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.K_frame.grid(
-                column=0, row=4, sticky=(N, W, E, S))
-
-            self.K_label_frame = Frame(
-                self.K_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.K_label_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-            self.K_entry_frame = Frame(
-                self.K_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.K_entry_frame.grid(column=1, row=0, sticky=(N, W, E, S))
+            self.K_frame, self.K_label_frame, self.K_entry_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=0, row=4, isRow=True, style="WhiteBg.TFrame")
 
             self.K_var = StringVar()
             self.K_var.set("")
@@ -336,20 +225,8 @@ class stock_problem_window:
             #
 
             # xk_list input
-            self.xk_list_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.xk_list_frame.grid(
-                column=1, row=4, sticky=(N, W, E, S))
-
-            self.xk_list_label_frame = Frame(
-                self.xk_list_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.xk_list_label_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.xk_list_xk_frame = Frame(
-                self.xk_list_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.xk_list_xk_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
+            self.xk_list_frame, self.xk_list_label_frame, self.xk_list_xk_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=1, row=4, isRow=True, style="WhiteBg.TFrame")
 
             self.xk_labels = []
             self.xk_vars = []
@@ -372,20 +249,8 @@ class stock_problem_window:
             #
 
             # tk_list input
-            self.tk_list_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.tk_list_frame.grid(
-                column=2, row=4, sticky=(N, W, E, S))
-
-            self.tk_list_label_frame = Frame(
-                self.tk_list_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.tk_list_label_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.tk_list_tk_frame = Frame(
-                self.tk_list_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.tk_list_tk_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
+            self.tk_list_frame, self.tk_list_label_frame, self.tk_list_tk_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=2, row=4, isRow=True, style="WhiteBg.TFrame")
 
             self.tk_labels = []
             self.tk_vars = []
@@ -408,20 +273,8 @@ class stock_problem_window:
             #
 
             # uk_list input
-            self.uk_list_frame = Frame(
-                self.input_frame, style="WhiteBg.TFrame", padding="3 3 12 12")
-            self.uk_list_frame.grid(
-                column=3, row=4, sticky=(N, W, E, S))
-
-            self.uk_list_label_frame = Frame(
-                self.uk_list_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.uk_list_label_frame.grid(
-                column=0, row=0, sticky=(N, W, E, S))
-
-            self.uk_list_uk_frame = Frame(
-                self.uk_list_frame, padding="3 3 12 12", style="WhiteBg.TFrame")
-            self.uk_list_uk_frame.grid(
-                column=1, row=0, sticky=(N, W, E, S))
+            self.uk_list_frame, self.uk_list_label_frame, self.uk_list_uk_frame = create_frame_label_entrie_frames(
+                root=self.input_frame, column=3, row=4, isRow=True, style="WhiteBg.TFrame")
 
             self.uk_labels = []
             self.uk_vars = []
@@ -448,6 +301,8 @@ class stock_problem_window:
                                        command=self.solve_button_callback)
             self.solve_button.grid(column=0, row=0, sticky=(N, W, E, S))
             #
+
+            align_rows_cols(self.window)
 
             self.window.protocol("WM_DELETE_WINDOW",
                                  self.close_window_callback)
